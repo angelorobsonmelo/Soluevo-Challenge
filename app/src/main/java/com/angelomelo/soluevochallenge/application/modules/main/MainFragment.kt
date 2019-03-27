@@ -11,10 +11,13 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.angelomelo.soluevochallenge.R
+import com.angelomelo.soluevochallenge.application.modules.main.adapter.ContractAdapter
 import com.angelomelo.soluevochallenge.application.utils.FragmentBase
 import com.angelomelo.soluevochallenge.databinding.MainFragmentBinding
+import com.angelomelo.soluevochallenge.domain.Contract
 import com.google.android.material.snackbar.Snackbar
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
+import java.util.*
 
 class MainFragment : FragmentBase() {
 
@@ -47,17 +50,13 @@ class MainFragment : FragmentBase() {
     private fun setupRecyclerView() {
         val recyclerView = binding.contractsRecyclerView
         val layoutManager = LinearLayoutManager(context)
-        val divider = DividerItemDecoration(
-            recyclerView.context,
-            layoutManager.orientation
-        )
 
         recyclerView.layoutManager = layoutManager
-        recyclerView.addItemDecoration(divider)
+        oberverSuccess()
     }
 
     private fun oberverSuccess() {
-        val adapter = binding.contractsRecyclerView.adapter
+        val adapter = ContractAdapter(arrayListOf(Contract(1, true, true, Date(), Date())))
         binding.contractsRecyclerView.adapter = ScaleInAnimationAdapter(adapter).apply {
             setFirstOnly(false)
             setDuration(500)

@@ -10,7 +10,7 @@ class SessionUseCase(private val mSessionLocalDataSource: SessionLocalDataSource
         mSessionLocalDataSource.saveAuthSession(authResponse)
     }
 
-    fun getAuthSession(): AuthResponse {
+    fun getAuthSession(): AuthResponse? {
         return mSessionLocalDataSource.getAuthSession()
     }
 

@@ -48,8 +48,8 @@ class CustomInterceptorRequest : Interceptor {
             val session = SoluevoChallengeApplication.mSessionUseCase!!.getAuthSession()
 
             original.newBuilder()
-                .addHeader("Authorization", "Bearer ${session.Token}")
-//                .addHeader("code", "${session.user.financialCode}")
+                .addHeader("Authorization", "Bearer ${session?.Token}")
+                .addHeader("code", "${session?.user?.financialCode}")
         } else {
             original.newBuilder()
         }
