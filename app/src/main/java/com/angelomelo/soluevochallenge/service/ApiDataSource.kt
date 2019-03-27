@@ -2,6 +2,7 @@ package br.com.stant.stant_android_occurrences.services
 
 import com.angelomelo.cm_customer_android.service.CustomInterceptorRequest
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -24,10 +25,12 @@ class ApiDataSource  {
             httpClient.addInterceptor(CustomInterceptorRequest())
             httpClient.addInterceptor(loggingInterceptor)
 
+            val gson = GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create()
+
             val retrofit = Retrofit.Builder()
                 .baseUrl("http://159.65.244.68/")
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create(Gson()))
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(httpClient.build())
                 .build()
 
