@@ -65,7 +65,7 @@ class AuthFragment : FragmentBase() {
         }
     }
 
-    fun getDetrans() : ArrayList<String> {
+    fun getDetranStates() : ArrayList<String> {
         return arrayListOf("RJ", "CE")
     }
 
