@@ -9,4 +9,8 @@
     <string name="password">Senha</string>
     <string name="login">Entrar</string>
     <string name="state">Estado</string>
+
+    <array name="detran_states">
+
+    </array>
 </resources>

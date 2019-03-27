@@ -25,12 +25,20 @@ class AuthFragment : FragmentBase() {
         fun newInstance() = AuthFragment()
     }
 
+    override fun onResume() {
+        super.onResume()
+        clearForm()
+    }
+
+    private fun clearForm() {
+        binding.user = User()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = inflate(inflater, R.layout.auth_fragment, container, false)
-
         return binding.root
     }
 
@@ -63,10 +71,6 @@ class AuthFragment : FragmentBase() {
         if (validator.validate()) {
             viewModel.auth(user)
         }
-    }
-
-    fun getDetranStates() : ArrayList<String> {
-        return arrayListOf("RJ", "CE")
     }
 
     private fun initObserveOnSuccess() {
