@@ -4,4 +4,8 @@
     <string name="internal_error">An internal error occurred.</string>
     <string name="unknown_error">Unknown error, contact your system administrator</string>
     <string name="no_internet_connection_error">No internet connection</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="state">State</string>
 </resources>

@@ -39,10 +39,10 @@
         <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@={user.name}"
+                android:text="@={user.username}"
                 app:validateEmpty="@{true}"
                 app:validateTypeAutoDismiss="@{true}"
-                android:hint="Name"/>
+                android:hint="@string/username"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -68,11 +68,11 @@
                 app:validateTypeAutoDismiss="@{true}"
                 android:text="@={user.password}"
                 android:inputType="textPassword"
-                android:hint="Password"/>
+                android:hint="@string/password"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-            android:text="Button"
+            android:text="@string/login"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:onClick="@{() -> handler.auth(user)}"
@@ -102,7 +102,7 @@
             android:layout_marginTop="32dp"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"/>
     <TextView
-            android:text="Login"
+            android:text="@string/login"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/textView"
@@ -117,12 +117,14 @@
             android:gravity="center"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline2"/>
     <TextView
-            android:text="Detran State"
+            android:text="@string/state"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView2"
-            app:layout_constraintBottom_toTopOf="@+id/spinner" app:layout_constraintStart_toStartOf="@+id/spinner"
-            android:layout_marginLeft="8dp" android:layout_marginStart="8dp"/>
+            app:layout_constraintBottom_toTopOf="@+id/spinner"
+            app:layout_constraintStart_toStartOf="@+id/spinner"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
