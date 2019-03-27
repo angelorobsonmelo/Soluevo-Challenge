@@ -8,4 +8,8 @@
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="state">State</string>
+    <string name="contract_number">Nº</string>
+    <string name="status" translatable="false">Status</string>
+    <string name="status_detran" translatable="false">Status Detran</string>
+
 </resources>

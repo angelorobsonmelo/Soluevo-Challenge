@@ -4,9 +4,11 @@ import android.view.View
 import android.view.View.*
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.angelomelo.cm_customer_android.application.extensions.convertDateToString
 import com.angelomelo.cm_customer_android.application.extensions.convertDateToStringDDMMM
+import com.angelomelo.soluevochallenge.R
 import com.squareup.picasso.Picasso
 import java.util.*
 
@@ -33,6 +35,15 @@ fun loadImage(view: ImageView, imageUrl: String?) {
     Picasso.get()
         .load(imageUrl)
         .into(view)
+}
+
+@BindingAdapter( "status")
+fun status(imageView: ImageView, status: Boolean) {
+    if (status) {
+        imageView.setImageDrawable(ContextCompat.getDrawable(imageView.context, R.drawable.ic_check))
+    } else {
+        imageView.setImageDrawable(ContextCompat.getDrawable(imageView.context, R.drawable.ic_error))
+    }
 }
 
 @BindingAdapter("visibleOrGone")

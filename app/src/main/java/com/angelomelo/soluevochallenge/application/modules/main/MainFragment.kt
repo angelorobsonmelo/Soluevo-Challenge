@@ -16,6 +16,7 @@ import com.angelomelo.soluevochallenge.domain.Contract
 import com.google.android.material.snackbar.Snackbar
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
 
 class MainFragment : FragmentBase() {
 
@@ -53,10 +54,10 @@ class MainFragment : FragmentBase() {
     }
 
     private fun setupRecyclerView() {
+        val gridLayout = GridLayoutManager(context, 2)
         val recyclerView = binding.contractsRecyclerView
-        val layoutManager = LinearLayoutManager(context)
 
-        recyclerView.layoutManager = layoutManager
+        recyclerView.layoutManager = gridLayout
     }
 
     private fun setupObserverOnSuccess() {
