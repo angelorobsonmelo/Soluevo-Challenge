@@ -10,7 +10,7 @@
                 type="com.angelomelo.soluevochallenge.domain.User" />
         <variable
                 name="handler"
-                type="com.angelomelo.soluevochallenge.application.modules.auth.AuthFragment" />
+                type="com.angelomelo.soluevochallenge.application.modules.auth.AuthHandler" />
         <variable
                 name="viewModel"
                 type="com.angelomelo.soluevochallenge.application.modules.auth.AuthViewModel" />

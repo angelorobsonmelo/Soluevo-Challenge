@@ -15,7 +15,7 @@ import com.angelomelo.soluevochallenge.application.utils.FragmentBase
 import com.angelomelo.soluevochallenge.databinding.AuthFragmentBinding
 import com.angelomelo.soluevochallenge.domain.User
 
-class AuthFragment : FragmentBase() {
+class AuthFragment : FragmentBase(), AuthHandler {
 
     private lateinit var binding: AuthFragmentBinding
     private lateinit var viewModel: AuthViewModel
@@ -67,7 +67,7 @@ class AuthFragment : FragmentBase() {
         validator.enableFormValidationMode()
     }
 
-    fun auth(user: User) {
+    override fun auth(user: User) {
         if (validator.validate()) {
             viewModel.auth(user)
         }
