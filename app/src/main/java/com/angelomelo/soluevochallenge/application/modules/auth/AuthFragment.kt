@@ -61,4 +61,8 @@ class AuthFragment : Fragment() {
         }
     }
 
+    fun getDetrans() : ArrayList<String> {
+        return arrayListOf("RJ", "CE")
+    }
+
 }
