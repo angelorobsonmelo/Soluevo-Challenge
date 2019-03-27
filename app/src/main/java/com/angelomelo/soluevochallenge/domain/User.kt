@@ -4,10 +4,10 @@ import com.google.gson.annotations.SerializedName
 
 data class User (
     @SerializedName("UUID")
-    val uuid: String,
+    var uuid: String = "",
     @SerializedName("financials_code")
-    val financialCode: Int,
-    val name: String,
-    val password: String
+    var financialCode: Int = -1,
+    var name: String = "",
+    var password: String = ""
 )
 

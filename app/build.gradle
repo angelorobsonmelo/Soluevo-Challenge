@@ -13,6 +13,7 @@ android {
         applicationId "com.angelomelo.soluevochallenge"
         minSdkVersion 15
         targetSdkVersion 28
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -20,6 +21,10 @@ android {
 
     dataBinding {
         enabled true
+    }
+
+    androidExtensions {
+        experimental = true
     }
 
     buildTypes {
