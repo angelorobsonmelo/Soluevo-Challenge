@@ -6,7 +6,7 @@ data class User (
     @SerializedName("UUID")
     var uuid: String = "",
     @SerializedName("financials_code")
-    var financialCode: Int = -1,
+    var financialCode: Int = 1001,
     var username: String = "",
     var password: String = ""
 )

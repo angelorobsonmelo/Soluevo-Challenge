@@ -1,7 +1,33 @@
 package com.angelomelo.soluevochallenge.application.modules.auth
 
-import androidx.lifecycle.ViewModel
+import com.angelomelo.cm_customer_android.application.injections.InjectionUseCase
+import com.angelomelo.soluevochallenge.application.usecases.UseCase
+import com.angelomelo.soluevochallenge.application.utils.BaseViewModel
+import com.angelomelo.soluevochallenge.domain.User
 
-class AuthViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+class AuthViewModel : BaseViewModel<Void>() {
+
+    private val mAuthUseCase = InjectionUseCase.provideAuthseCase()
+
+    fun auth(user: User) {
+        mAuthUseCase.auth(user, object : UseCase.VoidUseCaseCallback {
+            override fun onSuccess() {
+                successObserver.value = null
+            }
+
+            override fun onEmptyData() {
+
+            }
+
+            override fun isLoading(isLoading: Boolean) {
+                isLoadingObserver.value = isLoading
+            }
+
+            override fun onError(errorDescription: String) {
+                errorObserver.value = errorDescription
+            }
+
+        })
+    }
+
 }

@@ -49,7 +49,7 @@ class CustomInterceptorRequest : Interceptor {
 
             original.newBuilder()
                 .addHeader("Authorization", "Bearer ${session.Token}")
-                .addHeader("code", "${session.user.financialCode}")
+//                .addHeader("code", "${session.user.financialCode}")
         } else {
             original.newBuilder()
         }

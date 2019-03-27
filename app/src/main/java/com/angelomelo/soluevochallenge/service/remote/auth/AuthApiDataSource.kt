@@ -9,6 +9,6 @@ import rx.Observable
 
 interface AuthApiDataSource {
 
-    @POST("/api/v1/auth/sign_in")
+    @POST("/auth/financial")
     fun auth(@Body user: User): Observable<AuthResponse>
 }

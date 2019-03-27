@@ -1,18 +1,21 @@
 package com.angelomelo.soluevochallenge.application.modules.auth
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil.inflate
-import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import br.com.ilhasoft.support.validation.Validator
 import com.angelomelo.soluevochallenge.R
+import com.angelomelo.soluevochallenge.application.modules.main.MainActivity
+import com.angelomelo.soluevochallenge.application.utils.FragmentBase
 import com.angelomelo.soluevochallenge.databinding.AuthFragmentBinding
 import com.angelomelo.soluevochallenge.domain.User
 
-class AuthFragment : Fragment() {
+class AuthFragment : FragmentBase() {
 
     private lateinit var binding: AuthFragmentBinding
     private lateinit var viewModel: AuthViewModel
@@ -40,7 +43,8 @@ class AuthFragment : Fragment() {
     private fun initElements() {
         setupFragmentBinding()
         setupValidator()
-
+        initObserveOnSuccess()
+        initOserveOnError()
     }
 
     private fun setupFragmentBinding() {
@@ -57,12 +61,28 @@ class AuthFragment : Fragment() {
 
     fun auth(user: User) {
         if (validator.validate()) {
-//            viewModel.auth(user)
+            viewModel.auth(user)
         }
     }
 
     fun getDetrans() : ArrayList<String> {
         return arrayListOf("RJ", "CE")
+    }
+
+    private fun initObserveOnSuccess() {
+        viewModel.successObserver.observe(this, Observer {
+            goToMainScreen()
+        })
+    }
+
+    private fun goToMainScreen() {
+        startActivity(Intent(context, MainActivity::class.java))
+    }
+
+    private fun initOserveOnError() {
+        viewModel.errorObserver.observe(this, Observer {
+            showAlert(it)
+        })
     }
 
 }

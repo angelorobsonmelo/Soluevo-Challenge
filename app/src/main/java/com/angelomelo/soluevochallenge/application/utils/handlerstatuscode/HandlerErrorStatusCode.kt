@@ -24,6 +24,12 @@ enum class HandlerErrorStatusCode(val value: Int) : MessageStatusCodeError {
         override fun getMessageFromResourceString(): Int {
            return R.string.unknown_error
         }
+    },
+
+    BAD_REQUEST(400) {
+        override fun getMessageFromResourceString(): Int {
+            return R.string.unauthorized
+        }
     };
 
     companion object {
