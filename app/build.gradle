@@ -17,6 +17,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
 
     dataBinding {
@@ -74,6 +75,9 @@ dependencies {
 
     // EditText Masks
     implementation 'com.github.santalu:mask-edittext:1.1.1'
+
+    // Recycler view animated
+    implementation 'jp.wasabeef:recyclerview-animators:3.0.0'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.2-alpha02'

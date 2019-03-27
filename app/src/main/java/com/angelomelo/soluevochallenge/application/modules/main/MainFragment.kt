@@ -4,29 +4,65 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import android.view.animation.OvershootInterpolator
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.DataBindingUtil.inflate
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.angelomelo.soluevochallenge.R
+import com.angelomelo.soluevochallenge.application.utils.FragmentBase
+import com.angelomelo.soluevochallenge.databinding.MainFragmentBinding
+import com.google.android.material.snackbar.Snackbar
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 
-class MainFragment : Fragment() {
+class MainFragment : FragmentBase() {
+
+    private lateinit var binding: MainFragmentBinding
+    private lateinit var viewModel: MainViewModel
 
     companion object {
         fun newInstance() = MainFragment()
     }
 
-    private lateinit var viewModel: MainViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.main_fragment, container, false)
+        binding  = inflate(inflater, R.layout.main_fragment, container, false)
+        binding.lifecycleOwner = this
+
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-        // TODO: Use the ViewModel
+        setupRecyclerView()
+
+        Snackbar.make(view?.rootView!!, "Seja bem vindo", Snackbar.LENGTH_LONG)
+            .show()
+    }
+
+    private fun setupRecyclerView() {
+        val recyclerView = binding.contractsRecyclerView
+        val layoutManager = LinearLayoutManager(context)
+        val divider = DividerItemDecoration(
+            recyclerView.context,
+            layoutManager.orientation
+        )
+
+        recyclerView.layoutManager = layoutManager
+        recyclerView.addItemDecoration(divider)
+    }
+
+    private fun oberverSuccess() {
+        val adapter = binding.contractsRecyclerView.adapter
+        binding.contractsRecyclerView.adapter = ScaleInAnimationAdapter(adapter).apply {
+            setFirstOnly(false)
+            setDuration(500)
+            setInterpolator(OvershootInterpolator(.5f))
+        }
     }
 
 }
