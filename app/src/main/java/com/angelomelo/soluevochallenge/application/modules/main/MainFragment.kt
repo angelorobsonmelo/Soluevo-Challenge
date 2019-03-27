@@ -39,6 +39,8 @@ class MainFragment : FragmentBase() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        binding.viewModel = viewModel
+
         setupElements()
 
         Snackbar.make(view?.rootView!!, "Seja bem vindo", Snackbar.LENGTH_LONG)

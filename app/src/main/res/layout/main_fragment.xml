@@ -3,6 +3,21 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+                name="viewModel"
+                type="com.angelomelo.soluevochallenge.application.modules.main.MainViewModel" />
+
+    </data>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/swipe_to_refresh_layout"
+            app:onRefreshListener="@{() -> viewModel.getContracts()}"
+            app:refreshing="@{safeUnbox(viewModel.isLoadingObserver)}"
+            android:orientation="vertical">
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -24,5 +39,7 @@
                 app:srcCompat="@drawable/ic_add"/>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </layout>

@@ -13,7 +13,7 @@ class MainViewModel : BaseViewModel<List<Contract>>() {
         getContracts()
     }
 
-    private fun getContracts() {
+    fun getContracts() {
         getContractsUseCase.getContracts(object : UseCase.UseCaseCallback<List<Contract>> {
             override fun onSuccess(response: List<Contract>) {
                 successObserver.value = response
