@@ -5,10 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.OvershootInterpolator
-import androidx.databinding.DataBindingUtil
 import androidx.databinding.DataBindingUtil.inflate
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.angelomelo.soluevochallenge.R
 import com.angelomelo.soluevochallenge.application.modules.main.adapter.ContractAdapter
@@ -17,7 +15,7 @@ import com.angelomelo.soluevochallenge.databinding.MainFragmentBinding
 import com.angelomelo.soluevochallenge.domain.Contract
 import com.google.android.material.snackbar.Snackbar
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
-import java.util.*
+import androidx.lifecycle.Observer
 
 class MainFragment : FragmentBase() {
 
@@ -41,10 +39,15 @@ class MainFragment : FragmentBase() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-        setupRecyclerView()
+        setupElements()
 
         Snackbar.make(view?.rootView!!, "Seja bem vindo", Snackbar.LENGTH_LONG)
             .show()
+    }
+
+    private fun setupElements() {
+        setupRecyclerView()
+        setupObserverOnSuccess()
     }
 
     private fun setupRecyclerView() {
@@ -52,11 +55,16 @@ class MainFragment : FragmentBase() {
         val layoutManager = LinearLayoutManager(context)
 
         recyclerView.layoutManager = layoutManager
-        oberverSuccess()
     }
 
-    private fun oberverSuccess() {
-        val adapter = ContractAdapter(arrayListOf(Contract(1, true, true, Date(), Date())))
+    private fun setupObserverOnSuccess() {
+        viewModel.successObserver.observe(this, Observer {
+            setupAdapter(it)
+        })
+    }
+
+    private fun setupAdapter(contracts: List<Contract>) {
+        val adapter = ContractAdapter(contracts)
         binding.contractsRecyclerView.adapter = ScaleInAnimationAdapter(adapter).apply {
             setFirstOnly(false)
             setDuration(500)
