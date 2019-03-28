@@ -1,6 +1,8 @@
 package com.angelomelo.soluevochallenge.domain.request
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
 data class ContractRequest(
     @SerializedName("endusers_document")
@@ -19,19 +21,22 @@ data class Data(
     val contratos: Contratos
 )
 
+@Parcelize
 data class Personal(
     var name: String,
     var rg: String
-)
+) : Parcelable
 
+@Parcelize
 data class Vehicle(
    var remarcado: String,
    var renavam: String,
    @SerializedName("uf_placa")
    var ufPlaca: String,
    var chassi: String
-)
+) : Parcelable
 
+@Parcelize
 data class Credor(
    var endereco: String,
    var cep: Int,
@@ -46,8 +51,9 @@ data class Credor(
    var cnpj: Int,
    var telefone: String,
    var bairro: String
-)
+): Parcelable
 
+@Parcelize
 data class Contratos(
     @SerializedName("quantidade_meses")
     var quantidadeMeses: Int,
@@ -72,4 +78,4 @@ data class Contratos(
     var valorJurosMes: Int,
     var indices: String
 
-)
+): Parcelable
