@@ -10,6 +10,6 @@
     <string name="login">Entrar</string>
     <string name="state">Status</string>
     <string name="contract_number">Nº</string>
-    <string name="search">Procurar</string>
+    <string name="search">Pesquisar</string>
 
 </resources>

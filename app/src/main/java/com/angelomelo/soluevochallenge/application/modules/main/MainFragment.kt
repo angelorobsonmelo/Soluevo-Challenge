@@ -45,7 +45,6 @@ class MainFragment : FragmentBase() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         binding.viewModel = viewModel
-        setHasOptionsMenu(true)
         setupElements()
 
         Snackbar.make(view?.rootView!!, "Seja bem vindo", Snackbar.LENGTH_LONG)
@@ -53,21 +52,19 @@ class MainFragment : FragmentBase() {
     }
 
     private fun setupElements() {
-        val toolbar = activity?.tollbarContracts as Toolbar
-        setSupportActionBar(toolbar)
-
+        setSupportActionBar()
         setupRecyclerView()
         setupObserverOnSuccess()
     }
 
-    private fun setSupportActionBar(toolbar: Toolbar) {
+    private fun setSupportActionBar() {
+        setHasOptionsMenu(true)
+        val toolbar = activity?.tollbarContracts as Toolbar
         val appCompatActivity = activity as AppCompatActivity?
 
         appCompatActivity?.setSupportActionBar(toolbar)
         appCompatActivity?.supportActionBar?.setDisplayShowTitleEnabled(true)
         appCompatActivity?.supportActionBar?.title = "Contracts"
-
-//        toolbar.toolbar_title.text = getString(R.string.event_detail_title)
     }
 
     private fun setupRecyclerView() {
@@ -92,16 +89,14 @@ class MainFragment : FragmentBase() {
         }
     }
 
-
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_filter, menu)
+        val searchView = setupSearchView(menu)
+        setQueryTextListener(searchView)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
 
-        val searchItem = menu.findItem(R.id.action_search)
-        val searchView = searchItem.actionView as SearchView
-
-        searchView.imeOptions = EditorInfo.IME_ACTION_DONE
-        searchView.inputType  = InputType.TYPE_CLASS_NUMBER
-
+    private fun setQueryTextListener(searchView: SearchView) {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 return false
@@ -112,9 +107,15 @@ class MainFragment : FragmentBase() {
                 return false
             }
         })
+    }
 
-        super.onCreateOptionsMenu(menu, inflater)
+    private fun setupSearchView(menu: Menu): SearchView {
+        val searchItem = menu.findItem(R.id.action_search)
+        val searchView = searchItem.actionView as SearchView
 
+        searchView.imeOptions = EditorInfo.IME_ACTION_DONE
+        searchView.inputType = InputType.TYPE_CLASS_NUMBER
+        return searchView
     }
 
 }

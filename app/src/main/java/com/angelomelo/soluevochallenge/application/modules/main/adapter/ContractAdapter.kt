@@ -13,7 +13,7 @@ import com.angelomelo.soluevochallenge.domain.Contract
 class ContractAdapter(private val contracts: MutableList<Contract>) : RecyclerView.Adapter<RecyclerView.ViewHolder>(),
     Filterable {
 
-    private var exampleListFull: List<Contract> = ArrayList(contracts)
+    private var contractListFull: List<Contract> = ArrayList(contracts)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ContractViewHolder(
@@ -39,11 +39,11 @@ class ContractAdapter(private val contracts: MutableList<Contract>) : RecyclerVi
             val filteredList = ArrayList<Contract>()
 
             if (constraint == null || constraint.isEmpty()) {
-                filteredList.addAll(exampleListFull)
+                filteredList.addAll(contractListFull)
             } else {
                 val filterPattern = constraint.toString().toLowerCase().trim { it <= ' ' }
 
-                for (item in exampleListFull) {
+                for (item in contractListFull) {
                     if (item.code.toString().toLowerCase().contains(filterPattern)) {
                         filteredList.add(item)
                     }
