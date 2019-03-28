@@ -16,5 +16,10 @@
     <string name="remarcado">Remarcado</string>
     <string name="next">Próximo</string>
     <string name="back">Voltar</string>
+    <string name="personal">Pessoal</string>
+    <string name="creditor">Credor</string>
+    <string name="contract">Contrato</string>
+    <string name="attachments">Contrato</string>
+    <string name="vehicle">Veicúlo</string>
 
 </resources>

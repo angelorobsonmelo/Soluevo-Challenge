@@ -11,6 +11,7 @@ class SoluevoChallengeApplication: Application() {
 
     companion object {
        var mSessionUseCase: SessionUseCase? = null
+        lateinit var instance: SoluevoChallengeApplication
     }
 
     override fun onCreate() {
@@ -20,6 +21,8 @@ class SoluevoChallengeApplication: Application() {
         if (mSessionUseCase!!.isLogged()) {
             startActivity(Intent(applicationContext, MainActivity::class.java))
         }
+
+        instance = this
     }
 
 }

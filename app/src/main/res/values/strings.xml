@@ -25,5 +25,10 @@
     <string name="remarcado">Remarked</string>
     <string name="next">Next</string>
     <string name="back">Back</string>
+    <string name="personal">Personal</string>
+    <string name="creditor">Creditor</string>
+    <string name="contract">Contract</string>
+    <string name="attachments">Attachments</string>
+    <string name="vehicle">Vehicle</string>
 
 </resources>

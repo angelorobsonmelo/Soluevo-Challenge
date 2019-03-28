@@ -6,12 +6,19 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.angelomelo.soluevochallenge.R
+import com.angelomelo.soluevochallenge.application.SoluevoChallengeApplication
 import com.angelomelo.soluevochallenge.databinding.AuthFragmentBinding
 import com.kofigyan.stateprogressbar.StateProgressBar
 
 abstract class UsageBaseActivity : AppCompatActivity(), View.OnClickListener {
 
-     var descriptionData = arrayOf("Personal", "Veicúlo", "Credor", "Contrato", "Anexos")
+     private val personal = SoluevoChallengeApplication.instance.resources.getString(R.string.personal)
+     private val vehicle = SoluevoChallengeApplication.instance.resources.getString(R.string.vehicle)
+     private val creditor = SoluevoChallengeApplication.instance.resources.getString(R.string.creditor)
+     private val contract = SoluevoChallengeApplication.instance.resources.getString(R.string.contract)
+     private val attachments = SoluevoChallengeApplication.instance.resources.getString(R.string.attachments)
+
+     var descriptionData = arrayOf(personal, vehicle, creditor, contract, attachments)
      lateinit var nextBtn: Button
      lateinit var backBtn: Button
      lateinit var stateprogressbar: StateProgressBar
