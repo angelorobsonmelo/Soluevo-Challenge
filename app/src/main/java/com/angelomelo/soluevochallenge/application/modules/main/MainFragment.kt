@@ -6,7 +6,6 @@ import android.text.InputType
 import android.view.*
 import android.view.animation.OvershootInterpolator
 import android.view.inputmethod.EditorInfo
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
@@ -18,7 +17,7 @@ import com.angelomelo.soluevochallenge.R
 import com.angelomelo.soluevochallenge.application.SoluevoChallengeApplication
 import com.angelomelo.soluevochallenge.application.modules.auth.AuthActivity
 import com.angelomelo.soluevochallenge.application.modules.main.adapter.ContractAdapter
-import com.angelomelo.soluevochallenge.application.modules.savecontract.personalform.UsageDetailsActivity
+import com.angelomelo.soluevochallenge.application.modules.savecontract.personalform.PersonalFormActivity
 import com.angelomelo.soluevochallenge.application.utils.FragmentBase
 import com.angelomelo.soluevochallenge.databinding.MainFragmentBinding
 import com.angelomelo.soluevochallenge.domain.Contract
@@ -145,7 +144,7 @@ class MainFragment : FragmentBase(), MainHandler {
     }
 
     override fun goToSaveContract() {
-        startActivity(Intent(context, UsageDetailsActivity::class.java))
+        startActivity(Intent(context, PersonalFormActivity::class.java))
     }
 
 }

@@ -8,7 +8,7 @@ import com.kofigyan.stateprogressbar.StateProgressBar
 
 abstract class UsageBaseActivity : Activity(), View.OnClickListener {
 
-     var descriptionData = arrayOf("Details", "Pricing", "Amenities", "Status")
+     var descriptionData = arrayOf("Personal", "Veicúlo", "Credor", "Contratos", "Anexos")
      lateinit var nextBtn: Button
      lateinit var backBtn: Button
      lateinit var stateprogressbar: StateProgressBar
