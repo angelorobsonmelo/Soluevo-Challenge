@@ -35,6 +35,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="@={vehicle.renavam}"
+                    android:inputType="number"
                     app:validateEmpty="@{true}"
                     app:validateTypeAutoDismiss="@{true}"
                     android:maxLines="1"
