@@ -18,6 +18,7 @@ import com.angelomelo.soluevochallenge.R
 import com.angelomelo.soluevochallenge.application.SoluevoChallengeApplication
 import com.angelomelo.soluevochallenge.application.modules.auth.AuthActivity
 import com.angelomelo.soluevochallenge.application.modules.main.adapter.ContractAdapter
+import com.angelomelo.soluevochallenge.application.modules.savecontract.personalform.UsageDetailsActivity
 import com.angelomelo.soluevochallenge.application.utils.FragmentBase
 import com.angelomelo.soluevochallenge.databinding.MainFragmentBinding
 import com.angelomelo.soluevochallenge.domain.Contract
@@ -25,7 +26,7 @@ import com.google.android.material.snackbar.Snackbar
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import kotlinx.android.synthetic.main.main_activity.*
 
-class MainFragment : FragmentBase() {
+class MainFragment : FragmentBase(), MainHandler {
 
     private lateinit var binding: MainFragmentBinding
     private lateinit var viewModel: MainViewModel
@@ -49,6 +50,7 @@ class MainFragment : FragmentBase() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         binding.viewModel = viewModel
+        binding.hander = this
         setupElements()
 
         Snackbar.make(view?.rootView!!, "Seja bem vindo", Snackbar.LENGTH_LONG)
@@ -140,6 +142,10 @@ class MainFragment : FragmentBase() {
 
     private fun goToAuthScreen() {
         startActivity(Intent(context, AuthActivity::class.java))
+    }
+
+    override fun goToSaveContract() {
+        startActivity(Intent(context, UsageDetailsActivity::class.java))
     }
 
 }

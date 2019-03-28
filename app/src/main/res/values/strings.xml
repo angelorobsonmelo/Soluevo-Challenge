@@ -12,5 +12,6 @@
     <string name="status" translatable="false">Status</string>
     <string name="status_detran" translatable="false">Status Detran</string>
     <string name="search">Search</string>
+    <string name="title_activity_aa">AAA</string>
 
 </resources>

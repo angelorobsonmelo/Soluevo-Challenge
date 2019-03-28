@@ -8,6 +8,10 @@
                 name="viewModel"
                 type="com.angelomelo.soluevochallenge.application.modules.main.MainViewModel" />
 
+        <variable
+                name="hander"
+                type="com.angelomelo.soluevochallenge.application.modules.main.MainHandler" />
+
     </data>
 
 
@@ -35,6 +39,7 @@
                 android:id="@+id/floating_action_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="@{() -> hander.goToSaveContract()}"
                 android:layout_gravity="bottom|end"
                 android:layout_margin="16dp"
                 app:srcCompat="@drawable/ic_add"/>
