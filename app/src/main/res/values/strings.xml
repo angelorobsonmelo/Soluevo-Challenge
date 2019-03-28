@@ -14,5 +14,8 @@
     <string name="search">Search</string>
     <string name="title_activity_aa">AAA</string>
     <string name="title_activity_vehicle">VehicleActivity</string>
+    <string name="title_activity_credor">CredorActivity</string>
+    <string name="title_activity_contract_form">ContractFormActivity</string>
+    <string name="title_activity_attachments">AttachmentsActivity</string>
 
 </resources>

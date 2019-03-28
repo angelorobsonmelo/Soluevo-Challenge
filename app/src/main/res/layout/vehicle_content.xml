@@ -18,6 +18,8 @@
         <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:maxLines="1"
+                android:singleLine="true"
                 android:hint="Renavem"
         />
 
@@ -30,6 +32,8 @@
         <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:maxLines="1"
+                android:singleLine="true"
                 android:hint="Chassi"
         />
 
@@ -42,6 +46,8 @@
         <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:maxLines="1"
+                android:singleLine="true"
                 android:hint="UF Placa"
         />
 
@@ -54,6 +60,8 @@
         <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:maxLines="1"
+                android:singleLine="true"
                 android:hint="Remarcado"
         />
 
