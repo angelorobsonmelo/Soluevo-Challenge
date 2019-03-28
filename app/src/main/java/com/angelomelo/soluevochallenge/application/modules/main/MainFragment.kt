@@ -5,6 +5,7 @@ import android.text.InputType
 import android.view.*
 import android.view.animation.OvershootInterpolator
 import android.view.inputmethod.EditorInfo
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
@@ -96,6 +97,15 @@ class MainFragment : FragmentBase() {
         super.onCreateOptionsMenu(menu, inflater)
     }
 
+    private fun setupSearchView(menu: Menu): SearchView {
+        val searchItem = menu.findItem(R.id.action_search)
+        val searchView = searchItem.actionView as SearchView
+
+        searchView.imeOptions = EditorInfo.IME_ACTION_DONE
+        searchView.inputType = InputType.TYPE_CLASS_NUMBER
+        return searchView
+    }
+
     private fun setQueryTextListener(searchView: SearchView) {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
@@ -109,13 +119,17 @@ class MainFragment : FragmentBase() {
         })
     }
 
-    private fun setupSearchView(menu: Menu): SearchView {
-        val searchItem = menu.findItem(R.id.action_search)
-        val searchView = searchItem.actionView as SearchView
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val itemMenuId            = item.itemId
+        val actionLogout = R.id.action_logout
 
-        searchView.imeOptions = EditorInfo.IME_ACTION_DONE
-        searchView.inputType = InputType.TYPE_CLASS_NUMBER
-        return searchView
+        when (itemMenuId) {
+            actionLogout -> {
+                Toast.makeText(context, "Favorite pressed", Toast.LENGTH_LONG).show()
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
 }
