@@ -15,7 +15,7 @@
         android:layout_marginRight="5dp"
         android:layout_weight="0.5"
         android:background="#DB0082"
-        android:text="Back"
+        android:text="@string/back"
         android:textColor="#ffffff" />
 
 
@@ -27,7 +27,7 @@
         android:layout_marginRight="10dp"
         android:layout_weight="0.5"
         android:background="#DB0082"
-        android:text="Next"
+        android:text="@string/next"
         android:textColor="#ffffff" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

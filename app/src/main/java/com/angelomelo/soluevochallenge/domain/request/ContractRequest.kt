@@ -29,11 +29,11 @@ data class Personal(
 
 @Parcelize
 data class Vehicle(
-   var remarcado: String,
-   var renavam: String,
+   var remarcado: String = "",
+   var renavam: String = "",
    @SerializedName("uf_placa")
-   var ufPlaca: String,
-   var chassi: String
+   var ufPlaca: String = "",
+   var chassi: String = ""
 ) : Parcelable
 
 @Parcelize

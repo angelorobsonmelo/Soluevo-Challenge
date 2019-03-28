@@ -19,5 +19,11 @@
     <string name="title_activity_attachments">AttachmentsActivity</string>
     <string name="name">Name</string>
     <string name="rg" translatable="false">RG</string>
+    <string name="renavam" translatable="false">Renavam</string>
+    <string name="chassi" translatable="false">Chassi</string>
+    <string name="uf_placa">UF Board</string>
+    <string name="remarcado">Remarked</string>
+    <string name="next">Next</string>
+    <string name="back">Back</string>
 
 </resources>

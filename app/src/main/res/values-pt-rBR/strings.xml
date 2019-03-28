@@ -12,5 +12,9 @@
     <string name="contract_number">Nº</string>
     <string name="search">Pesquisar</string>
     <string name="name">Nome</string>
+    <string name="uf_placa">UF Placa</string>
+    <string name="remarcado">Remarcado</string>
+    <string name="next">Próximo</string>
+    <string name="back">Voltar</string>
 
 </resources>

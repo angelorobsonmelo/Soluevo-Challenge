@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil
 import br.com.ilhasoft.support.validation.Validator
 import com.angelomelo.soluevochallenge.R
 import com.angelomelo.soluevochallenge.application.modules.savecontract.UsageBaseActivity
+import com.angelomelo.soluevochallenge.application.modules.savecontract.vehicleform.VehicleActivity
 import com.angelomelo.soluevochallenge.databinding.PersonalAcitivyBinding
 import com.angelomelo.soluevochallenge.domain.request.Personal
 import com.kofigyan.stateprogressbar.StateProgressBar
@@ -46,7 +47,7 @@ class PersonalFormActivity: UsageBaseActivity() {
     }
 
     private fun goToVehicleForm() {
-        val intent = Intent(applicationContext, PdfPreviewActivity::class.java)
+        val intent = Intent(applicationContext, VehicleActivity::class.java)
         val personal = binding.personal
 
         intent.putExtra(PERSONAL_IDENTIFIER, personal)

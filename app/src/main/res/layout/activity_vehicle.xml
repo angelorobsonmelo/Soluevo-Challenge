@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+                name="vehicle"
+                type="com.angelomelo.soluevochallenge.domain.request.Vehicle" />
+    </data>
+
+<RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#eeeeee"
@@ -9,10 +18,89 @@
     <include layout="@layout/usage_stateprogressbar" />
 
 
-    <include layout="@layout/vehicle_content" />
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="80dp"
+            android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@={vehicle.renavam}"
+                    app:validateEmpty="@{true}"
+                    app:validateTypeAutoDismiss="@{true}"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:hint="@string/renavam"
+            />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@={vehicle.chassi}"
+                    app:validateEmpty="@{true}"
+                    app:validateTypeAutoDismiss="@{true}"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:hint="@string/chassi"
+            />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@={vehicle.ufPlaca}"
+                    app:validateEmpty="@{true}"
+                    app:validateTypeAutoDismiss="@{true}"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:hint="@string/uf_placa"
+            />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@={vehicle.remarcado}"
+                    app:validateEmpty="@{true}"
+                    app:validateTypeAutoDismiss="@{true}"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:hint="@string/remarcado"
+            />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
 
 
     <include layout="@layout/usage_footer_buttons_layout" />
 
 
 </RelativeLayout>
+
+</layout>
