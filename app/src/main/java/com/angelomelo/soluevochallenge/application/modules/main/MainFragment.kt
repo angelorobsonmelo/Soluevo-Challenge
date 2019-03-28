@@ -1,5 +1,6 @@
 package com.angelomelo.soluevochallenge.application.modules.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import android.view.*
@@ -14,6 +15,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import com.angelomelo.soluevochallenge.R
+import com.angelomelo.soluevochallenge.application.SoluevoChallengeApplication
+import com.angelomelo.soluevochallenge.application.modules.auth.AuthActivity
 import com.angelomelo.soluevochallenge.application.modules.main.adapter.ContractAdapter
 import com.angelomelo.soluevochallenge.application.utils.FragmentBase
 import com.angelomelo.soluevochallenge.databinding.MainFragmentBinding
@@ -125,11 +128,18 @@ class MainFragment : FragmentBase() {
 
         when (itemMenuId) {
             actionLogout -> {
-                Toast.makeText(context, "Favorite pressed", Toast.LENGTH_LONG).show()
+               val sessionIsDestroyed = SoluevoChallengeApplication.mSessionUseCase?.destroySession()
+               if (sessionIsDestroyed!!) {
+                   goToAuthScreen()
+               }
             }
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun goToAuthScreen() {
+        startActivity(Intent(context, AuthActivity::class.java))
     }
 
 }
