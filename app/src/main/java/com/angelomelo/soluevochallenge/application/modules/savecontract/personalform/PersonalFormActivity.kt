@@ -1,5 +1,6 @@
 package com.angelomelo.soluevochallenge.application.modules.savecontract.personalform
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
@@ -11,6 +12,10 @@ import com.angelomelo.soluevochallenge.domain.request.Personal
 import com.kofigyan.stateprogressbar.StateProgressBar
 
 class PersonalFormActivity: UsageBaseActivity() {
+
+    companion object {
+        const val PERSONAL_IDENTIFIER = "PERSONAL_IDENTIFIER"
+    }
 
     private lateinit var binding: PersonalAcitivyBinding
     private lateinit var validator: Validator
@@ -36,10 +41,16 @@ class PersonalFormActivity: UsageBaseActivity() {
 
     override fun onClick(v: View) {
         if (validator.validate()) {
-        /*var intent = Intent(applicationContext, VehicleActivity.class);
-        startActivity(intent);*/
+            goToVehicleForm()
         }
+    }
 
+    private fun goToVehicleForm() {
+        val intent = Intent(applicationContext, PdfPreviewActivity::class.java)
+        val personal = binding.personal
+
+        intent.putExtra(PERSONAL_IDENTIFIER, personal)
+        startActivity(intent)
     }
 
 }
