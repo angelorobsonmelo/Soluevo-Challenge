@@ -18,6 +18,7 @@
                <com.google.android.material.textfield.TextInputEditText
                        android:layout_width="match_parent"
                        android:layout_height="match_parent"
+                       android:text="@={personal.name}"
                        android:maxLines="1"
                        android:singleLine="true"
                        android:hint="Name"
@@ -39,4 +40,4 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-        </LinearLayout>
+   </LinearLayout>

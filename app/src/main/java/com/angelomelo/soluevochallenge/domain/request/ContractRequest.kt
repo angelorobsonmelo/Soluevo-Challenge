@@ -23,8 +23,8 @@ data class Data(
 
 @Parcelize
 data class Personal(
-    var name: String,
-    var rg: String
+    var name: String = "",
+    var rg: String = ""
 ) : Parcelable
 
 @Parcelize
