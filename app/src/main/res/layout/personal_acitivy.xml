@@ -49,16 +49,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-            <com.google.android.material.textfield.TextInputEditText
+
+            <com.santalu.maskedittext.MaskEditText
+                    android:id="@+id/rg_edit_text"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="@={personal.rg}"
-                    app:validateEmpty="@{true}"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
                     app:validateTypeAutoDismiss="@{true}"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:hint="@string/rg"
-            />
+                    android:text="@={personal.rg}"
+                    app:met_mask="#######-#"
+                    android:hint="@string/rg"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
