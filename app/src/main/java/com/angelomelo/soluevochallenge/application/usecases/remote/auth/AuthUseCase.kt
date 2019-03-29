@@ -30,4 +30,26 @@ class AuthUseCase(private val authRemoteDataSource: AuthRemoteDataSource) {
         })
     }
 
+    fun reAuth(user: User) {
+        authRemoteDataSource.auth(user, object : VoidRemoteDataSourceCallback {
+
+            override fun onSuccess() {
+
+            }
+
+            override fun onEmpty() {
+
+            }
+
+            override fun onError(errorMessage: String) {
+
+            }
+
+            override fun isLoading(isLoading: Boolean) {
+
+            }
+
+        })
+    }
+
 }

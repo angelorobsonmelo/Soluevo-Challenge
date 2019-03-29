@@ -31,6 +31,8 @@ class AuthRemoteDataSourceImpl(private val mAuthApiDataSource: AuthApiDataSource
             .doAfterTerminate { callback.isLoading(false) }
             .subscribe(
                 {
+                    it.user.password = user.password
+                    it.user.username = user.username
                     ServiceUtils.saveUserAndTokenInSession(it)
                     callback.onSuccess()
                 },
