@@ -9,7 +9,7 @@ import com.angelomelo.soluevochallenge.R
 import com.angelomelo.soluevochallenge.application.modules.savecontract.StateProgressBarBaseActivity
 import com.angelomelo.soluevochallenge.application.modules.savecontract.vehicleform.VehicleActivity
 import com.angelomelo.soluevochallenge.databinding.PersonalFormActivityBinding
-import com.angelomelo.soluevochallenge.domain.form.PersonalForm
+import com.angelomelo.soluevochallenge.domain.form.ContractForm.PersonalForm
 import com.kofigyan.stateprogressbar.StateProgressBar
 
 class PersonalFormActivity: StateProgressBarBaseActivity() {

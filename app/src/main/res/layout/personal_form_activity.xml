@@ -3,75 +3,75 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-    <variable
-            name="personal"
-            type="com.angelomelo.soluevochallenge.domain.form.PersonalForm" />
+        <variable
+                name="personal"
+                type="com.angelomelo.soluevochallenge.domain.form.ContractForm.PersonalForm" />
 
     </data>
 
-<RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#eeeeee"
-                android:paddingTop="10dp">
-
-    <include layout="@layout/state_progress_bar_base" />
-
-    <LinearLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
+    <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="80dp"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:background="#eeeeee"
+            android:paddingTop="10dp">
 
-        <com.google.android.material.textfield.TextInputLayout
+        <include layout="@layout/state_progress_bar_base" />
+
+        <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-            <com.google.android.material.textfield.TextInputEditText
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="80dp"
+                android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="@={personal.name}"
-                    app:validateEmpty="@{true}"
-                    app:validateTypeAutoDismiss="@{true}"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:hint="@string/name"
-            />
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@={personal.name}"
+                        app:validateEmpty="@{true}"
+                        app:validateTypeAutoDismiss="@{true}"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:hint="@string/name"
+                />
 
-        </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-            <com.santalu.maskedittext.MaskEditText
-                    android:id="@+id/rg_edit_text"
+            <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:inputType="number"
-                    app:validateEmpty="@{true}"
-                    app:validateMinLength="@{9}"
-                    app:validateMaxLength="@{9}"
-                    app:validateTypeAutoDismiss="@{true}"
-                    android:text="@={personal.rg}"
-                    app:met_mask="#######-#"
-                    android:hint="@string/rg"/>
+                    android:layout_height="match_parent"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.santalu.maskedittext.MaskEditText
+                        android:id="@+id/rg_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:inputType="number"
+                        app:validateEmpty="@{true}"
+                        app:validateMinLength="@{9}"
+                        app:validateMaxLength="@{9}"
+                        app:validateTypeAutoDismiss="@{true}"
+                        android:text="@={personal.rg}"
+                        app:met_mask="#######-#"
+                        android:hint="@string/rg"/>
 
-    </LinearLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-    <include layout="@layout/state_progress_bar_footer_button_layout" />
+        </LinearLayout>
+
+        <include layout="@layout/state_progress_bar_footer_button_layout" />
 
 
-</RelativeLayout>
+    </RelativeLayout>
 
 </layout>

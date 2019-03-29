@@ -5,112 +5,112 @@
     <data>
         <variable
                 name="vehicle"
-                type="com.angelomelo.soluevochallenge.domain.form.VehicleForm" />
+                type="com.angelomelo.soluevochallenge.domain.form.ContractForm.VehicleForm" />
     </data>
 
-<RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#eeeeee"
-                android:paddingTop="10dp">
-
-
-    <include layout="@layout/state_progress_bar_base" />
-
-
-    <LinearLayout
+    <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="80dp"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:background="#eeeeee"
+            android:paddingTop="10dp">
 
-        <com.google.android.material.textfield.TextInputLayout
+
+        <include layout="@layout/state_progress_bar_base" />
+
+
+        <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="80dp"
+                android:orientation="vertical">
 
-            <com.santalu.maskedittext.MaskEditText
-                    android:id="@+id/rg_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@={vehicle.renavam}"
-                    android:inputType="number"
-                    app:validateMinLength="@{11}"
-                    app:validateMaxLength="@{11}"
-                    app:validateEmpty="@{true}"
-                    app:validateTypeAutoDismiss="@{true}"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    app:met_mask="###########"
-                    android:hint="@string/renavam"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="@={vehicle.chassis}"
-                    android:inputType="textCapCharacters"
-                    app:validateEmpty="@{true}"
-                    app:validateTypeAutoDismiss="@{true}"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:hint="@string/chassi"
-            />
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.santalu.maskedittext.MaskEditText
+                        android:id="@+id/rg_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@={vehicle.renavam}"
+                        android:inputType="number"
+                        app:validateMinLength="@{11}"
+                        app:validateMaxLength="@{11}"
+                        app:validateEmpty="@{true}"
+                        app:validateTypeAutoDismiss="@{true}"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        app:met_mask="###########"
+                        android:hint="@string/renavam"/>
 
-        <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-            <com.santalu.maskedittext.MaskEditText
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="@={vehicle.ufPlate}"
-                    android:inputType="textCapCharacters"
-                    app:met_mask="##"
-                    app:validateMinLength="@{2}"
-                    app:validateMaxLength="@{2}"
-                    app:validateEmpty="@{true}"
-                    app:validateTypeAutoDismiss="@{true}"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:hint="@string/uf_placa"
-            />
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@={vehicle.chassis}"
+                        android:inputType="textCapCharacters"
+                        app:validateEmpty="@{true}"
+                        app:validateTypeAutoDismiss="@{true}"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:hint="@string/chassi"
+                />
 
-        </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-            <com.santalu.maskedittext.MaskEditText
+            <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@={vehicle.redial}"
-                    app:validateEmpty="@{true}"
-                    app:validateTypeAutoDismiss="@{true}"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:hint="@string/remarcado"/>
+                    android:layout_height="match_parent"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                <com.santalu.maskedittext.MaskEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@={vehicle.ufPlate}"
+                        android:inputType="textCapCharacters"
+                        app:met_mask="##"
+                        app:validateMinLength="@{2}"
+                        app:validateMaxLength="@{2}"
+                        app:validateEmpty="@{true}"
+                        app:validateTypeAutoDismiss="@{true}"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:hint="@string/uf_placa"
+                />
 
-        </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-    </LinearLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.santalu.maskedittext.MaskEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@={vehicle.redial}"
+                        app:validateEmpty="@{true}"
+                        app:validateTypeAutoDismiss="@{true}"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:hint="@string/remarcado"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
 
 
-    <include layout="@layout/state_progress_bar_footer_buttons_layout" />
+        <include layout="@layout/state_progress_bar_footer_buttons_layout" />
 
 
-</RelativeLayout>
+    </RelativeLayout>
 
 </layout>

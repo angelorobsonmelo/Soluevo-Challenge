@@ -11,7 +11,7 @@ import com.angelomelo.soluevochallenge.application.modules.savecontract.creditor
 import com.angelomelo.soluevochallenge.application.modules.savecontract.personalform.PersonalFormActivity
 import com.angelomelo.soluevochallenge.application.modules.savecontract.vehicleform.VehicleActivity
 import com.angelomelo.soluevochallenge.databinding.AttachmentsFormActivityBinding
-import com.angelomelo.soluevochallenge.domain.form.*
+import com.angelomelo.soluevochallenge.domain.form.ContractForm
 import com.kofigyan.stateprogressbar.StateProgressBar
 import kotlinx.android.synthetic.main.state_progress_bar_footer_button_layout.*
 
@@ -68,24 +68,24 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity() {
         }
     }
 
-    private fun getPersonalFromBundle() : PersonalForm {
+    private fun getPersonalFromBundle() : ContractForm.PersonalForm {
         val bundle: Bundle? = intent.extras
-        return bundle?.getParcelable(PersonalFormActivity.PERSONAL_IDENTIFIER) as PersonalForm
+        return bundle?.getParcelable(PersonalFormActivity.PERSONAL_IDENTIFIER) as ContractForm.PersonalForm
     }
 
-    private fun getVehicleFromBundle() : VehicleForm {
+    private fun getVehicleFromBundle() : ContractForm.VehicleForm {
         val bundle: Bundle? = intent.extras
-        return bundle?.getParcelable(VehicleActivity.VEHICLE_IDENTIFIER) as VehicleForm
+        return bundle?.getParcelable(VehicleActivity.VEHICLE_IDENTIFIER) as ContractForm.VehicleForm
     }
 
-    private fun getCreditorFromBundle() : CreditorForm {
+    private fun getCreditorFromBundle() : ContractForm.CreditorForm {
         val bundle: Bundle? = intent.extras
-        return bundle?.getParcelable(CreditorFormActivity.CREDITOR_IDENTIFIER) as CreditorForm
+        return bundle?.getParcelable(CreditorFormActivity.CREDITOR_IDENTIFIER) as ContractForm.CreditorForm
     }
 
-    private fun getContractFromBundle() : ContractsForm {
+    private fun getContractFromBundle() : ContractForm.ContractsForm {
         val bundle: Bundle? = intent.extras
-        return bundle?.getParcelable(ContractFormActivity.CONTRACT_IDENTIFIER) as ContractsForm
+        return bundle?.getParcelable(ContractFormActivity.CONTRACT_IDENTIFIER) as ContractForm.ContractsForm
     }
 
 }

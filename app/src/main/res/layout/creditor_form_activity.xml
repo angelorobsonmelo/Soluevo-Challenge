@@ -7,228 +7,228 @@
 
         <variable
                 name="creditor"
-                type="com.angelomelo.soluevochallenge.domain.form.CreditorForm" />
+                type="com.angelomelo.soluevochallenge.domain.form.ContractForm.CreditorForm" />
     </data>
 
-<RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#eeeeee"
-                android:paddingTop="10dp">
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#eeeeee"
+            android:paddingTop="10dp">
 
 
-    <include android:id="@+id/header" layout="@layout/state_progress_bar_base" />
+        <include android:id="@+id/header" layout="@layout/state_progress_bar_base" />
 
-    <ScrollView
+        <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/footer"
                 android:layout_below="@+id/header">
 
-        <LinearLayout
+            <LinearLayout
 
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:orientation="vertical">
-
-            <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:orientation="vertical">
+
+                <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="@={creditor.nameFinancialAgentFinancialInstitution}"
-                        app:validateEmpty="@{true}"
-                        app:validateTypeAutoDismiss="@{true}"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:hint="@string/agent_name"
-                />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="@={creditor.nameFinancialAgentFinancialInstitution}"
+                            app:validateEmpty="@{true}"
+                            app:validateTypeAutoDismiss="@{true}"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:hint="@string/agent_name"
+                    />
 
-            </com.google.android.material.textfield.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.santalu.maskedittext.MaskEditText
+                <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="@={creditor.cnpj}"
-                        app:validateEmpty="@{true}"
-                        app:validateTypeAutoDismiss="@{true}"
-                        app:validateMinLength="@{18}"
-                        app:validateMaxLength="@{18}"
-                        android:inputType="number"
-                        app:met_mask="##.###.###/####-##"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:hint="@string/cnpj"
-                />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.santalu.maskedittext.MaskEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="@={creditor.cnpj}"
+                            app:validateEmpty="@{true}"
+                            app:validateTypeAutoDismiss="@{true}"
+                            app:validateMinLength="@{18}"
+                            app:validateMaxLength="@{18}"
+                            android:inputType="number"
+                            app:met_mask="##.###.###/####-##"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:hint="@string/cnpj"
+                    />
 
-            </com.google.android.material.textfield.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.santalu.maskedittext.MaskEditText
+                <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:inputType="number"
-                        android:text="@={creditor.cep}"
-                        app:validateMinLength="@{9}"
-                        app:validateMaxLength="@{9}"
-                        app:met_mask="#####-###"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:hint="@string/cep"
-                />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.santalu.maskedittext.MaskEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:inputType="number"
+                            android:text="@={creditor.cep}"
+                            app:validateMinLength="@{9}"
+                            app:validateMaxLength="@{9}"
+                            app:met_mask="#####-###"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:hint="@string/cep"
+                    />
 
-            </com.google.android.material.textfield.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.santalu.maskedittext.MaskEditText
+                <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:inputType="textCapCharacters"
-                        android:text="@={creditor.uf}"
-                        app:met_mask="##"
-                        app:validateMinLength="@{2}"
-                        app:validateMaxLength="@{2}"
-                        app:validateEmpty="@{true}"
-                        app:validateTypeAutoDismiss="@{true}"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:hint="@string/uf"
-                />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.santalu.maskedittext.MaskEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:inputType="textCapCharacters"
+                            android:text="@={creditor.uf}"
+                            app:met_mask="##"
+                            app:validateMinLength="@{2}"
+                            app:validateMaxLength="@{2}"
+                            app:validateEmpty="@{true}"
+                            app:validateTypeAutoDismiss="@{true}"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:hint="@string/uf"
+                    />
 
-            </com.google.android.material.textfield.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="@={creditor.county}"
-                        app:validateEmpty="@{true}"
-                        app:validateTypeAutoDismiss="@{true}"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:hint="@string/county"
-                />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="@={creditor.county}"
+                            app:validateEmpty="@{true}"
+                            app:validateTypeAutoDismiss="@{true}"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:hint="@string/county"
+                    />
 
-            </com.google.android.material.textfield.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="@={creditor.neighborhood}"
-                        app:validateEmpty="@{true}"
-                        app:validateTypeAutoDismiss="@{true}"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:hint="@string/neighborhood"
-                />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="@={creditor.neighborhood}"
+                            app:validateEmpty="@{true}"
+                            app:validateTypeAutoDismiss="@{true}"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:hint="@string/neighborhood"
+                    />
 
-            </com.google.android.material.textfield.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="@={creditor.address}"
-                        app:validateEmpty="@{true}"
-                        app:validateTypeAutoDismiss="@{true}"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:hint="@string/address"
-                />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="@={creditor.address}"
+                            app:validateEmpty="@{true}"
+                            app:validateTypeAutoDismiss="@{true}"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:hint="@string/address"
+                    />
 
-            </com.google.android.material.textfield.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="@={creditor.addressNumber}"
-                        android:inputType="number"
-                        app:validateEmpty="@{true}"
-                        app:validateTypeAutoDismiss="@{true}"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:hint="@string/number"
-                />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="@={creditor.addressNumber}"
+                            android:inputType="number"
+                            app:validateEmpty="@{true}"
+                            app:validateTypeAutoDismiss="@{true}"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:hint="@string/number"
+                    />
 
-            </com.google.android.material.textfield.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="@={creditor.addressComplementNumber}"
-                        app:validateEmpty="@{true}"
-                        app:validateTypeAutoDismiss="@{true}"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:hint="@string/Complement"
-                />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="@={creditor.addressComplementNumber}"
+                            app:validateEmpty="@{true}"
+                            app:validateTypeAutoDismiss="@{true}"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:hint="@string/Complement"
+                    />
 
-            </com.google.android.material.textfield.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.santalu.maskedittext.MaskEditText
+                <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="@={creditor.telephone}"
-                        app:validateEmpty="@{true}"
-                        app:validateTypeAutoDismiss="@{true}"
-                        android:inputType="phone"
-                        app:validateMinLength="@{15}"
-                        app:validateMaxLength="@{15}"
-                        app:met_mask="(##) #####-####"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:hint="@string/cel_number"
-                />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.santalu.maskedittext.MaskEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="@={creditor.telephone}"
+                            app:validateEmpty="@{true}"
+                            app:validateTypeAutoDismiss="@{true}"
+                            android:inputType="phone"
+                            app:validateMinLength="@{15}"
+                            app:validateMaxLength="@{15}"
+                            app:met_mask="(##) #####-####"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:hint="@string/cel_number"
+                    />
 
-            </com.google.android.material.textfield.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-        </LinearLayout>
+            </LinearLayout>
 
-    </ScrollView>
-
-
-    <include android:id="@+id/footer" layout="@layout/state_progress_bar_footer_buttons_layout" />
+        </ScrollView>
 
 
-</RelativeLayout>
+        <include android:id="@+id/footer" layout="@layout/state_progress_bar_footer_buttons_layout" />
+
+
+    </RelativeLayout>
 
 </layout>
