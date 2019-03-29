@@ -6,226 +6,260 @@
     <data>
         <variable
                 name="contract"
-                type="com.angelomelo.soluevochallenge.domain.request.Contratos" />
+                type="com.angelomelo.soluevochallenge.domain.request.Contratos"/>
     </data>
 
-<RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#eeeeee"
-                android:paddingTop="10dp">
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#eeeeee"
+            android:paddingTop="10dp">
 
-    <include android:id="@+id/header" layout="@layout/usage_stateprogressbar" />
+        <include android:id="@+id/header" layout="@layout/usage_stateprogressbar"/>
 
 
-    <ScrollView
+        <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/footer"
                 android:layout_below="@+id/header">
 
-        <LinearLayout
+            <LinearLayout
 
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:orientation="vertical">
-
-            <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:orientation="vertical">
+
+                <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        app:validateEmpty="@{true}"
-                        app:validateTypeAutoDismiss="@{true}"
-                        android:text="@={contract.numeroGravameField}"
-                        android:inputType="number"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:hint="@string/serial_number"
-                />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:validateEmpty="@{true}"
+                            app:validateTypeAutoDismiss="@{true}"
+                            android:text="@={contract.numeroGravameField}"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:hint="@string/serial_number"
+                    />
 
-            </com.google.android.material.textfield.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        app:validateEmpty="@{true}"
-                        app:validateTypeAutoDismiss="@{true}"
-                        android:text="@={contract.quantidadeMesesField}"
-                        android:inputType="number"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:hint="@string/number_of_months"
-                />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:validateEmpty="@{true}"
+                            app:validateTypeAutoDismiss="@{true}"
+                            android:text="@={contract.quantidadeMesesField}"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:hint="@string/number_of_months"
+                    />
 
-            </com.google.android.material.textfield.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        app:validateEmpty="@{true}"
-                        app:validateTypeAutoDismiss="@{true}"
-                        android:text="@={contract.tipoRestricao}"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:hint="@string/type_restriction"
-                />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:validateEmpty="@{true}"
+                            app:validateTypeAutoDismiss="@{true}"
+                            android:text="@={contract.tipoRestricao}"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:hint="@string/type_restriction"
+                    />
 
-            </com.google.android.material.textfield.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
 
-
-            <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        app:validateEmpty="@{true}"
-                        app:validateTypeAutoDismiss="@{true}"
-                        android:text="@={contract.taxaMoraField}"
-                        android:inputType="number"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:hint="@string/mora_rate"
-                />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:validateEmpty="@{true}"
+                            app:validateTypeAutoDismiss="@{true}"
+                            android:text="@={contract.taxaMoraField}"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:hint="@string/mora_rate"
+                    />
 
-            </com.google.android.material.textfield.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:hint="Valor Taxa Mora"
-                />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <ru.kolotnev.formattedittext.CurrencyEditText
+                            style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:validateEmpty="@{true}"
+                            app:validateTypeAutoDismiss="@{true}"
+                            android:text="@={contract.valorTaxaMoraField}"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:hint="@string/value_mora_rate"
+                    />
 
-            </com.google.android.material.textfield.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:hint="valor Taxa Multa"
-                />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <ru.kolotnev.formattedittext.CurrencyEditText
+                            style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:validateEmpty="@{true}"
+                            app:validateTypeAutoDismiss="@{true}"
+                            android:text="@={contract.taxaMoraField}"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:hint="@string/value_fine_rate"
+                    />
 
-            </com.google.android.material.textfield.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:hint="Taxa de Contrato"
-                />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <ru.kolotnev.formattedittext.CurrencyEditText
+                            style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:validateEmpty="@{true}"
+                            app:validateTypeAutoDismiss="@{true}"
+                            android:text="@={contract.valorTaxaContratoField}"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:hint="@string/contract_rate"
+                    />
 
-            </com.google.android.material.textfield.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:hint="Valor Juros ao Mês"
-                />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <ru.kolotnev.formattedittext.CurrencyEditText
+                            style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            app:validateEmpty="@{true}"
+                            app:validateTypeAutoDismiss="@{true}"
+                            android:text="@={contract.valorJurosMesField}"
+                            android:inputType="number"
+                            android:hint="@string/interest_at_the_month"
+                    />
 
-            </com.google.android.material.textfield.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:hint="Valor Juros ao Ano"
-                />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <ru.kolotnev.formattedittext.CurrencyEditText
+                            style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            app:validateEmpty="@{true}"
+                            app:validateTypeAutoDismiss="@{true}"
+                            android:text="@={contract.valorTaxaContratoField}"
+                            android:inputType="number"
+                            android:hint="@string/interest_rate_per_year"
+                    />
 
-            </com.google.android.material.textfield.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:hint="Índices"
-                />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:validateEmpty="@{true}"
+                            app:validateTypeAutoDismiss="@{true}"
+                            android:text="@={contract.indices}"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:hint="@string/indexes"
+                    />
 
-            </com.google.android.material.textfield.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:hint="Indicação Comissão"
-                />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            app:validateEmpty="@{true}"
+                            app:validateTypeAutoDismiss="@{true}"
+                            android:text="@={contract.indicacaoComissao}"
+                            android:hint="@string/indication_commission"
+                    />
 
-            </com.google.android.material.textfield.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:hint="Comissão"
-                />
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:validateEmpty="@{true}"
+                            app:validateTypeAutoDismiss="@{true}"
+                            android:text="@={contract.comissaoField}"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:hint="@string/commission"
+                    />
 
-            </com.google.android.material.textfield.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-        </LinearLayout>
+            </LinearLayout>
 
-    </ScrollView>
+        </ScrollView>
 
 
-    <include android:id="@+id/footer" layout="@layout/usage_footer_buttons_layout" />
+        <include android:id="@+id/footer" layout="@layout/usage_footer_buttons_layout"/>
 
-</RelativeLayout>
+    </RelativeLayout>
 
 </layout>

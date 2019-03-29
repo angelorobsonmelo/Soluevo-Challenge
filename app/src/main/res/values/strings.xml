@@ -44,5 +44,13 @@
     <string name="number_of_months">Number of Months</string>
     <string name="type_restriction">Type restriction</string>
     <string name="mora_rate">Mora Rate</string>
+    <string name="value_mora_rate">Value Mora Rate</string>
+    <string name="value_fine_rate">Value Fine Rate</string>
+    <string name="contract_rate">Contract Rate</string>
+    <string name="interest_at_the_month">Interest at the Month</string>
+    <string name="interest_rate_per_year">Interest Rate per Year</string>
+    <string name="indexes">Indexes</string>
+    <string name="indication_commission">Indication Commission</string>
+    <string name="commission">Commission</string>
 
 </resources>

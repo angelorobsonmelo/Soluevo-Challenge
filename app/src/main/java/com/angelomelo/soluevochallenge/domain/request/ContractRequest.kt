@@ -64,22 +64,29 @@ data class Credor(
 data class Contratos(
     @SerializedName("quantidade_meses")
     var quantidadeMeses: Int = 0,
+    @Expose
     var quantidadeMesesField: String = "",
     var comissao: Int = 0,
+    var comissaoField: String = "",
     @SerializedName("taxa_mora")
     var taxaMora: Int = 0,
     @Expose
     var taxaMoraField: String = "",
     @SerializedName("valor_taxa_mora")
     var valorTaxaMora: Int = 0,
+    @Expose
+    var valorTaxaMoraField: String = "",
     @SerializedName("valor_taxa_de_contrato")
     var valorTaxaContrato: Int = 0,
+    @Expose
+    var valorTaxaContratoField: String = "",
     @SerializedName("valor_juros_ao_ano")
     var valorJurosAno: Int = 0,
     @SerializedName("indicacao_comissao")
     var indicacaoComissao: String = "",
     @SerializedName("taxa_taxa_multa")
     var taxaTaxaMulta: Int = 0,
+    var taxaTaxaMultaField: String = "",
     @SerializedName("numero_gravame")
     var numeroGravame: Int = 0,
     var numeroGravameField: String = "",
@@ -87,6 +94,8 @@ data class Contratos(
     var tipoRestricao: String = "",
     @SerializedName("valor_juros_ao_mes")
     var valorJurosMes: Int = 0,
+    @Expose
+    var valorJurosMesField: String = "",
     var indices: String = ""
 
 ): Parcelable

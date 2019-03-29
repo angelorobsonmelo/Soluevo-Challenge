@@ -32,5 +32,13 @@
     <string name="number_of_months">Quantidade de Meses</string>
     <string name="type_restriction">Tipo Restrição</string>
     <string name="mora_rate">Taxa Mora</string>
+    <string name="value_mora_rate">Valor Taxa Mora</string>
+    <string name="value_fine_rate">Valor Taxa Multa</string>
+    <string name="contract_rate">Taxa de Contrato</string>
+    <string name="interest_at_the_month">Valor Juros ao Mês</string>
+    <string name="interest_rate_per_year">Valor Juros ao Ano</string>
+    <string name="indexes">Índices</string>
+    <string name="indication_commission">Indicação Comissão</string>
+    <string name="commission">Comissão</string>
 
 </resources>

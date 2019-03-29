@@ -2,6 +2,7 @@ package com.angelomelo.soluevochallenge.application.modules.savecontract.contrac
 
 //import com.angelomelo.soluevochallenge.application.modules.savecontract.attachmentsform.AttachmentsActivity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
@@ -46,8 +47,11 @@ class ContractFormActivity : UsageBaseActivity() {
 
         when (v.id) {
             R.id.btnNext -> {
-//                val intent = Intent(applicationContext, AttachmentsActivity::class.java)
-//                startActivity(intent)
+                if (validator.validate()) {
+                    val intent = Intent(applicationContext, AttachmentsActivity::class.java)
+                    startActivity(intent)
+                }
+
             }
 
             R.id.btnBack -> finish()
