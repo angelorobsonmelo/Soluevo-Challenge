@@ -38,19 +38,19 @@ data class Vehicle(
 
 @Parcelize
 data class Credor(
-   var endereco: String,
-   var cep: Int,
-   var uf: String,
+   var endereco: String = "",
+   var cep: Int = 0,
+   var uf: String = "",
    @SerializedName("endereco_numero")
-   var enderecoNumero: String,
-   var municipio: String,
+   var enderecoNumero: String  = "",
+   var municipio: String = "",
    @SerializedName("endereco_numero_complemento")
-   var enderecoNumeroComplemento: String,
+   var enderecoNumeroComplemento: String = "",
    @SerializedName("nome_agente_financeiro_instituicao_financeira")
-   var nomeAgenteFinanceiroInstituicaoFinanceira: String,
-   var cnpj: Int,
-   var telefone: String,
-   var bairro: String
+   var nomeAgenteFinanceiroInstituicaoFinanceira: String = "",
+   var cnpj: Int = 0,
+   var telefone: String = "",
+   var bairro: String = ""
 ): Parcelable
 
 @Parcelize

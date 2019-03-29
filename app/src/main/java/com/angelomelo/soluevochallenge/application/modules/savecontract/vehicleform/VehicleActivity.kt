@@ -1,12 +1,14 @@
 package com.angelomelo.soluevochallenge.application.modules.savecontract.vehicleform
 
 //import com.angelomelo.soluevochallenge.application.modules.savecontract.credorform.CredorFormActivity
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import br.com.ilhasoft.support.validation.Validator
 import com.angelomelo.soluevochallenge.R
 import com.angelomelo.soluevochallenge.application.modules.savecontract.UsageBaseActivity
+import com.angelomelo.soluevochallenge.application.modules.savecontract.credorform.CredorFormActivity
 import com.angelomelo.soluevochallenge.application.modules.savecontract.personalform.PersonalFormActivity
 import com.angelomelo.soluevochallenge.databinding.ActivityVehicleBinding
 import com.angelomelo.soluevochallenge.domain.request.Personal
@@ -47,18 +49,21 @@ class VehicleActivity : UsageBaseActivity() {
         when (v.id) {
             R.id.btnNext -> {
                 if (validator.validate()) {
-                    val bundle :Bundle ?= intent.extras
-
-                    val personal = bundle?.getParcelable(PersonalFormActivity.PERSONAL_IDENTIFIER) as Personal
-                    print(personal.name)
-                    /*  val intent = Intent(applicationContext, CredorFormActivity::class.java)
-                      startActivity(intent)*/
+                    goToCreditorForm()
                 }
-
             }
 
             R.id.btnBack -> finish()
         }
+    }
+
+    private fun goToCreditorForm() {
+        val bundle: Bundle? = intent.extras
+
+        val personal = bundle?.getParcelable(PersonalFormActivity.PERSONAL_IDENTIFIER) as Personal
+        print(personal.name)
+        val intent = Intent(applicationContext, CredorFormActivity::class.java)
+        startActivity(intent)
     }
 
 }

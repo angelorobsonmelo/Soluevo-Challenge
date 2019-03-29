@@ -27,10 +27,10 @@
                 <!--android:name=".application.modules.savecontract.contractform.ContractFormActivity"-->
                 <!--android:label="@string/title_activity_contract_form">-->
         <!--</activity>-->
-        <!--<activity-->
-                <!--android:name=".application.modules.savecontract.credorform.CredorFormActivity"-->
-                <!--android:label="@string/title_activity_credor">-->
-        <!--</activity>-->
+        <activity
+                android:name=".application.modules.savecontract.credorform.CredorFormActivity"
+                android:label="@string/title_activity_credor">
+        </activity>
         <activity
                 android:name=".application.modules.savecontract.vehicleform.VehicleActivity"
                 android:label="@string/title_activity_vehicle">
