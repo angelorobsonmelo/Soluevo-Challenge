@@ -52,5 +52,6 @@
     <string name="indexes">Indexes</string>
     <string name="indication_commission">Indication Commission</string>
     <string name="commission">Commission</string>
+    <string name="conclude">Conclude</string>
 
 </resources>

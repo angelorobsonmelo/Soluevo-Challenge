@@ -10,6 +10,7 @@ import androidx.databinding.ViewDataBinding
 import br.com.ilhasoft.support.validation.Validator
 import com.angelomelo.soluevochallenge.R
 import com.angelomelo.soluevochallenge.application.modules.savecontract.UsageBaseActivity
+import com.angelomelo.soluevochallenge.application.modules.savecontract.attachmentsform.AttachmentsActivity
 import com.angelomelo.soluevochallenge.databinding.ActivityContractFormBinding
 import com.angelomelo.soluevochallenge.domain.request.Contratos
 import com.kofigyan.stateprogressbar.StateProgressBar
