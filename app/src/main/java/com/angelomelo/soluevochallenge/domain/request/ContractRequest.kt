@@ -1,12 +1,13 @@
 package com.angelomelo.soluevochallenge.domain.request
 
 import com.angelomelo.soluevochallenge.application.SoluevoChallengeApplication
+import com.angelomelo.soluevochallenge.application.utils.RandomUtil.getRandomNumber
 import com.google.gson.annotations.SerializedName
 
 data class ContractRequest(
     @SerializedName("endusers_document")
     val endusersDocument: String = "35507907838",
-    val code: String,
+    val code: Int = getRandomNumber(),
     @SerializedName("financial_users_uuid")
     val financialUsersUuid: String = SoluevoChallengeApplication.mSessionUseCase?.getUserInSession()?.uuid!!,
     val data: Data
