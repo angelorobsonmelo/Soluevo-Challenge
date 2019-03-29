@@ -1,8 +1,7 @@
 package com.angelomelo.soluevochallenge.service.remote.auth
 
 import androidx.annotation.NonNull
-import com.angelomelo.cm_customer_android.service.BaseRemoteDataSource
-import com.angelomelo.cm_customer_android.service.remote.auth.AuthApiDataSource
+import com.angelomelo.soluevochallenge.service.BaseRemoteDataSource
 import com.angelomelo.soluevochallenge.domain.User
 import com.angelomelo.soluevochallenge.service.ServiceUtils
 import rx.android.schedulers.AndroidSchedulers

@@ -1,6 +1,6 @@
 package com.angelomelo.soluevochallenge.application.usecases.remote.contract
 
-import com.angelomelo.cm_customer_android.service.BaseRemoteDataSource
+import com.angelomelo.soluevochallenge.service.BaseRemoteDataSource
 import com.angelomelo.soluevochallenge.application.usecases.UseCase
 import com.angelomelo.soluevochallenge.domain.Contract
 import com.angelomelo.soluevochallenge.service.remote.contract.ContractRemoteDataSource

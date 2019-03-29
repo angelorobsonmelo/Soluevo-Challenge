@@ -1,6 +1,6 @@
 package com.angelomelo.soluevochallenge.application.modules.main
 
-import com.angelomelo.cm_customer_android.application.injections.InjectionUseCase
+import com.angelomelo.soluevochallenge.application.injections.InjectionUseCase
 import com.angelomelo.soluevochallenge.application.usecases.UseCase
 import com.angelomelo.soluevochallenge.application.utils.BaseViewModel
 import com.angelomelo.soluevochallenge.domain.Contract

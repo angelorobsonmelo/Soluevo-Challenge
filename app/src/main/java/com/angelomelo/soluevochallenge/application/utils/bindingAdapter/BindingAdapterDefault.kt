@@ -1,4 +1,4 @@
-package com.angelomelo.cm_customer_android.application.helper.bindingAdapter
+package com.angelomelo.soluevochallenge.application.utils.bindingAdapter
 
 import android.view.View
 import android.view.View.*
@@ -6,8 +6,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
-import com.angelomelo.cm_customer_android.application.extensions.convertDateToString
-import com.angelomelo.cm_customer_android.application.extensions.convertDateToStringDDMMM
+import com.angelomelo.soluevochallenge.application.utils.extensions.convertDateToString
+import com.angelomelo.soluevochallenge.application.utils.extensions.convertDateToStringDDMMM
 import com.angelomelo.soluevochallenge.R
 import com.squareup.picasso.Picasso
 import java.util.*

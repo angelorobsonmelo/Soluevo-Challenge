@@ -1,4 +1,4 @@
-package com.angelomelo.cm_customer_android.service
+package com.angelomelo.soluevochallenge.service
 
 class BaseRemoteDataSource {
 

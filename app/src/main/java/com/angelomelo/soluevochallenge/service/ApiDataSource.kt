@@ -1,8 +1,7 @@
 package br.com.stant.stant_android_occurrences.services
 
-import com.angelomelo.cm_customer_android.service.CustomInterceptorRequest
+import com.angelomelo.soluevochallenge.service.CustomInterceptorRequest
 import com.angelomelo.soluevochallenge.service.TokenAuthenticator
-import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

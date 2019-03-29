@@ -2,7 +2,7 @@ package com.angelomelo.soluevochallenge.application
 
 import android.app.Application
 import android.content.Intent
-import com.angelomelo.cm_customer_android.application.injections.InjectionUseCase
+import com.angelomelo.soluevochallenge.application.injections.InjectionUseCase
 import com.angelomelo.soluevochallenge.application.usecases.local.SessionUseCase
 import com.angelomelo.soluevochallenge.application.modules.main.MainActivity
 import com.angelomelo.soluevochallenge.application.usecases.remote.auth.AuthUseCase

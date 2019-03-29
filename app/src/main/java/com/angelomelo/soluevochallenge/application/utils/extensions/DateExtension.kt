@@ -1,4 +1,4 @@
-package com.angelomelo.cm_customer_android.application.extensions
+package com.angelomelo.soluevochallenge.application.utils.extensions
 
 import java.text.SimpleDateFormat
 import java.util.*

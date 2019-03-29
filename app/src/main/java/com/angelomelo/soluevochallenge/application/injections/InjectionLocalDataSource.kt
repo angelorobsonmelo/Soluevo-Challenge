@@ -1,4 +1,4 @@
-package com.angelomelo.cm_customer_android.application.injections
+package com.angelomelo.soluevochallenge.application.injections
 
 import android.content.Context
 import com.angelomelo.soluevochallenge.service.local.session.SessionLocalDataSource

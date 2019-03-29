@@ -1,6 +1,6 @@
-package com.angelomelo.cm_customer_android.service
+package com.angelomelo.soluevochallenge.service
 
-import com.angelomelo.cm_customer_android.application.helper.handlerstatuscode.HandlerErrorStatusCode
+import com.angelomelo.soluevochallenge.application.utils.handlerstatuscode.HandlerErrorStatusCode
 import com.angelomelo.soluevochallenge.application.SoluevoChallengeApplication
 import okhttp3.Interceptor
 import okhttp3.Request

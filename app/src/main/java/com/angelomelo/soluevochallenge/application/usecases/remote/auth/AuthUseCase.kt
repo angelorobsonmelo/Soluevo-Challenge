@@ -1,7 +1,7 @@
 package com.angelomelo.soluevochallenge.application.usecases.remote.auth
 
 
-import com.angelomelo.cm_customer_android.service.BaseRemoteDataSource.VoidRemoteDataSourceCallback
+import com.angelomelo.soluevochallenge.service.BaseRemoteDataSource.VoidRemoteDataSourceCallback
 import com.angelomelo.soluevochallenge.application.usecases.UseCase
 import com.angelomelo.soluevochallenge.domain.User
 import com.angelomelo.soluevochallenge.service.remote.auth.AuthRemoteDataSource

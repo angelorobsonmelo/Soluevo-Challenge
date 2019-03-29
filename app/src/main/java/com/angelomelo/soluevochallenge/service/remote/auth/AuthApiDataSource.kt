@@ -1,4 +1,4 @@
-package com.angelomelo.cm_customer_android.service.remote.auth
+package com.angelomelo.soluevochallenge.service.remote.auth
 
 import com.angelomelo.soluevochallenge.domain.AuthResponse
 import com.angelomelo.soluevochallenge.domain.User

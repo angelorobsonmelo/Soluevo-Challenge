@@ -1,7 +1,7 @@
 package com.angelomelo.soluevochallenge.service.remote.contract
 
 import androidx.annotation.NonNull
-import com.angelomelo.cm_customer_android.service.BaseRemoteDataSource
+import com.angelomelo.soluevochallenge.service.BaseRemoteDataSource
 import com.angelomelo.soluevochallenge.domain.Contract
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers

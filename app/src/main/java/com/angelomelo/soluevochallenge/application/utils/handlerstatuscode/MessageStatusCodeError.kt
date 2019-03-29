@@ -1,4 +1,4 @@
-package com.angelomelo.cm_customer_android.application.helper.handlerstatuscode
+package com.angelomelo.soluevochallenge.application.utils.handlerstatuscode
 
 interface MessageStatusCodeError {
 
