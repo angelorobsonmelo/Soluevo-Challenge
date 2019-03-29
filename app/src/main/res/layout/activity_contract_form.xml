@@ -40,9 +40,13 @@
                 <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        app:validateEmpty="@{true}"
+                        app:validateTypeAutoDismiss="@{true}"
+                        android:text="@={contract.numeroGravameField}"
+                        android:inputType="number"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:hint="Número do gravante"
+                        android:hint="@string/serial_number"
                 />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -54,9 +58,13 @@
                 <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        app:validateEmpty="@{true}"
+                        app:validateTypeAutoDismiss="@{true}"
+                        android:text="@={contract.quantidadeMesesField}"
+                        android:inputType="number"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:hint="Quantidade de Meses"
+                        android:hint="@string/number_of_months"
                 />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -68,9 +76,12 @@
                 <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        app:validateEmpty="@{true}"
+                        app:validateTypeAutoDismiss="@{true}"
+                        android:text="@={contract.tipoRestricao}"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:hint="Tipo Restrição"
+                        android:hint="@string/type_restriction"
                 />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -84,9 +95,13 @@
                 <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        app:validateEmpty="@{true}"
+                        app:validateTypeAutoDismiss="@{true}"
+                        android:text="@={contract.taxaMoraField}"
+                        android:inputType="number"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:hint="Taxa Mora"
+                        android:hint="@string/mora_rate"
                 />
 
             </com.google.android.material.textfield.TextInputLayout>

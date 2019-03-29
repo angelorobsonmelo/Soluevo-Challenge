@@ -28,5 +28,9 @@
     <string name="number">Número</string>
     <string name="Complement">Complemento</string>
     <string name="cel_number">Número Cel.</string>
+    <string name="serial_number">Número do gravante</string>
+    <string name="number_of_months">Quantidade de Meses</string>
+    <string name="type_restriction">Tipo Restrição</string>
+    <string name="mora_rate">Taxa Mora</string>
 
 </resources>

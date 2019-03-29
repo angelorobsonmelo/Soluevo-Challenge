@@ -40,5 +40,9 @@
     <string name="number">Number</string>
     <string name="Complement">Complement</string>
     <string name="cel_number">Cel. Number</string>
+    <string name="serial_number">Serial number</string>
+    <string name="number_of_months">Number of Months</string>
+    <string name="type_restriction">Type restriction</string>
+    <string name="mora_rate">Mora Rate</string>
 
 </resources>
