@@ -10,7 +10,7 @@ import com.angelomelo.soluevochallenge.application.modules.savecontract.UsageBas
 import com.angelomelo.soluevochallenge.databinding.ActivityCredorBinding
 import com.angelomelo.soluevochallenge.databinding.PersonalAcitivyBinding
 import com.angelomelo.soluevochallenge.domain.request.Credor
-//import com.angelomelo.soluevochallenge.application.modules.savecontract.contractform.ContractFormActivity
+import com.angelomelo.soluevochallenge.application.modules.savecontract.contractform.ContractFormActivity
 import com.kofigyan.stateprogressbar.StateProgressBar
 
 class CredorFormActivity : UsageBaseActivity() {
@@ -47,8 +47,8 @@ class CredorFormActivity : UsageBaseActivity() {
         when (v.id) {
             R.id.btnNext -> {
                 if (validator.validate()) {
-                    /*  val intent = Intent(applicationContext, ContractFormActivity::class.java)
-                     startActivity(intent)*/
+                      val intent = Intent(applicationContext, ContractFormActivity::class.java)
+                     startActivity(intent)
                 }
 
             }
