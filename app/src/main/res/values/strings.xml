@@ -30,5 +30,15 @@
     <string name="contract">Contract</string>
     <string name="attachments">Attachments</string>
     <string name="vehicle">Vehicle</string>
+    <string name="agent_name">Agent Name</string>
+    <string name="cnpj" translatable="false">CNPJ</string>
+    <string name="cep" translatable="false">CEP</string>
+    <string name="uf" translatable="false">UF</string>
+    <string name="city">City</string>
+    <string name="neighborhood">Neighborhood</string>
+    <string name="address">Address</string>
+    <string name="number">Number</string>
+    <string name="Complement">Complement</string>
+    <string name="cel_number">Cel. Number</string>
 
 </resources>

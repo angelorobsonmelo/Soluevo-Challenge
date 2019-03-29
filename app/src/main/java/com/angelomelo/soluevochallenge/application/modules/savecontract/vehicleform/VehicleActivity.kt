@@ -59,9 +59,9 @@ class VehicleActivity : UsageBaseActivity() {
 
     private fun goToCreditorForm() {
         val bundle: Bundle? = intent.extras
-
         val personal = bundle?.getParcelable(PersonalFormActivity.PERSONAL_IDENTIFIER) as Personal
         print(personal.name)
+
         val intent = Intent(applicationContext, CredorFormActivity::class.java)
         startActivity(intent)
     }

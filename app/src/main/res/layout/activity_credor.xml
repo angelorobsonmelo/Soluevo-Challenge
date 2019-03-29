@@ -39,9 +39,66 @@
                 <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        app:validateEmpty="@{true}"
+                        app:validateTypeAutoDismiss="@{true}"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:hint="Nome do Agente"
+                        android:hint="@string/agent_name"
+                />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                <com.santalu.maskedittext.MaskEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:validateEmpty="@{true}"
+                        app:validateTypeAutoDismiss="@{true}"
+                        android:inputType="number"
+                        app:met_mask="##.###.###/####-##"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:hint="@string/cnpj"
+                />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                <com.santalu.maskedittext.MaskEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="number"
+                        app:met_mask="#####-###"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:hint="@string/cep"
+                />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                <com.santalu.maskedittext.MaskEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:met_mask="##"
+                        app:validateMinLength="@{2}"
+                        app:validateMaxLength="@{2}"
+                        app:validateEmpty="@{true}"
+                        app:validateTypeAutoDismiss="@{true}"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:hint="@string/uf"
                 />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -53,9 +110,11 @@
                 <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        app:validateEmpty="@{true}"
+                        app:validateTypeAutoDismiss="@{true}"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:hint="CNPJ"
+                        android:hint="@string/city"
                 />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -67,25 +126,11 @@
                 <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        app:validateEmpty="@{true}"
+                        app:validateTypeAutoDismiss="@{true}"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:hint="CEP"
-                />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:hint="UF"
+                        android:hint="@string/neighborhood"
                 />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -97,9 +142,11 @@
                 <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        app:validateEmpty="@{true}"
+                        app:validateTypeAutoDismiss="@{true}"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:hint="Cidade"
+                        android:hint="@string/address"
                 />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -111,9 +158,12 @@
                 <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:inputType="textCapCharacters"
+                        app:validateEmpty="@{true}"
+                        app:validateTypeAutoDismiss="@{true}"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:hint="Bairro"
+                        android:hint="@string/number"
                 />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -125,9 +175,11 @@
                 <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        app:validateEmpty="@{true}"
+                        app:validateTypeAutoDismiss="@{true}"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:hint="Endereço"
+                        android:hint="@string/Complement"
                 />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -136,40 +188,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.google.android.material.textfield.TextInputEditText
+                <com.santalu.maskedittext.MaskEditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        app:validateEmpty="@{true}"
+                        app:validateTypeAutoDismiss="@{true}"
+                        android:inputType="phone"
+                        app:met_mask="(##) #####-####"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:hint="Número"
-                />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:hint="Complemento"
-                />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:hint="Telefone"
+                        android:hint="@string/cel_number"
                 />
 
             </com.google.android.material.textfield.TextInputLayout>

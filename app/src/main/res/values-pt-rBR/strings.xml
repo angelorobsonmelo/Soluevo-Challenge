@@ -19,7 +19,14 @@
     <string name="personal">Pessoal</string>
     <string name="creditor">Credor</string>
     <string name="contract">Contrato</string>
-    <string name="attachments">Contrato</string>
+    <string name="attachments">Anexos</string>
     <string name="vehicle">Veicúlo</string>
+    <string name="agent_name">Nome do Agente</string>
+    <string name="city">Cidade</string>
+    <string name="neighborhood">Bairro</string>
+    <string name="address">Endereço</string>
+    <string name="number">Número</string>
+    <string name="Complement">Complemento</string>
+    <string name="cel_number">Número Cel.</string>
 
 </resources>
