@@ -14,7 +14,7 @@
                 android:paddingTop="10dp">
 
 
-    <include layout="@layout/usage_stateprogressbar" />
+    <include layout="@layout/state_progress_bar_base" />
 
 
     <LinearLayout
@@ -45,7 +45,7 @@
     </LinearLayout>
 
 
-    <include layout="@layout/usage_footer_buttons_layout" />
+    <include layout="@layout/state_progress_bar_footer_buttons_layout" />
 
 
 </RelativeLayout>

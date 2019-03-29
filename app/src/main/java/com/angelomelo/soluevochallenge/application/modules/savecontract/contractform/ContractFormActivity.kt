@@ -7,28 +7,28 @@ import android.view.View
 import androidx.databinding.DataBindingUtil
 import br.com.ilhasoft.support.validation.Validator
 import com.angelomelo.soluevochallenge.R
-import com.angelomelo.soluevochallenge.application.modules.savecontract.UsageBaseActivity
-import com.angelomelo.soluevochallenge.application.modules.savecontract.attachmentsform.AttachmentsActivity
-import com.angelomelo.soluevochallenge.application.modules.savecontract.credorform.CredorFormActivity
+import com.angelomelo.soluevochallenge.application.modules.savecontract.StateProgressBarBaseActivity
+import com.angelomelo.soluevochallenge.application.modules.savecontract.attachmentsform.AttachmentsFormActivity
+import com.angelomelo.soluevochallenge.application.modules.savecontract.creditorform.CreditorFormActivity
 import com.angelomelo.soluevochallenge.application.modules.savecontract.personalform.PersonalFormActivity
 import com.angelomelo.soluevochallenge.application.modules.savecontract.vehicleform.VehicleActivity
-import com.angelomelo.soluevochallenge.databinding.ActivityContractFormBinding
+import com.angelomelo.soluevochallenge.databinding.ContractFormActivityBinding
 import com.angelomelo.soluevochallenge.domain.form.ContractForm
 import com.angelomelo.soluevochallenge.domain.form.ContractForm.ContractsForm
 import com.kofigyan.stateprogressbar.StateProgressBar
 
-class ContractFormActivity : UsageBaseActivity() {
+class ContractFormActivity : StateProgressBarBaseActivity() {
 
     companion object {
         const val CONTRACT_IDENTIFIER = "CONTRACT_IDENTIFIER"
     }
 
-    private lateinit var binding: ActivityContractFormBinding
+    private lateinit var binding: ContractFormActivityBinding
     private lateinit var validator: Validator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_contract_form)
+        binding = DataBindingUtil.setContentView(this, R.layout.contract_form_activity)
         setupBinding()
         setupValidator()
         injectCommonViews()
@@ -59,7 +59,7 @@ class ContractFormActivity : UsageBaseActivity() {
     }
 
     private fun putObjectsFromTheStepsOfTheFormAndGoToContractForm() {
-        val intent = Intent(applicationContext, AttachmentsActivity::class.java)
+        val intent = Intent(applicationContext, AttachmentsFormActivity::class.java)
         putPersonalInExtra(intent)
         putVehicleInExtra(intent)
         putCreditorInExtra(intent)
@@ -80,7 +80,7 @@ class ContractFormActivity : UsageBaseActivity() {
 
     private fun putCreditorInExtra(intent: Intent) {
         val creditor = getCreditorFromBundle()
-        intent.putExtra(CredorFormActivity.CREDITOR_IDENTIFIER, creditor)
+        intent.putExtra(CreditorFormActivity.CREDITOR_IDENTIFIER, creditor)
     }
 
     private fun putContractInExtra(intent: Intent) {
@@ -100,7 +100,7 @@ class ContractFormActivity : UsageBaseActivity() {
 
     private fun getCreditorFromBundle() : ContractForm.CreditorForm {
         val bundle: Bundle? = intent.extras
-        return bundle?.getParcelable(CredorFormActivity.CREDITOR_IDENTIFIER) as ContractForm.CreditorForm
+        return bundle?.getParcelable(CreditorFormActivity.CREDITOR_IDENTIFIER) as ContractForm.CreditorForm
     }
 
 }

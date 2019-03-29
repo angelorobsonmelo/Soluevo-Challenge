@@ -17,7 +17,7 @@
                 android:paddingTop="10dp">
 
 
-    <include android:id="@+id/header" layout="@layout/usage_stateprogressbar" />
+    <include android:id="@+id/header" layout="@layout/state_progress_bar_base" />
 
     <ScrollView
                 android:layout_width="match_parent"
@@ -226,7 +226,7 @@
     </ScrollView>
 
 
-    <include android:id="@+id/footer" layout="@layout/usage_footer_buttons_layout" />
+    <include android:id="@+id/footer" layout="@layout/state_progress_bar_footer_buttons_layout" />
 
 
 </RelativeLayout>

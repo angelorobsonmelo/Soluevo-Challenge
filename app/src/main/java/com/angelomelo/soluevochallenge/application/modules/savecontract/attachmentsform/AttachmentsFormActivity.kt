@@ -5,30 +5,30 @@ import android.view.View
 import androidx.databinding.DataBindingUtil
 import br.com.ilhasoft.support.validation.Validator
 import com.angelomelo.soluevochallenge.R
-import com.angelomelo.soluevochallenge.application.modules.savecontract.UsageBaseActivity
+import com.angelomelo.soluevochallenge.application.modules.savecontract.StateProgressBarBaseActivity
 import com.angelomelo.soluevochallenge.application.modules.savecontract.contractform.ContractFormActivity
-import com.angelomelo.soluevochallenge.application.modules.savecontract.credorform.CredorFormActivity
+import com.angelomelo.soluevochallenge.application.modules.savecontract.creditorform.CreditorFormActivity
 import com.angelomelo.soluevochallenge.application.modules.savecontract.personalform.PersonalFormActivity
 import com.angelomelo.soluevochallenge.application.modules.savecontract.vehicleform.VehicleActivity
-import com.angelomelo.soluevochallenge.databinding.ActivityAttachmentsBinding
+import com.angelomelo.soluevochallenge.databinding.AttachmentsFormActivityBinding
 import com.angelomelo.soluevochallenge.domain.form.ContractForm
 import com.kofigyan.stateprogressbar.StateProgressBar
-import kotlinx.android.synthetic.main.usage_footer_button_layout.*
+import kotlinx.android.synthetic.main.state_progress_bar_footer_button_layout.*
 
-class AttachmentsActivity : UsageBaseActivity() {
+class AttachmentsFormActivity : StateProgressBarBaseActivity() {
 
     companion object {
         const val ATTACHMENTS_IDENTIFIER = "ATTACHMENTS_IDENTIFIER"
     }
 
-    private lateinit var binding: ActivityAttachmentsBinding
+    private lateinit var binding: AttachmentsFormActivityBinding
     private lateinit var validator: Validator
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_attachments)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_attachments)
+        setContentView(R.layout.attachments_form_activity)
+        binding = DataBindingUtil.setContentView(this, R.layout.attachments_form_activity)
         changeTextButtonNextToConclude()
         setupElements()
         injectCommonViews()
@@ -80,7 +80,7 @@ class AttachmentsActivity : UsageBaseActivity() {
 
     private fun getCreditorFromBundle() : ContractForm.CreditorForm {
         val bundle: Bundle? = intent.extras
-        return bundle?.getParcelable(CredorFormActivity.CREDITOR_IDENTIFIER) as ContractForm.CreditorForm
+        return bundle?.getParcelable(CreditorFormActivity.CREDITOR_IDENTIFIER) as ContractForm.CreditorForm
     }
 
     private fun getContractFromBundle() : ContractForm.ContractsForm {

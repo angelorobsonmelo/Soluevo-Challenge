@@ -1,4 +1,4 @@
-package com.angelomelo.soluevochallenge.application.modules.savecontract.credorform
+package com.angelomelo.soluevochallenge.application.modules.savecontract.creditorform
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,27 +6,27 @@ import android.view.View
 import androidx.databinding.DataBindingUtil
 import br.com.ilhasoft.support.validation.Validator
 import com.angelomelo.soluevochallenge.R
-import com.angelomelo.soluevochallenge.application.modules.savecontract.UsageBaseActivity
+import com.angelomelo.soluevochallenge.application.modules.savecontract.StateProgressBarBaseActivity
 import com.angelomelo.soluevochallenge.application.modules.savecontract.contractform.ContractFormActivity
 import com.angelomelo.soluevochallenge.application.modules.savecontract.personalform.PersonalFormActivity
 import com.angelomelo.soluevochallenge.application.modules.savecontract.vehicleform.VehicleActivity
-import com.angelomelo.soluevochallenge.databinding.ActivityCredorBinding
+import com.angelomelo.soluevochallenge.databinding.CreditorFormActivityBinding
 import com.angelomelo.soluevochallenge.domain.form.ContractForm
 import com.angelomelo.soluevochallenge.domain.form.ContractForm.CreditorForm
 import com.kofigyan.stateprogressbar.StateProgressBar
 
-class CredorFormActivity : UsageBaseActivity() {
+class CreditorFormActivity : StateProgressBarBaseActivity() {
 
     companion object {
         const val CREDITOR_IDENTIFIER = "CREDITOR_IDENTIFIER"
     }
 
-    private lateinit var binding: ActivityCredorBinding
+    private lateinit var binding: CreditorFormActivityBinding
     private lateinit var validator: Validator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_credor)
+        binding = DataBindingUtil.setContentView(this, R.layout.creditor_form_activity)
         setupBinding()
         setupValidator()
         injectCommonViews()

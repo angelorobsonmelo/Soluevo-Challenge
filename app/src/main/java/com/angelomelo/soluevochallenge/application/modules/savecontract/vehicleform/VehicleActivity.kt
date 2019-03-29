@@ -6,26 +6,26 @@ import android.view.View
 import androidx.databinding.DataBindingUtil
 import br.com.ilhasoft.support.validation.Validator
 import com.angelomelo.soluevochallenge.R
-import com.angelomelo.soluevochallenge.application.modules.savecontract.UsageBaseActivity
-import com.angelomelo.soluevochallenge.application.modules.savecontract.credorform.CredorFormActivity
+import com.angelomelo.soluevochallenge.application.modules.savecontract.StateProgressBarBaseActivity
+import com.angelomelo.soluevochallenge.application.modules.savecontract.creditorform.CreditorFormActivity
 import com.angelomelo.soluevochallenge.application.modules.savecontract.personalform.PersonalFormActivity
-import com.angelomelo.soluevochallenge.databinding.ActivityVehicleBinding
+import com.angelomelo.soluevochallenge.databinding.VehicleFormActivityBinding
 import com.angelomelo.soluevochallenge.domain.form.ContractForm
 import com.angelomelo.soluevochallenge.domain.form.ContractForm.VehicleForm
 import com.kofigyan.stateprogressbar.StateProgressBar
 
-class VehicleActivity : UsageBaseActivity() {
+class VehicleActivity : StateProgressBarBaseActivity() {
 
     companion object {
         const val VEHICLE_IDENTIFIER = "VEHICLE_IDENTIFIER"
     }
 
-    private lateinit var binding: ActivityVehicleBinding
+    private lateinit var binding: VehicleFormActivityBinding
     private lateinit var validator: Validator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_vehicle)
+        binding = DataBindingUtil.setContentView(this, R.layout.vehicle_form_activity)
         setupBinding()
         setupValidator()
         injectCommonViews()
@@ -56,7 +56,7 @@ class VehicleActivity : UsageBaseActivity() {
     }
 
     private fun putObjectsFromTheStepsOfTheFormAndGoToTheCreditorScreen() {
-        val intent = Intent(applicationContext, CredorFormActivity::class.java)
+        val intent = Intent(applicationContext, CreditorFormActivity::class.java)
         putPersonalInExtra(intent)
         putVehicleInExtra(intent)
         startActivity(intent)

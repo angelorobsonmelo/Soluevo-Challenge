@@ -20,7 +20,7 @@
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
         <activity
-                android:name=".application.modules.savecontract.attachmentsform.AttachmentsActivity"
+                android:name=".application.modules.savecontract.attachmentsform.AttachmentsFormActivity"
                 android:label="@string/title_activity_attachments">
         </activity>
         <activity
@@ -28,7 +28,7 @@
                 android:label="@string/title_activity_contract_form">
         </activity>
         <activity
-                android:name=".application.modules.savecontract.credorform.CredorFormActivity"
+                android:name=".application.modules.savecontract.creditorform.CreditorFormActivity"
                 android:label="@string/title_activity_credor">
         </activity>
         <activity
