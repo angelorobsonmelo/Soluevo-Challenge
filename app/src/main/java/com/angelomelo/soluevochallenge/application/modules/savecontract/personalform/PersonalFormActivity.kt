@@ -9,7 +9,7 @@ import com.angelomelo.soluevochallenge.R
 import com.angelomelo.soluevochallenge.application.modules.savecontract.UsageBaseActivity
 import com.angelomelo.soluevochallenge.application.modules.savecontract.vehicleform.VehicleActivity
 import com.angelomelo.soluevochallenge.databinding.PersonalAcitivyBinding
-import com.angelomelo.soluevochallenge.domain.request.Personal
+import com.angelomelo.soluevochallenge.domain.form.ContractForm.PersonalForm
 import com.kofigyan.stateprogressbar.StateProgressBar
 
 class PersonalFormActivity: UsageBaseActivity() {
@@ -32,7 +32,7 @@ class PersonalFormActivity: UsageBaseActivity() {
 
     private fun setupBinding() {
         binding.lifecycleOwner = this
-        binding.personal    = Personal()
+        binding.personal    = PersonalForm()
     }
 
     private fun setupValidator() {
@@ -48,9 +48,9 @@ class PersonalFormActivity: UsageBaseActivity() {
 
     private fun goToVehicleForm() {
         val intent = Intent(applicationContext, VehicleActivity::class.java)
-        val personal = binding.personal
-
-        intent.putExtra(PERSONAL_IDENTIFIER, personal)
+//        val personal = binding.personal
+//
+//        intent.putExtra(PERSONAL_IDENTIFIER, personal)
         startActivity(intent)
     }
 

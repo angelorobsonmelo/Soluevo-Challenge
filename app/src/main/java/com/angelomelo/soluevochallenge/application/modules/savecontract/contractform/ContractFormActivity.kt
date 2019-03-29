@@ -1,18 +1,16 @@
 package com.angelomelo.soluevochallenge.application.modules.savecontract.contractform
 
-//import com.angelomelo.soluevochallenge.application.modules.savecontract.attachmentsform.AttachmentsActivity
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import br.com.ilhasoft.support.validation.Validator
 import com.angelomelo.soluevochallenge.R
 import com.angelomelo.soluevochallenge.application.modules.savecontract.UsageBaseActivity
 import com.angelomelo.soluevochallenge.application.modules.savecontract.attachmentsform.AttachmentsActivity
 import com.angelomelo.soluevochallenge.databinding.ActivityContractFormBinding
-import com.angelomelo.soluevochallenge.domain.request.Contratos
+import com.angelomelo.soluevochallenge.domain.form.ContractForm.ContractsForm
 import com.kofigyan.stateprogressbar.StateProgressBar
 
 class ContractFormActivity : UsageBaseActivity() {
@@ -36,7 +34,7 @@ class ContractFormActivity : UsageBaseActivity() {
 
     private fun setupBinding() {
         binding.lifecycleOwner = this
-        binding.contract       = Contratos()
+        binding.contract       = ContractsForm()
     }
 
     private fun setupValidator() {

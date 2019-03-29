@@ -5,7 +5,7 @@
     <data>
         <variable
                 name="vehicle"
-                type="com.angelomelo.soluevochallenge.domain.request.Vehicle" />
+                type="com.angelomelo.soluevochallenge.domain.form.ContractForm.VehicleForm" />
     </data>
 
 <RelativeLayout
@@ -56,7 +56,7 @@
             <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="@={vehicle.chassi}"
+                    android:text="@={vehicle.chassis}"
                     android:inputType="textCapCharacters"
                     app:validateEmpty="@{true}"
                     app:validateTypeAutoDismiss="@{true}"
@@ -74,7 +74,7 @@
             <com.santalu.maskedittext.MaskEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="@={vehicle.ufPlaca}"
+                    android:text="@={vehicle.ufPlate}"
                     android:inputType="textCapCharacters"
                     app:met_mask="##"
                     app:validateMinLength="@{2}"
@@ -96,7 +96,7 @@
             <com.santalu.maskedittext.MaskEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@={vehicle.remarcado}"
+                    android:text="@={vehicle.redial}"
                     app:validateEmpty="@{true}"
                     app:validateTypeAutoDismiss="@{true}"
                     android:maxLines="1"

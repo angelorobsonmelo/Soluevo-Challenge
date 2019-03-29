@@ -1,16 +1,14 @@
 package com.angelomelo.soluevochallenge.domain.request
 
-import android.os.Parcelable
-import com.google.gson.annotations.Expose
+import com.angelomelo.soluevochallenge.application.SoluevoChallengeApplication
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
 
 data class ContractRequest(
     @SerializedName("endusers_document")
     val endusersDocument: String = "35507907838",
     val code: String,
     @SerializedName("financial_users_uuid")
-    val financialUsersUuid: String,
+    val financialUsersUuid: String = SoluevoChallengeApplication.mSessionUseCase?.getUserInSession()?.uuid!!,
     val data: Data
 )
 
@@ -18,84 +16,70 @@ data class Data(
     val personal: Personal,
     @SerializedName("veiculo")
     val vehicle: Vehicle,
-    val credor: Credor,
-    val contratos: Contratos
+    @SerializedName("credor")
+    val creditor: Creditor,
+    @SerializedName("contratos")
+    val contracts: Contracts
 )
 
-@Parcelize
 data class Personal(
     var name: String = "",
     var rg: String = ""
-) : Parcelable
+)
 
-@Parcelize
 data class Vehicle(
-   var remarcado: String = "",
-   var renavam: String = "",
-   @SerializedName("uf_placa")
-   var ufPlaca: String = "",
-   var chassi: String = ""
-) : Parcelable
+    @SerializedName("remarcado")
+    var redial: String = "",
+    var renavam: String = "",
+    @SerializedName("uf_placa")
+    var ufPlate: String = "",
+    @SerializedName("chassi")
+    var chassis: String = ""
+)
 
-@Parcelize
-data class Credor(
-   var endereco: String = "",
-   var cep: Int = 0,
-   @Expose
-   var cepField: String = "",
-   var uf: String = "",
-   @SerializedName("endereco_numero")
-   var enderecoNumero: Int  = 0,
-   @Expose
-   var enderecoNumeroField: String  = "",
-   var municipio: String = "",
-   @SerializedName("endereco_numero_complemento")
-   var enderecoNumeroComplemento: String = "",
-   @SerializedName("nome_agente_financeiro_instituicao_financeira")
-   var nomeAgenteFinanceiroInstituicaoFinanceira: String = "",
-   var cnpj: Int = 0,
-   @Expose
-   var cnpjField: String = "",
-   var telefone: String = "",
-   var bairro: String = ""
-): Parcelable
+data class Creditor(
+    @SerializedName("endereco")
+    var address: String = "",
+    var cep: Int = 0,
+    var uf: String = "",
+    @SerializedName("endereco_numero")
+    var addressNumber: Int = 0,
+    @SerializedName("municipio")
+    var county: String = "",
+    @SerializedName("endereco_numero_complemento")
+    var addressComplementNumber: String = "",
+    @SerializedName("nome_agente_financeiro_instituicao_financeira")
+    var nameFinancialAgentFinancialInstitution: String = "",
+    var cnpj: Int = 0,
+    @SerializedName("telefone")
+    var telephone: String = "",
+    @SerializedName("bairro")
+    var neighborhood: String = ""
+)
 
-@Parcelize
-data class Contratos(
+data class Contracts(
     @SerializedName("quantidade_meses")
-    var quantidadeMeses: Int = 0,
-    @Expose
-    var quantidadeMesesField: String = "",
-    var comissao: Int = 0,
-    var comissaoField: String = "",
+    var amountMonths: Int = 0,
+    @SerializedName("comissao")
+    var commission: Int = 0,
     @SerializedName("taxa_mora")
-    var taxaMora: Int = 0,
-    @Expose
-    var taxaMoraField: String = "",
+    var rateMore: Int = 0,
     @SerializedName("valor_taxa_mora")
-    var valorTaxaMora: Int = 0,
-    @Expose
-    var valorTaxaMoraField: String = "",
+    var valueMoraRate: Int = 0,
     @SerializedName("valor_taxa_de_contrato")
-    var valorTaxaContrato: Int = 0,
-    @Expose
-    var valorTaxaContratoField: String = "",
+    var valueContractRate: Int = 0,
     @SerializedName("valor_juros_ao_ano")
-    var valorJurosAno: Int = 0,
+    var valueYearInterest: Int = 0,
     @SerializedName("indicacao_comissao")
-    var indicacaoComissao: String = "",
+    var commissionStatement: String = "",
     @SerializedName("taxa_taxa_multa")
-    var taxaTaxaMulta: Int = 0,
-    var taxaTaxaMultaField: String = "",
+    var feeFineRate: Int = 0,
     @SerializedName("numero_gravame")
-    var numeroGravame: Int = 0,
-    var numeroGravameField: String = "",
+    var tagNumber: Int = 0,
     @SerializedName("tipo_restricao")
-    var tipoRestricao: String = "",
+    var typeRestriction: String = "",
     @SerializedName("valor_juros_ao_mes")
-    var valorJurosMes: Int = 0,
-    @Expose
-    var valorJurosMesField: String = "",
-    var indices: String = ""
-
-): Parcelable
+    var valueInterestMonth: Int = 0,
+    @SerializedName("indices")
+    var indexes: String = ""
+)

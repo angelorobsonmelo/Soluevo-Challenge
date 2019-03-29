@@ -5,7 +5,7 @@
     <data>
     <variable
             name="personal"
-            type="com.angelomelo.soluevochallenge.domain.request.Personal" />
+            type="com.angelomelo.soluevochallenge.domain.form.ContractForm.PersonalForm" />
 
     </data>
 

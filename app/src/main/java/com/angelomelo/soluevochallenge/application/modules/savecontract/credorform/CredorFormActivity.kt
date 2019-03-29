@@ -7,10 +7,9 @@ import androidx.databinding.DataBindingUtil
 import br.com.ilhasoft.support.validation.Validator
 import com.angelomelo.soluevochallenge.R
 import com.angelomelo.soluevochallenge.application.modules.savecontract.UsageBaseActivity
-import com.angelomelo.soluevochallenge.databinding.ActivityCredorBinding
-import com.angelomelo.soluevochallenge.databinding.PersonalAcitivyBinding
-import com.angelomelo.soluevochallenge.domain.request.Credor
 import com.angelomelo.soluevochallenge.application.modules.savecontract.contractform.ContractFormActivity
+import com.angelomelo.soluevochallenge.databinding.ActivityCredorBinding
+import com.angelomelo.soluevochallenge.domain.form.ContractForm.CreditorForm
 import com.kofigyan.stateprogressbar.StateProgressBar
 
 class CredorFormActivity : UsageBaseActivity() {
@@ -34,7 +33,7 @@ class CredorFormActivity : UsageBaseActivity() {
 
     private fun setupBinding() {
         binding.lifecycleOwner = this
-        binding.creditor = Credor()
+        binding.creditor = CreditorForm()
     }
 
     private fun setupValidator() {
