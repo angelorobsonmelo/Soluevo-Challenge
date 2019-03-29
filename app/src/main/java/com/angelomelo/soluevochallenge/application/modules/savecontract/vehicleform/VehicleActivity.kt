@@ -10,6 +10,7 @@ import com.angelomelo.soluevochallenge.application.modules.savecontract.UsageBas
 import com.angelomelo.soluevochallenge.application.modules.savecontract.credorform.CredorFormActivity
 import com.angelomelo.soluevochallenge.application.modules.savecontract.personalform.PersonalFormActivity
 import com.angelomelo.soluevochallenge.databinding.ActivityVehicleBinding
+import com.angelomelo.soluevochallenge.domain.form.ContractForm
 import com.angelomelo.soluevochallenge.domain.form.ContractForm.VehicleForm
 import com.angelomelo.soluevochallenge.domain.request.Personal
 import com.kofigyan.stateprogressbar.StateProgressBar
@@ -48,7 +49,7 @@ class VehicleActivity : UsageBaseActivity() {
         when (v.id) {
             R.id.btnNext -> {
                 if (validator.validate()) {
-                    goToCreditorForm()
+                    setVehicleInBundleAndGoToCreditorForm()
                 }
             }
 
@@ -56,13 +57,21 @@ class VehicleActivity : UsageBaseActivity() {
         }
     }
 
-    private fun goToCreditorForm() {
-        val bundle: Bundle? = intent.extras
-//        val personal = bundle?.getParcelable(PersonalFormActivity.PERSONAL_IDENTIFIER) as Personal
-//        print(personal.name)
+    private fun setVehicleInBundleAndGoToCreditorForm() {
+        val personal = getPersonalFromBundle()
 
+        val vehicle = binding.vehicle
         val intent = Intent(applicationContext, CredorFormActivity::class.java)
+        intent.putExtra(VEHICLE_IDENTIFIER, vehicle)
+        intent.putExtra(PersonalFormActivity.PERSONAL_IDENTIFIER, personal)
         startActivity(intent)
+    }
+
+    private fun getPersonalFromBundle() : ContractForm.PersonalForm {
+        val bundle: Bundle? = intent.extras
+        val personal = bundle?.getParcelable(PersonalFormActivity.PERSONAL_IDENTIFIER) as ContractForm.PersonalForm
+
+        return personal
     }
 
 }

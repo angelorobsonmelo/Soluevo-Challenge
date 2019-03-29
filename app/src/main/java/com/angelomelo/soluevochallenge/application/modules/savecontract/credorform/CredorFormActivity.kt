@@ -8,7 +8,10 @@ import br.com.ilhasoft.support.validation.Validator
 import com.angelomelo.soluevochallenge.R
 import com.angelomelo.soluevochallenge.application.modules.savecontract.UsageBaseActivity
 import com.angelomelo.soluevochallenge.application.modules.savecontract.contractform.ContractFormActivity
+import com.angelomelo.soluevochallenge.application.modules.savecontract.personalform.PersonalFormActivity
+import com.angelomelo.soluevochallenge.application.modules.savecontract.vehicleform.VehicleActivity
 import com.angelomelo.soluevochallenge.databinding.ActivityCredorBinding
+import com.angelomelo.soluevochallenge.domain.form.ContractForm
 import com.angelomelo.soluevochallenge.domain.form.ContractForm.CreditorForm
 import com.kofigyan.stateprogressbar.StateProgressBar
 
@@ -45,7 +48,7 @@ class CredorFormActivity : UsageBaseActivity() {
         when (v.id) {
             R.id.btnNext -> {
                 if (validator.validate()) {
-                    goToContractForm()
+                    setCreditorInBundleAndGoToContractForm()
                 }
             }
 
@@ -53,9 +56,28 @@ class CredorFormActivity : UsageBaseActivity() {
         }
     }
 
-    private fun goToContractForm() {
+    private fun setCreditorInBundleAndGoToContractForm() {
+        val personal = getPersonalFromBundle()
+        val vehicle = getVehicleFromBundle()
+        val creditor = binding.creditor
+
         val intent = Intent(applicationContext, ContractFormActivity::class.java)
+
+        intent.putExtra(PersonalFormActivity.PERSONAL_IDENTIFIER, personal)
+        intent.putExtra(VehicleActivity.VEHICLE_IDENTIFIER, vehicle)
+        intent.putExtra(CREDITOR_IDENTIFIER, creditor)
+
         startActivity(intent)
+    }
+
+    private fun getVehicleFromBundle() : ContractForm.VehicleForm {
+        val bundle: Bundle? = intent.extras
+        return bundle?.getParcelable(VehicleActivity.VEHICLE_IDENTIFIER) as ContractForm.VehicleForm
+    }
+
+    private fun getPersonalFromBundle() : ContractForm.PersonalForm {
+        val bundle: Bundle? = intent.extras
+        return bundle?.getParcelable(PersonalFormActivity.PERSONAL_IDENTIFIER) as ContractForm.PersonalForm
     }
 
 }
