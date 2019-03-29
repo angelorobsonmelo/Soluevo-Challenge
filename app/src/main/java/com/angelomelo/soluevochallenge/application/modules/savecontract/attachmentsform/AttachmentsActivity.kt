@@ -43,7 +43,6 @@ class AttachmentsActivity : UsageBaseActivity() {
     }
 
     override fun onClick(v: View) {
-
         when (v.id) {
             R.id.btnNext -> {
                 //Todo salvar tudo aqui

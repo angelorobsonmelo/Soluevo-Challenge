@@ -43,18 +43,20 @@ class ContractFormActivity : UsageBaseActivity() {
     }
 
     override fun onClick(v: View) {
-
         when (v.id) {
             R.id.btnNext -> {
                 if (validator.validate()) {
-                    val intent = Intent(applicationContext, AttachmentsActivity::class.java)
-                    startActivity(intent)
+                    goToattachmentsForm()
                 }
-
             }
 
             R.id.btnBack -> finish()
         }
+    }
+
+    private fun goToattachmentsForm() {
+        val intent = Intent(applicationContext, AttachmentsActivity::class.java)
+        startActivity(intent)
     }
 
 }
