@@ -193,7 +193,7 @@
                             android:singleLine="true"
                             app:validateEmpty="@{true}"
                             app:validateTypeAutoDismiss="@{true}"
-                            android:text="@={contract.valueContractRate}"
+                            android:text="@={contract.valueYearInterest}"
                             android:inputType="number"
                             android:hint="@string/interest_rate_per_year"
                     />

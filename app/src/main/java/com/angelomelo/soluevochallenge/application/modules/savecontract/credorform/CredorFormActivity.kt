@@ -42,18 +42,20 @@ class CredorFormActivity : UsageBaseActivity() {
     }
 
     override fun onClick(v: View) {
-
         when (v.id) {
             R.id.btnNext -> {
                 if (validator.validate()) {
-                      val intent = Intent(applicationContext, ContractFormActivity::class.java)
-                     startActivity(intent)
+                    goToContractForm()
                 }
-
             }
 
             R.id.btnBack -> finish()
         }
+    }
+
+    private fun goToContractForm() {
+        val intent = Intent(applicationContext, ContractFormActivity::class.java)
+        startActivity(intent)
     }
 
 }
