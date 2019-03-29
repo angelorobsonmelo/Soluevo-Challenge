@@ -3,8 +3,12 @@ package com.angelomelo.soluevochallenge.application.modules.savecontract.attachm
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import br.com.ilhasoft.support.validation.Validator
 import com.angelomelo.soluevochallenge.R
+import com.angelomelo.soluevochallenge.application.modules.auth.AuthViewModel
+import com.angelomelo.soluevochallenge.application.modules.savecontract.SaveContractViewModel
 import com.angelomelo.soluevochallenge.application.modules.savecontract.StateProgressBarBaseActivity
 import com.angelomelo.soluevochallenge.application.modules.savecontract.contractform.ContractFormActivity
 import com.angelomelo.soluevochallenge.application.modules.savecontract.creditorform.CreditorFormActivity
@@ -24,18 +28,23 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity() {
         const val ATTACHMENTS_IDENTIFIER = "ATTACHMENTS_IDENTIFIER"
     }
 
+
     private lateinit var binding: AttachmentsFormActivityBinding
     private lateinit var validator: Validator
-
+    private lateinit var viewModel: SaveContractViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.attachments_form_activity)
         binding = DataBindingUtil.setContentView(this, R.layout.attachments_form_activity)
+        viewModel = ViewModelProviders.of(this).get(SaveContractViewModel::class.java)
+
         changeTextButtonNextToConclude()
         setupElements()
         injectCommonViews()
         injectBackView()
+        initObserveOnSuccess()
+        initObserveOnError()
         stateprogressbar.setCurrentStateNumber(StateProgressBar.StateNumber.FIVE)
     }
 
@@ -89,6 +98,18 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity() {
     private fun getContractFromBundle() : ContractsForm {
         val bundle: Bundle? = intent.extras
         return bundle?.getParcelable(ContractFormActivity.CONTRACT_IDENTIFIER) as ContractsForm
+    }
+
+    private fun initObserveOnSuccess() {
+        viewModel.successObserver.observe(this, Observer {
+            print(it.code)
+        })
+    }
+
+    private fun initObserveOnError() {
+        viewModel.errorObserver.observe(this, Observer {
+
+        })
     }
 
 }

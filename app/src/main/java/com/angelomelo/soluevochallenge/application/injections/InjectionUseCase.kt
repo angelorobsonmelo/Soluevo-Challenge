@@ -4,6 +4,7 @@ import android.content.Context
 import com.angelomelo.soluevochallenge.application.usecases.local.SessionUseCase
 import com.angelomelo.soluevochallenge.application.usecases.remote.auth.AuthUseCase
 import com.angelomelo.soluevochallenge.application.usecases.remote.contract.GetContractUseCase
+import com.angelomelo.soluevochallenge.application.usecases.remote.contract.SaveContractUseCase
 
 object InjectionUseCase {
 
@@ -24,6 +25,11 @@ object InjectionUseCase {
     @JvmStatic
     fun provideGetContractsUseCase(): GetContractUseCase {
         return GetContractUseCase(contractRemoteDataSource)
+    }
+
+    @JvmStatic
+    fun provideSaveContractUseCase(): SaveContractUseCase {
+        return SaveContractUseCase(contractRemoteDataSource)
     }
 
 
