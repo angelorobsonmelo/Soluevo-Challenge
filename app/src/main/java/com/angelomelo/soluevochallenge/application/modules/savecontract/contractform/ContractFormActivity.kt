@@ -13,8 +13,10 @@ import com.angelomelo.soluevochallenge.application.modules.savecontract.creditor
 import com.angelomelo.soluevochallenge.application.modules.savecontract.personalform.PersonalFormActivity
 import com.angelomelo.soluevochallenge.application.modules.savecontract.vehicleform.VehicleActivity
 import com.angelomelo.soluevochallenge.databinding.ContractFormActivityBinding
-import com.angelomelo.soluevochallenge.domain.form.ContractForm
-import com.angelomelo.soluevochallenge.domain.form.ContractForm.ContractsForm
+import com.angelomelo.soluevochallenge.domain.form.ContractsForm
+import com.angelomelo.soluevochallenge.domain.form.CreditorForm
+import com.angelomelo.soluevochallenge.domain.form.PersonalForm
+import com.angelomelo.soluevochallenge.domain.form.VehicleForm
 import com.kofigyan.stateprogressbar.StateProgressBar
 
 class ContractFormActivity : StateProgressBarBaseActivity() {
@@ -88,19 +90,19 @@ class ContractFormActivity : StateProgressBarBaseActivity() {
         intent.putExtra(CONTRACT_IDENTIFIER, contract)
     }
 
-    private fun getPersonalFromBundle() : ContractForm.PersonalForm {
+    private fun getPersonalFromBundle() : PersonalForm {
         val bundle: Bundle? = intent.extras
-        return bundle?.getParcelable(PersonalFormActivity.PERSONAL_IDENTIFIER) as ContractForm.PersonalForm
+        return bundle?.getParcelable(PersonalFormActivity.PERSONAL_IDENTIFIER) as PersonalForm
     }
 
-    private fun getVehicleFromBundle() : ContractForm.VehicleForm {
+    private fun getVehicleFromBundle() : VehicleForm {
         val bundle: Bundle? = intent.extras
-        return bundle?.getParcelable(VehicleActivity.VEHICLE_IDENTIFIER) as ContractForm.VehicleForm
+        return bundle?.getParcelable(VehicleActivity.VEHICLE_IDENTIFIER) as VehicleForm
     }
 
-    private fun getCreditorFromBundle() : ContractForm.CreditorForm {
+    private fun getCreditorFromBundle() : CreditorForm {
         val bundle: Bundle? = intent.extras
-        return bundle?.getParcelable(CreditorFormActivity.CREDITOR_IDENTIFIER) as ContractForm.CreditorForm
+        return bundle?.getParcelable(CreditorFormActivity.CREDITOR_IDENTIFIER) as CreditorForm
     }
 
 }

@@ -10,8 +10,8 @@ import com.angelomelo.soluevochallenge.application.modules.savecontract.StatePro
 import com.angelomelo.soluevochallenge.application.modules.savecontract.creditorform.CreditorFormActivity
 import com.angelomelo.soluevochallenge.application.modules.savecontract.personalform.PersonalFormActivity
 import com.angelomelo.soluevochallenge.databinding.VehicleFormActivityBinding
-import com.angelomelo.soluevochallenge.domain.form.ContractForm
-import com.angelomelo.soluevochallenge.domain.form.ContractForm.VehicleForm
+import com.angelomelo.soluevochallenge.domain.form.PersonalForm
+import com.angelomelo.soluevochallenge.domain.form.VehicleForm
 import com.kofigyan.stateprogressbar.StateProgressBar
 
 class VehicleActivity : StateProgressBarBaseActivity() {
@@ -72,9 +72,9 @@ class VehicleActivity : StateProgressBarBaseActivity() {
         intent.putExtra(VEHICLE_IDENTIFIER, vehicle)
     }
 
-    private fun getPersonalFromBundle() : ContractForm.PersonalForm {
+    private fun getPersonalFromBundle() : PersonalForm {
         val bundle: Bundle? = intent.extras
-        return bundle?.getParcelable(PersonalFormActivity.PERSONAL_IDENTIFIER) as ContractForm.PersonalForm
+        return bundle?.getParcelable(PersonalFormActivity.PERSONAL_IDENTIFIER) as PersonalForm
     }
 
 }

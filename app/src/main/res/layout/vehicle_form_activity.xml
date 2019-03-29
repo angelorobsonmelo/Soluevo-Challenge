@@ -5,7 +5,7 @@
     <data>
         <variable
                 name="vehicle"
-                type="com.angelomelo.soluevochallenge.domain.form.ContractForm.VehicleForm" />
+                type="com.angelomelo.soluevochallenge.domain.form.VehicleForm" />
     </data>
 
 <RelativeLayout
