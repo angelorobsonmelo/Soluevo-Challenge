@@ -50,7 +50,7 @@ class ContractFormActivity : UsageBaseActivity() {
         when (v.id) {
             R.id.btnNext -> {
                 if (validator.validate()) {
-                    setContractInBundleAndGoToattachmentsForm()
+                    putObjectsFromTheStepsOfTheFormAndGoToContractForm()
                 }
             }
 
@@ -58,20 +58,34 @@ class ContractFormActivity : UsageBaseActivity() {
         }
     }
 
-    private fun setContractInBundleAndGoToattachmentsForm() {
-        val personal = getPersonalFromBundle()
-        val vehicle = getVehicleFromBundle()
-        val creditor = getCreditorFromBundle()
-        val contract = binding.contract
-
+    private fun putObjectsFromTheStepsOfTheFormAndGoToContractForm() {
         val intent = Intent(applicationContext, AttachmentsActivity::class.java)
-
-        intent.putExtra(PersonalFormActivity.PERSONAL_IDENTIFIER, personal)
-        intent.putExtra(VehicleActivity.VEHICLE_IDENTIFIER, vehicle)
-        intent.putExtra(CredorFormActivity.CREDITOR_IDENTIFIER, creditor)
-        intent.putExtra(CONTRACT_IDENTIFIER, contract)
+        putPersonalInExtra(intent)
+        putVehicleInExtra(intent)
+        putCreditorInExtra(intent)
+        putContractInExtra(intent)
 
         startActivity(intent)
+    }
+
+    private fun putPersonalInExtra(intent: Intent) {
+        val personal = getPersonalFromBundle()
+        intent.putExtra(PersonalFormActivity.PERSONAL_IDENTIFIER, personal)
+    }
+
+    private fun putVehicleInExtra(intent: Intent) {
+        val vehicle = getVehicleFromBundle()
+        intent.putExtra(VehicleActivity.VEHICLE_IDENTIFIER, vehicle)
+    }
+
+    private fun putCreditorInExtra(intent: Intent) {
+        val creditor = getCreditorFromBundle()
+        intent.putExtra(CredorFormActivity.CREDITOR_IDENTIFIER, creditor)
+    }
+
+    private fun putContractInExtra(intent: Intent) {
+        val contract = binding.contract
+        intent.putExtra(CONTRACT_IDENTIFIER, contract)
     }
 
     private fun getPersonalFromBundle() : ContractForm.PersonalForm {

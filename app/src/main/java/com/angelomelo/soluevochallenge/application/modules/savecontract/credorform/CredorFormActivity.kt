@@ -48,7 +48,7 @@ class CredorFormActivity : UsageBaseActivity() {
         when (v.id) {
             R.id.btnNext -> {
                 if (validator.validate()) {
-                    setCreditorInBundleAndGoToContractForm()
+                    putObjectsFromTheStepsOfTheFormAndGoToContractForm()
                 }
             }
 
@@ -56,18 +56,28 @@ class CredorFormActivity : UsageBaseActivity() {
         }
     }
 
-    private fun setCreditorInBundleAndGoToContractForm() {
-        val personal = getPersonalFromBundle()
-        val vehicle = getVehicleFromBundle()
-        val creditor = binding.creditor
-
+    private fun putObjectsFromTheStepsOfTheFormAndGoToContractForm() {
         val intent = Intent(applicationContext, ContractFormActivity::class.java)
-
-        intent.putExtra(PersonalFormActivity.PERSONAL_IDENTIFIER, personal)
-        intent.putExtra(VehicleActivity.VEHICLE_IDENTIFIER, vehicle)
-        intent.putExtra(CREDITOR_IDENTIFIER, creditor)
+        putPersonalInExtra(intent)
+        putVehicleInExtra(intent)
+        putCredorInExtra(intent)
 
         startActivity(intent)
+    }
+
+    private fun putPersonalInExtra(intent: Intent) {
+        val personal = getPersonalFromBundle()
+        intent.putExtra(PersonalFormActivity.PERSONAL_IDENTIFIER, personal)
+    }
+
+    private fun putVehicleInExtra(intent: Intent) {
+        val vehicle = getVehicleFromBundle()
+        intent.putExtra(VehicleActivity.VEHICLE_IDENTIFIER, vehicle)
+    }
+
+    private fun putCredorInExtra(intent: Intent) {
+        val creditor = binding.creditor
+        intent.putExtra(CREDITOR_IDENTIFIER, creditor)
     }
 
     private fun getVehicleFromBundle() : ContractForm.VehicleForm {

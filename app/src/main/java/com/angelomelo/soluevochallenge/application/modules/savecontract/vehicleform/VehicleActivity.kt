@@ -12,7 +12,6 @@ import com.angelomelo.soluevochallenge.application.modules.savecontract.personal
 import com.angelomelo.soluevochallenge.databinding.ActivityVehicleBinding
 import com.angelomelo.soluevochallenge.domain.form.ContractForm
 import com.angelomelo.soluevochallenge.domain.form.ContractForm.VehicleForm
-import com.angelomelo.soluevochallenge.domain.request.Personal
 import com.kofigyan.stateprogressbar.StateProgressBar
 
 class VehicleActivity : UsageBaseActivity() {
@@ -45,11 +44,10 @@ class VehicleActivity : UsageBaseActivity() {
     }
 
     override fun onClick(v: View) {
-
         when (v.id) {
             R.id.btnNext -> {
                 if (validator.validate()) {
-                    setVehicleInBundleAndGoToCreditorForm()
+                    putObjectsFromTheStepsOfTheFormAndGoToTheCreditorScreen()
                 }
             }
 
@@ -57,21 +55,26 @@ class VehicleActivity : UsageBaseActivity() {
         }
     }
 
-    private fun setVehicleInBundleAndGoToCreditorForm() {
-        val personal = getPersonalFromBundle()
-
-        val vehicle = binding.vehicle
+    private fun putObjectsFromTheStepsOfTheFormAndGoToTheCreditorScreen() {
         val intent = Intent(applicationContext, CredorFormActivity::class.java)
-        intent.putExtra(VEHICLE_IDENTIFIER, vehicle)
-        intent.putExtra(PersonalFormActivity.PERSONAL_IDENTIFIER, personal)
+        putPersonalInExtra(intent)
+        putVehicleInExtra(intent)
         startActivity(intent)
+    }
+
+    private fun putPersonalInExtra(intent: Intent) {
+        val personal = getPersonalFromBundle()
+        intent.putExtra(PersonalFormActivity.PERSONAL_IDENTIFIER, personal)
+    }
+
+    private fun putVehicleInExtra(intent: Intent) {
+        val vehicle = binding.vehicle
+        intent.putExtra(VEHICLE_IDENTIFIER, vehicle)
     }
 
     private fun getPersonalFromBundle() : ContractForm.PersonalForm {
         val bundle: Bundle? = intent.extras
-        val personal = bundle?.getParcelable(PersonalFormActivity.PERSONAL_IDENTIFIER) as ContractForm.PersonalForm
-
-        return personal
+        return bundle?.getParcelable(PersonalFormActivity.PERSONAL_IDENTIFIER) as ContractForm.PersonalForm
     }
 
 }

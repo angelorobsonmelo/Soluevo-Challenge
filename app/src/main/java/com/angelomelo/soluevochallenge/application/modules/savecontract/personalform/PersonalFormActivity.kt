@@ -42,11 +42,11 @@ class PersonalFormActivity: UsageBaseActivity() {
 
     override fun onClick(v: View) {
         if (validator.validate()) {
-            setPersonalInBundleAndGoToVehicleForm()
+            setPersonalInExtraAndGoToVehicleForm()
         }
     }
 
-    private fun setPersonalInBundleAndGoToVehicleForm() {
+    private fun setPersonalInExtraAndGoToVehicleForm() {
         val intent = Intent(applicationContext, VehicleActivity::class.java)
         val personal = binding.personal
         intent.putExtra(PERSONAL_IDENTIFIER, personal)

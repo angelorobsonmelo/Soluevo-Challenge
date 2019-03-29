@@ -28,13 +28,20 @@ class AttachmentsActivity : UsageBaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_attachments)
-
         binding = DataBindingUtil.setContentView(this, R.layout.activity_attachments)
-        setupBinding()
-        setupValidator()
+        changeTextButtonNextToConclude()
+        setupElements()
         injectCommonViews()
         injectBackView()
         stateprogressbar.setCurrentStateNumber(StateProgressBar.StateNumber.FIVE)
+    }
+
+    private fun setupElements() {
+        setupBinding()
+        setupValidator()
+    }
+
+    private fun changeTextButtonNextToConclude() {
         btnNext.text = getString(R.string.conclude)
     }
 
