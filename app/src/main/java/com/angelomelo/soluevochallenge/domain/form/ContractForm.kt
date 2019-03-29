@@ -3,8 +3,6 @@ package com.angelomelo.soluevochallenge.domain.form
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
-class ContractForm {
-
     @Parcelize
     data class PersonalForm(
         var name: String = "",
@@ -49,4 +47,3 @@ class ContractForm {
         var indexes: String = ""
 
     ): Parcelable
-}

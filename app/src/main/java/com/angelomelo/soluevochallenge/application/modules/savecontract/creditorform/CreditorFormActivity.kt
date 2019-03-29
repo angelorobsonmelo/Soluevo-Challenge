@@ -11,8 +11,9 @@ import com.angelomelo.soluevochallenge.application.modules.savecontract.contract
 import com.angelomelo.soluevochallenge.application.modules.savecontract.personalform.PersonalFormActivity
 import com.angelomelo.soluevochallenge.application.modules.savecontract.vehicleform.VehicleActivity
 import com.angelomelo.soluevochallenge.databinding.CreditorFormActivityBinding
-import com.angelomelo.soluevochallenge.domain.form.ContractForm
-import com.angelomelo.soluevochallenge.domain.form.ContractForm.CreditorForm
+import com.angelomelo.soluevochallenge.domain.form.CreditorForm
+import com.angelomelo.soluevochallenge.domain.form.PersonalForm
+import com.angelomelo.soluevochallenge.domain.form.VehicleForm
 import com.kofigyan.stateprogressbar.StateProgressBar
 
 class CreditorFormActivity : StateProgressBarBaseActivity() {
@@ -80,14 +81,14 @@ class CreditorFormActivity : StateProgressBarBaseActivity() {
         intent.putExtra(CREDITOR_IDENTIFIER, creditor)
     }
 
-    private fun getVehicleFromBundle() : ContractForm.VehicleForm {
+    private fun getVehicleFromBundle() : VehicleForm {
         val bundle: Bundle? = intent.extras
-        return bundle?.getParcelable(VehicleActivity.VEHICLE_IDENTIFIER) as ContractForm.VehicleForm
+        return bundle?.getParcelable(VehicleActivity.VEHICLE_IDENTIFIER) as VehicleForm
     }
 
-    private fun getPersonalFromBundle() : ContractForm.PersonalForm {
+    private fun getPersonalFromBundle() : PersonalForm {
         val bundle: Bundle? = intent.extras
-        return bundle?.getParcelable(PersonalFormActivity.PERSONAL_IDENTIFIER) as ContractForm.PersonalForm
+        return bundle?.getParcelable(PersonalFormActivity.PERSONAL_IDENTIFIER) as PersonalForm
     }
 
 }

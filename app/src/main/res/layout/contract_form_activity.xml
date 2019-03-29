@@ -6,7 +6,7 @@
     <data>
         <variable
                 name="contract"
-                type="com.angelomelo.soluevochallenge.domain.form.ContractForm.ContractsForm"/>
+                type="com.angelomelo.soluevochallenge.domain.form.ContractsForm"/>
     </data>
 
     <RelativeLayout
