@@ -44,5 +44,6 @@
     <string name="welcome">Seja bem vindo</string>
     <string name="logout">Sair</string>
     <string name="contracts">Contratos</string>
+    <string name="Account">Conta</string>
 
 </resources>

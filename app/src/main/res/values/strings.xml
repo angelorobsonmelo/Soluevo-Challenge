@@ -56,5 +56,6 @@
     <string name="welcome">Welcome!</string>
     <string name="logout">Logout</string>
     <string name="contracts">Contracts</string>
+    <string name="Account">Account</string>
 
 </resources>

@@ -7,12 +7,16 @@
             android:icon="@drawable/ic_search"
             android:title="@string/search"
             app:actionViewClass="androidx.appcompat.widget.SearchView"
-            app:showAsAction="ifRoom|collapseActionView" />
+            app:showAsAction="always|collapseActionView" />
 
     <item
+            android:id="@+id/action_account"
+            android:title="@string/Account"
+            app:showAsAction="never"/>
+    <item
             android:id="@+id/action_logout"
-            android:icon="@drawable/ic_logout"
             android:title="@string/logout"
             app:showAsAction="never"/>
+
 
 </menu>
