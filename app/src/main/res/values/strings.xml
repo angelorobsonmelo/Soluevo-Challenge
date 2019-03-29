@@ -54,5 +54,7 @@
     <string name="commission">Commission</string>
     <string name="conclude">Conclude</string>
     <string name="welcome">Welcome!</string>
+    <string name="logout">Logout</string>
+    <string name="contracts">Contracts</string>
 
 </resources>

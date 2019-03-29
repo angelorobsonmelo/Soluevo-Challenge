@@ -47,8 +47,13 @@ class MainFragment : FragmentBase(), MainHandler {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        initAdapter()
         setupElements()
         showWelcomeMessage()
+    }
+
+    private fun initAdapter() {
+        adapter = ContractAdapter(mutableListOf())
     }
 
     private fun showWelcomeMessage() {
@@ -76,7 +81,7 @@ class MainFragment : FragmentBase(), MainHandler {
 
         appCompatActivity?.setSupportActionBar(toolbar)
         appCompatActivity?.supportActionBar?.setDisplayShowTitleEnabled(true)
-        appCompatActivity?.supportActionBar?.title = "Contracts"
+        appCompatActivity?.supportActionBar?.title = getString(R.string.contracts)
     }
 
     private fun setupRecyclerView() {
@@ -107,6 +112,8 @@ class MainFragment : FragmentBase(), MainHandler {
         setQueryTextListener(searchView)
         super.onCreateOptionsMenu(menu, inflater)
     }
+
+
 
     private fun setupSearchView(menu: Menu): SearchView {
         val searchItem = menu.findItem(R.id.action_search)
