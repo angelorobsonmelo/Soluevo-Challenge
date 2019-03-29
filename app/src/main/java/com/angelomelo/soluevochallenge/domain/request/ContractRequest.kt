@@ -1,6 +1,7 @@
 package com.angelomelo.soluevochallenge.domain.request
 
 import android.os.Parcelable
+import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
@@ -40,15 +41,21 @@ data class Vehicle(
 data class Credor(
    var endereco: String = "",
    var cep: Int = 0,
+   @Expose
+   var cepField: String = "",
    var uf: String = "",
    @SerializedName("endereco_numero")
-   var enderecoNumero: String  = "",
+   var enderecoNumero: Int  = 0,
+   @Expose
+   var enderecoNumeroField: String  = "",
    var municipio: String = "",
    @SerializedName("endereco_numero_complemento")
    var enderecoNumeroComplemento: String = "",
    @SerializedName("nome_agente_financeiro_instituicao_financeira")
    var nomeAgenteFinanceiroInstituicaoFinanceira: String = "",
    var cnpj: Int = 0,
+   @Expose
+   var cnpjField: String = "",
    var telefone: String = "",
    var bairro: String = ""
 ): Parcelable

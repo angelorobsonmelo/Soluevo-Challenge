@@ -3,6 +3,8 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="com.angelomelo.soluevochallenge.application.utils.Converter" />
+
         <variable
                 name="creditor"
                 type="com.angelomelo.soluevochallenge.domain.request.Credor" />
@@ -39,6 +41,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:text="@={creditor.nomeAgenteFinanceiroInstituicaoFinanceira}"
                         app:validateEmpty="@{true}"
                         app:validateTypeAutoDismiss="@{true}"
                         android:maxLines="1"
@@ -55,8 +58,11 @@
                 <com.santalu.maskedittext.MaskEditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:text="@={creditor.cnpjField}"
                         app:validateEmpty="@{true}"
                         app:validateTypeAutoDismiss="@{true}"
+                        app:validateMinLength="@{18}"
+                        app:validateMaxLength="@{18}"
                         android:inputType="number"
                         app:met_mask="##.###.###/####-##"
                         android:maxLines="1"
@@ -74,6 +80,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:inputType="number"
+                        android:text="@={creditor.cepField}"
+                        app:validateMinLength="@{8}"
+                        app:validateMaxLength="@{8}"
                         app:met_mask="#####-###"
                         android:maxLines="1"
                         android:singleLine="true"
@@ -92,6 +101,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:inputType="textCapCharacters"
+                        android:text="@={creditor.uf}"
                         app:met_mask="##"
                         app:validateMinLength="@{2}"
                         app:validateMaxLength="@{2}"
@@ -111,11 +121,12 @@
                 <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:text="@={creditor.municipio}"
                         app:validateEmpty="@{true}"
                         app:validateTypeAutoDismiss="@{true}"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:hint="@string/city"
+                        android:hint="@string/county"
                 />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -127,6 +138,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:text="@={creditor.bairro}"
                         app:validateEmpty="@{true}"
                         app:validateTypeAutoDismiss="@{true}"
                         android:maxLines="1"
@@ -143,6 +155,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:text="@={creditor.endereco}"
                         app:validateEmpty="@{true}"
                         app:validateTypeAutoDismiss="@{true}"
                         android:maxLines="1"
@@ -159,7 +172,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:inputType="textCapCharacters"
+                        android:text="@={creditor.enderecoNumeroField}"
+                        android:inputType="number"
                         app:validateEmpty="@{true}"
                         app:validateTypeAutoDismiss="@{true}"
                         android:maxLines="1"
@@ -176,6 +190,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:text="@={creditor.enderecoNumeroComplemento}"
                         app:validateEmpty="@{true}"
                         app:validateTypeAutoDismiss="@{true}"
                         android:maxLines="1"
@@ -192,9 +207,12 @@
                 <com.santalu.maskedittext.MaskEditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:text="@={creditor.telefone}"
                         app:validateEmpty="@{true}"
                         app:validateTypeAutoDismiss="@{true}"
                         android:inputType="phone"
+                        app:validateMinLength="@{15}"
+                        app:validateMaxLength="@{1}"
                         app:met_mask="(##) #####-####"
                         android:maxLines="1"
                         android:singleLine="true"

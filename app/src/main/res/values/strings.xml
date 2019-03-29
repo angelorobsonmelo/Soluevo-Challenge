@@ -34,7 +34,7 @@
     <string name="cnpj" translatable="false">CNPJ</string>
     <string name="cep" translatable="false">CEP</string>
     <string name="uf" translatable="false">UF</string>
-    <string name="city">City</string>
+    <string name="county">County</string>
     <string name="neighborhood">Neighborhood</string>
     <string name="address">Address</string>
     <string name="number">Number</string>
