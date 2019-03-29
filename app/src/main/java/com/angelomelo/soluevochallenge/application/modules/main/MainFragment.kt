@@ -40,7 +40,6 @@ class MainFragment : FragmentBase(), MainHandler {
         savedInstanceState: Bundle?
     ): View {
         binding = inflate(inflater, R.layout.main_fragment, container, false)
-        binding.lifecycleOwner = this
 
         return binding.root
     }
@@ -48,18 +47,26 @@ class MainFragment : FragmentBase(), MainHandler {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-        binding.viewModel = viewModel
-        binding.hander = this
         setupElements()
+        showWelcomeMessage()
+    }
 
-        Snackbar.make(view?.rootView!!, "Seja bem vindo", Snackbar.LENGTH_LONG)
+    private fun showWelcomeMessage() {
+        Snackbar.make(view?.rootView!!, getString(R.string.welcome), Snackbar.LENGTH_LONG)
             .show()
     }
 
     private fun setupElements() {
+        setupBinding()
         setSupportActionBar()
         setupRecyclerView()
         setupObserverOnSuccess()
+    }
+
+    private fun setupBinding() {
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
+        binding.hander = this
     }
 
     private fun setSupportActionBar() {
@@ -129,14 +136,18 @@ class MainFragment : FragmentBase(), MainHandler {
 
         when (itemMenuId) {
             actionLogout -> {
-               val sessionIsDestroyed = SoluevoChallengeApplication.mSessionUseCase?.destroySession()
-               if (sessionIsDestroyed!!) {
-                   goToAuthScreen()
-               }
+                destroySessionAndGotoAuthScreen()
             }
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun destroySessionAndGotoAuthScreen() {
+        val sessionIsDestroyed = SoluevoChallengeApplication.mSessionUseCase?.destroySession()
+        if (sessionIsDestroyed!!) {
+            goToAuthScreen()
+        }
     }
 
     private fun goToAuthScreen() {

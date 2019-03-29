@@ -41,5 +41,6 @@
     <string name="indication_commission">Indicação Comissão</string>
     <string name="commission">Comissão</string>
     <string name="conclude">Concluir</string>
+    <string name="welcome">Seja bem vindo</string>
 
 </resources>

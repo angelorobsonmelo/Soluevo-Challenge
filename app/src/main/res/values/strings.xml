@@ -53,5 +53,6 @@
     <string name="indication_commission">Indication Commission</string>
     <string name="commission">Commission</string>
     <string name="conclude">Conclude</string>
+    <string name="welcome">Welcome!</string>
 
 </resources>

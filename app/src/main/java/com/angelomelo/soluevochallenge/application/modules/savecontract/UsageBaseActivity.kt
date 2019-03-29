@@ -18,7 +18,8 @@ abstract class UsageBaseActivity : AppCompatActivity(), View.OnClickListener {
      private val contract = SoluevoChallengeApplication.instance.resources.getString(R.string.contract)
      private val attachments = SoluevoChallengeApplication.instance.resources.getString(R.string.attachments)
 
-     var descriptionData = arrayOf(personal, vehicle, creditor, contract, attachments)
+     private var descriptionData = arrayOf(personal, vehicle, creditor, contract, attachments)
+
      lateinit var nextBtn: Button
      lateinit var backBtn: Button
      lateinit var stateprogressbar: StateProgressBar
