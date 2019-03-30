@@ -1,5 +1,6 @@
 package com.angelomelo.soluevochallenge.application.utils.bindingAdapter
 
+import android.graphics.BitmapFactory
 import android.view.View
 import android.view.View.*
 import android.widget.ImageView
@@ -35,6 +36,11 @@ fun loadImage(view: ImageView, imageUrl: String?) {
     Picasso.get()
         .load(imageUrl)
         .into(view)
+}
+
+@BindingAdapter( "loadImageFromPath")
+fun loadImageFromPath(view: ImageView, path: String) {
+    view.setImageBitmap(BitmapFactory.decodeFile(path))
 }
 
 @BindingAdapter( "status")

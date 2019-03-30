@@ -10,13 +10,15 @@
 
 <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:background="#eeeeee"
                 android:paddingTop="10dp">
 
 
     <include layout="@layout/state_progress_bar_base" />
 
+    <ScrollView android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
     <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -52,7 +54,7 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-
+    </ScrollView>
 
     <include layout="@layout/state_progress_bar_footer_buttons_layout" />
 
