@@ -85,6 +85,7 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
     private fun setupBinding() {
         binding.lifecycleOwner = this
         binding.handler = this
+        binding.viewModel = attachmentViewModel
     }
 
     private fun setupValidator() {
