@@ -1,17 +1,25 @@
 package com.angelomelo.soluevochallenge.domain.request
 
-import com.angelomelo.soluevochallenge.application.SoluevoChallengeApplication
 import com.angelomelo.soluevochallenge.application.utils.RandomUtil.getRandomNumber
 import com.google.gson.annotations.SerializedName
+import java.math.BigDecimal
+import java.math.BigInteger
 
 data class ContractRequest(
     @SerializedName("endusers_document")
-    val endusersDocument: String = "35507907838",
-    val code: Int = getRandomNumber(),
+    val endusersDocument: String,
+    val code: Int,
+    val data: Data,
     @SerializedName("financial_users_uuid")
-    val financialUsersUuid: String = SoluevoChallengeApplication.mSessionUseCase?.getUserInSession()?.uuid!!,
-    val data: Data
-)
+    val financialUsersUuid: String
+) {
+    constructor(data: Data, financialUsersUuid: String) : this(
+        "35507907838",
+        getRandomNumber(),
+        data,
+        financialUsersUuid
+    )
+}
 
 data class Data(
     val personal: Personal,
@@ -24,63 +32,63 @@ data class Data(
 )
 
 data class Personal(
-    var name: String = "",
-    var rg: String = ""
+    val name: String,
+    val rg: String
 )
 
 data class Vehicle(
     @SerializedName("remarcado")
-    var redial: String = "",
-    var renavam: String = "",
+    val redial: String,
+    val renavam: String,
     @SerializedName("uf_placa")
-    var ufPlate: String = "",
+    val ufPlate: String,
     @SerializedName("chassi")
-    var chassis: String = ""
+    val chassis: String
 )
 
 data class Creditor(
     @SerializedName("endereco")
-    var address: String = "",
-    var cep: Int = 0,
-    var uf: String = "",
+    val address: String,
+    val cep: BigInteger,
+    val uf: String,
     @SerializedName("endereco_numero")
-    var addressNumber: Int = 0,
+    val addressNumber: Int,
     @SerializedName("municipio")
-    var county: String = "",
+    val county: String,
     @SerializedName("endereco_numero_complemento")
-    var addressComplementNumber: String = "",
+    val addressComplementNumber: String,
     @SerializedName("nome_agente_financeiro_instituicao_financeira")
-    var nameFinancialAgentFinancialInstitution: String = "",
-    var cnpj: Int = 0,
+    val nameFinancialAgentFinancialInstitution: String,
+    val cnpj: BigInteger,
     @SerializedName("telefone")
-    var telephone: String = "",
+    val telephone: String,
     @SerializedName("bairro")
-    var neighborhood: String = ""
+    val neighborhood: String
 )
 
 data class Contracts(
     @SerializedName("quantidade_meses")
-    var amountMonths: Int = 0,
+    val amountMonths: Int,
     @SerializedName("comissao")
-    var commission: Int = 0,
+    val commission: BigDecimal,
     @SerializedName("taxa_mora")
-    var rateMore: Int = 0,
+    val rateMora: BigDecimal,
     @SerializedName("valor_taxa_mora")
-    var valueMoraRate: Int = 0,
+    val valueMoraRate: BigDecimal,
     @SerializedName("valor_taxa_de_contrato")
-    var valueContractRate: Int = 0,
+    val valueContractRate: BigDecimal,
     @SerializedName("valor_juros_ao_ano")
-    var valueYearInterest: Int = 0,
+    val valueYearInterest: BigDecimal,
     @SerializedName("indicacao_comissao")
-    var commissionStatement: String = "",
+    val commissionStatement: String,
     @SerializedName("taxa_taxa_multa")
-    var feeFineRate: Int = 0,
+    val feeFineRate: BigDecimal,
     @SerializedName("numero_gravame")
-    var tagNumber: Int = 0,
+    val tagNumber: Int,
     @SerializedName("tipo_restricao")
-    var typeRestriction: String = "",
+    val typeRestriction: String,
     @SerializedName("valor_juros_ao_mes")
-    var valueInterestMonth: Int = 0,
+    val valueInterestMonth: BigDecimal,
     @SerializedName("indices")
-    var indexes: String = ""
+    val indexes: String
 )
