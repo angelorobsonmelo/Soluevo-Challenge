@@ -39,19 +39,23 @@ class ContractRemoteDataSourceImpl(private val contractApiDataSource: ContractAp
             )
     }
 
-    override fun save(requestObjectsForm: RequestObjectsForm, callback: BaseRemoteDataSource.RemoteDataSourceCallback<ContractResponse>) {
+    override fun save(requestObjectsForm: RequestObjectsForm, callback: BaseRemoteDataSource.VoidRemoteDataSourceCallback) {
         val contractObservable = contractApiDataSource.save(requestObjectsForm.contractRequest)
         val vehicleObservalble = contractApiDataSource.save(requestObjectsForm.vehicleRequest)
         val creditorObservable = contractApiDataSource.save(requestObjectsForm.creditorRequest)
+
 
         Observable.merge(vehicleObservalble, contractObservable, creditorObservable).subscribeOn(Schedulers.io())
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { callback.isLoading(true) }
             .doAfterTerminate { callback.isLoading(false) }
+            .doOnCompleted {
+                callback.onSuccess()
+            }
             .subscribe(
                 {
-                    callback.onSuccess(it)
+
                 },
                 { throwable ->
                     callback.onError(throwable.localizedMessage)

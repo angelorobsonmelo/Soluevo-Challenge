@@ -7,6 +7,6 @@ import com.angelomelo.soluevochallenge.service.BaseRemoteDataSource
 interface ContractRemoteDataSource {
 
     fun getContracts(callback: BaseRemoteDataSource.RemoteDataSourceCallback<List<ContractResponse>>)
-    fun save(requestObjectsForm: RequestObjectsForm, callback: BaseRemoteDataSource.RemoteDataSourceCallback<ContractResponse>)
+    fun save(requestObjectsForm: RequestObjectsForm, callback: BaseRemoteDataSource.VoidRemoteDataSourceCallback)
 
 }

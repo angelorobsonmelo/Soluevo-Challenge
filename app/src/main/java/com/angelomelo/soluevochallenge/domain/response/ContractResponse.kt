@@ -16,4 +16,4 @@ data class ContractResponse(
     val createdAt: Date,
     @SerializedName("last_update")
     val lastUpdate: Date
-) : Parcelable
+)  : Parcelable

@@ -212,13 +212,13 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity() {
 
     private fun initObserveOnSuccess() {
         viewModel.successObserver.observe(this, Observer {
-            print(it.code)
+            print("message")
         })
     }
 
     private fun initObserveOnError() {
         viewModel.errorObserver.observe(this, Observer {
-
+            print("message")
         })
     }
 

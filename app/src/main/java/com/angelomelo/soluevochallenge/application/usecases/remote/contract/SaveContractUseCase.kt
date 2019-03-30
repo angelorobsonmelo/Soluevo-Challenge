@@ -8,11 +8,14 @@ import com.angelomelo.soluevochallenge.service.remote.contract.ContractRemoteDat
 
 class SaveContractUseCase(private val contractRemoteDataSource: ContractRemoteDataSource) {
 
-    fun saveContract(requestObjectsForm: RequestObjectsForm, callback: UseCase.UseCaseCallback<ContractResponse>) {
-        contractRemoteDataSource.save(requestObjectsForm, object: BaseRemoteDataSource.RemoteDataSourceCallback<ContractResponse> {
+    fun saveContract(requestObjectsForm: RequestObjectsForm, callback: UseCase.VoidUseCaseCallback) {
+        contractRemoteDataSource.save(requestObjectsForm, object: BaseRemoteDataSource.VoidRemoteDataSourceCallback {
+            override fun onSuccess() {
+                callback.onSuccess()
+            }
 
-            override fun onSuccess(response: ContractResponse) {
-                callback.onSuccess(response)
+            override fun onEmpty() {
+
             }
 
             override fun onError(errorMessage: String) {

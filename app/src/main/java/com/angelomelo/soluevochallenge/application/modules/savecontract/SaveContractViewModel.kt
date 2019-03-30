@@ -4,16 +4,15 @@ import com.angelomelo.soluevochallenge.application.injections.InjectionUseCase
 import com.angelomelo.soluevochallenge.application.usecases.UseCase
 import com.angelomelo.soluevochallenge.application.utils.BaseViewModel
 import com.angelomelo.soluevochallenge.domain.request.RequestObjectsForm
-import com.angelomelo.soluevochallenge.domain.response.ContractResponse
 
-class SaveContractViewModel : BaseViewModel<ContractResponse>() {
+class SaveContractViewModel : BaseViewModel<Void>() {
 
     private val getContractsUseCase = InjectionUseCase.provideSaveContractUseCase()
 
     fun saveContract(requestObjectsForm: RequestObjectsForm) {
-        getContractsUseCase.saveContract(requestObjectsForm, object : UseCase.UseCaseCallback<ContractResponse> {
-            override fun onSuccess(response: ContractResponse) {
-                successObserver.value = response
+        getContractsUseCase.saveContract(requestObjectsForm, object : UseCase.VoidUseCaseCallback {
+            override fun onSuccess() {
+                successObserver.value = null
             }
 
             override fun onEmptyData() {
