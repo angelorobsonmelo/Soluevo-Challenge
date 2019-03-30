@@ -35,6 +35,11 @@ class MainFragment : FragmentBase(), MainHandler {
         fun newInstance() = MainFragment()
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.getContracts()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
