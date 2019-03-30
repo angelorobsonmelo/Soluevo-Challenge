@@ -14,6 +14,7 @@ import com.angelomelo.soluevochallenge.application.modules.savecontract.contract
 import com.angelomelo.soluevochallenge.application.modules.savecontract.creditorform.CreditorFormActivity
 import com.angelomelo.soluevochallenge.application.modules.savecontract.personalform.PersonalFormActivity
 import com.angelomelo.soluevochallenge.application.modules.savecontract.vehicleform.VehicleActivity
+import com.angelomelo.soluevochallenge.application.utils.RandomUtil
 import com.angelomelo.soluevochallenge.application.utils.extensions.extractNumbers
 import com.angelomelo.soluevochallenge.databinding.AttachmentsFormActivityBinding
 import com.angelomelo.soluevochallenge.domain.Contract
@@ -87,10 +88,9 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity() {
         val gson = Gson()
         val uuid= SoluevoChallengeApplication.mSessionUseCase!!.getAuthSession()?.user?.uuid!!
 
-        val vehicleRequest = RequestFormBase(gson.toJson(getDataVehicle()), uuid, getContractsRequest().code.toBigInteger())
+        val vehicleRequest = RequestFormBase(gson.toJson(getDataVehicle()), uuid, RandomUtil.getRandomNumber().toBigInteger())
         val contractRequest = RequestFormBase(gson.toJson(getDataContract()), uuid, getContractsRequest().code.toBigInteger())
-        val creditorRequest = RequestFormBase(gson.toJson(getDataCreditor()), uuid, getContractsRequest().code.toBigInteger())
-
+        val creditorRequest = RequestFormBase(gson.toJson(getDataCreditor()), uuid, RandomUtil.getRandomNumber().toBigInteger())
 
         return RequestObjectsForm(
             vehicleRequest,

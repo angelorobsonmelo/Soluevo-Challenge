@@ -44,7 +44,7 @@ class ContractRemoteDataSourceImpl(private val contractApiDataSource: ContractAp
         val vehicleObservalble = contractApiDataSource.save(requestObjectsForm.vehicleRequest)
         val creditorObservable = contractApiDataSource.save(requestObjectsForm.creditorRequest)
 
-        Observable.merge(contractObservable, creditorObservable, vehicleObservalble).subscribeOn(Schedulers.io())
+        Observable.merge(vehicleObservalble, contractObservable, creditorObservable).subscribeOn(Schedulers.io())
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { callback.isLoading(true) }
