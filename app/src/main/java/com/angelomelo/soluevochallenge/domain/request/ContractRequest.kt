@@ -9,11 +9,11 @@ data class ContractRequest(
     @SerializedName("endusers_document")
     val endusersDocument: String,
     val code: Int,
-    val data: Data,
+    val data: String,
     @SerializedName("financial_users_uuid")
     val financialUsersUuid: String
 ) {
-    constructor(data: Data, financialUsersUuid: String) : this(
+    constructor(data: String, financialUsersUuid: String) : this(
         "35507907838",
         getRandomNumber(),
         data,

@@ -21,6 +21,7 @@ import com.angelomelo.soluevochallenge.domain.form.CreditorForm
 import com.angelomelo.soluevochallenge.domain.form.PersonalForm
 import com.angelomelo.soluevochallenge.domain.form.VehicleForm
 import com.angelomelo.soluevochallenge.domain.request.*
+import com.google.gson.Gson
 import com.kofigyan.stateprogressbar.StateProgressBar
 import kotlinx.android.synthetic.main.state_progress_bar_footer_button_layout.*
 
@@ -80,8 +81,10 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity() {
 
     private fun getContractRequest(): ContractRequest {
         val data = getData()
+        val dataToJson = Gson().toJson(data)
+
         val uuid= SoluevoChallengeApplication.mSessionUseCase!!.getAuthSession()?.user?.uuid!!
-        return ContractRequest(data, uuid)
+        return ContractRequest(dataToJson, uuid)
     }
 
     private fun getData(
