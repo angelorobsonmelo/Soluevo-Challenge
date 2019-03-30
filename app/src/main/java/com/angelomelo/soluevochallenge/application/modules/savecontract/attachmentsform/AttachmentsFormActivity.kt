@@ -29,13 +29,16 @@ import com.angelomelo.soluevochallenge.domain.request.*
 import com.google.gson.Gson
 import com.kofigyan.stateprogressbar.StateProgressBar
 import kotlinx.android.synthetic.main.state_progress_bar_footer_button_layout.*
+import net.alhazmy13.mediapicker.Image.ImagePicker
+import android.content.Intent
+import android.app.Activity
 
-class AttachmentsFormActivity : StateProgressBarBaseActivity() {
+
+class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandler {
 
     companion object {
         const val ATTACHMENTS_IDENTIFIER = "ATTACHMENTS_IDENTIFIER"
     }
-
 
     private lateinit var binding: AttachmentsFormActivityBinding
     private lateinit var validator: Validator
@@ -67,6 +70,7 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity() {
 
     private fun setupBinding() {
         binding.lifecycleOwner = this
+        binding.handler = this
     }
 
     private fun setupValidator() {
@@ -220,6 +224,28 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity() {
         viewModel.errorObserver.observe(this, Observer {
             print("message")
         })
+    }
+
+    override fun onPressOpenImagePicker() {
+        ImagePicker.Builder(this@AttachmentsFormActivity)
+            .mode(ImagePicker.Mode.CAMERA_AND_GALLERY)
+            .compressLevel(ImagePicker.ComperesLevel.MEDIUM)
+            .directory(ImagePicker.Directory.DEFAULT)
+            .extension(ImagePicker.Extension.PNG)
+            .scale(600, 600)
+            .allowMultipleImages(true)
+            .enableDebuggingMode(true)
+            .build()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == ImagePicker.IMAGE_PICKER_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            val mPaths = data!!.getStringArrayListExtra(ImagePicker.EXTRA_IMAGE_PATH)
+            print(mPaths)
+            //Your Code
+        }
     }
 
 }

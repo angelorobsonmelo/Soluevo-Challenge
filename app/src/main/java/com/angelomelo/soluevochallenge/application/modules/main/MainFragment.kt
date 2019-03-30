@@ -17,6 +17,7 @@ import com.angelomelo.soluevochallenge.R
 import com.angelomelo.soluevochallenge.application.SoluevoChallengeApplication
 import com.angelomelo.soluevochallenge.application.modules.auth.AuthActivity
 import com.angelomelo.soluevochallenge.application.modules.main.adapter.ContractAdapter
+import com.angelomelo.soluevochallenge.application.modules.savecontract.attachmentsform.AttachmentsFormActivity
 import com.angelomelo.soluevochallenge.application.modules.savecontract.personalform.PersonalFormActivity
 import com.angelomelo.soluevochallenge.application.utils.FragmentBase
 import com.angelomelo.soluevochallenge.databinding.MainFragmentBinding
@@ -167,7 +168,8 @@ class MainFragment : FragmentBase(), MainHandler {
     }
 
     override fun goToSaveContract() {
-        startActivity(Intent(context, PersonalFormActivity::class.java))
+        startActivity(Intent(context, AttachmentsFormActivity::class.java))
+//        startActivity(Intent(context, PersonalFormActivity::class.java))
     }
 
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Soluevo Challenge</string>
     <string name="unauthorized">E-mail ou senha incorreta.</string>
     <string name="internal_error">Ocorreu um erro interno no servidor.</string>
@@ -52,5 +52,12 @@
     <string name="fine_rate">Taxa Multa</string>
     <string name="contract">Contract</string>
     <string name="contracts">Contracts</string>
+    <string name="media_picker_select_from" tools:ignore="ExtraTranslation">Selecione:</string>
+    <string name="media_picker_camera" tools:ignore="ExtraTranslation">Câmera</string>
+    <string name="media_picker_gallery" tools:ignore="ExtraTranslation">GAleria</string>
+    <string name="media_picker_ok" tools:ignore="ExtraTranslation">Ok</string>
+    <string name="media_picker_cancel" tools:ignore="ExtraTranslation">Cancelar</string>
+    <string name="media_picker_some_permission_is_denied" tools:ignore="ExtraTranslation">Algum permissão está negada</string>
+    <string name="media_picker_you_need_to_grant_access_to" tools:ignore="ExtraTranslation">você precisa permitir o acesso</string>
 
 </resources>
