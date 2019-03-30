@@ -1,15 +1,22 @@
 package com.angelomelo.soluevochallenge.application.modules.savecontract.attachmentsform
 
+import android.app.Activity
+import android.content.Intent
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.View
+import android.view.animation.OvershootInterpolator
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.ilhasoft.support.validation.Validator
 import com.angelomelo.soluevochallenge.R
 import com.angelomelo.soluevochallenge.application.SoluevoChallengeApplication
 import com.angelomelo.soluevochallenge.application.modules.savecontract.SaveContractViewModel
 import com.angelomelo.soluevochallenge.application.modules.savecontract.StateProgressBarBaseActivity
+import com.angelomelo.soluevochallenge.application.modules.savecontract.attachmentsform.adapter.AttachmentsAdapter
 import com.angelomelo.soluevochallenge.application.modules.savecontract.contractform.ContractFormActivity
 import com.angelomelo.soluevochallenge.application.modules.savecontract.creditorform.CreditorFormActivity
 import com.angelomelo.soluevochallenge.application.modules.savecontract.personalform.PersonalFormActivity
@@ -17,10 +24,7 @@ import com.angelomelo.soluevochallenge.application.modules.savecontract.vehiclef
 import com.angelomelo.soluevochallenge.application.utils.RandomUtil
 import com.angelomelo.soluevochallenge.application.utils.extensions.extractNumbers
 import com.angelomelo.soluevochallenge.databinding.AttachmentsFormActivityBinding
-import com.angelomelo.soluevochallenge.domain.Contract
-import com.angelomelo.soluevochallenge.domain.Creditor
-import com.angelomelo.soluevochallenge.domain.Personal
-import com.angelomelo.soluevochallenge.domain.Vehicle
+import com.angelomelo.soluevochallenge.domain.*
 import com.angelomelo.soluevochallenge.domain.form.ContractsForm
 import com.angelomelo.soluevochallenge.domain.form.CreditorForm
 import com.angelomelo.soluevochallenge.domain.form.PersonalForm
@@ -28,10 +32,9 @@ import com.angelomelo.soluevochallenge.domain.form.VehicleForm
 import com.angelomelo.soluevochallenge.domain.request.*
 import com.google.gson.Gson
 import com.kofigyan.stateprogressbar.StateProgressBar
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import kotlinx.android.synthetic.main.state_progress_bar_footer_button_layout.*
 import net.alhazmy13.mediapicker.Image.ImagePicker
-import android.content.Intent
-import android.app.Activity
 
 
 class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandler {
@@ -43,6 +46,9 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
     private lateinit var binding: AttachmentsFormActivityBinding
     private lateinit var validator: Validator
     private lateinit var viewModel: SaveContractViewModel
+    private lateinit var adapter: AttachmentsAdapter
+    private var attachments = mutableListOf<Attachment>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,6 +68,8 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
     private fun setupElements() {
         setupBinding()
         setupValidator()
+        initAdapter()
+        setupRecyclerView()
     }
 
     private fun changeTextButtonNextToConclude() {
@@ -76,6 +84,17 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
     private fun setupValidator() {
         validator = Validator(binding)
         validator.enableFormValidationMode()
+    }
+
+    private fun initAdapter() {
+        adapter = AttachmentsAdapter(attachments)
+    }
+
+    private fun setupRecyclerView() {
+        val linearLayoutHorizontal = LinearLayoutManager(baseContext, LinearLayoutManager.HORIZONTAL, false)
+        val recyclerView = binding.attachmentsRecyclerView
+
+        recyclerView.layoutManager = linearLayoutHorizontal
     }
 
     override fun onClick(v: View) {
@@ -102,7 +121,6 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
             creditorRequest
         )
     }
-
 
     private fun getDataVehicle(): DataVehicle {
         val vehicleRequest = getVehicleRequest()
@@ -235,7 +253,6 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
             .scale(600, 600)
             .allowMultipleImages(true)
             .enableDebuggingMode(true)
-
             .build()
     }
 
@@ -244,9 +261,38 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
 
         if (requestCode == ImagePicker.IMAGE_PICKER_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             val mPaths = data!!.getStringArrayListExtra(ImagePicker.EXTRA_IMAGE_PATH)
-            print(mPaths)
-            //Your Code
+
+            mPaths.forEach {
+                val filename = it.substring(it.lastIndexOf("/") + 1)
+                val fileExtension = it.substring(it.lastIndexOf(".") + 1)
+                val fileContent = BitmapFactory.decodeFile(it)
+
+               val attachment = Attachment(
+//                    getContractsRequest().code.toBigInteger(),
+                    2344.toBigInteger(),
+                    fileExtension,
+                    filename,
+                    fileContent,
+                    it
+                )
+
+                attachments.add(attachment)
+            }
+
+            setupAdapter()
         }
+
+    }
+
+    private fun setupAdapter() {
+        adapter = AttachmentsAdapter(attachments)
+        binding.attachmentsRecyclerView.adapter = ScaleInAnimationAdapter(adapter).apply {
+            setFirstOnly(false)
+            setDuration(500)
+            setInterpolator(OvershootInterpolator(.5f))
+        }
+
+        adapter.notifyDataSetChanged()
     }
 
 }
