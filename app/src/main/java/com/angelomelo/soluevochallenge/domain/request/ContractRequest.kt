@@ -1,6 +1,5 @@
 package com.angelomelo.soluevochallenge.domain.request
 
-import com.angelomelo.soluevochallenge.application.utils.RandomUtil.getRandomNumber
 import com.google.gson.annotations.SerializedName
 import java.math.BigDecimal
 import java.math.BigInteger
@@ -22,14 +21,21 @@ data class ContractRequest(
     )
 }
 
-data class Data(
-    val personal: Personal,
+data class DataVehicle(
     @SerializedName("veiculo")
-    val vehicle: Vehicle,
-    @SerializedName("credor")
-    val creditor: Creditor,
-    @SerializedName("contratos")
+    val vehicle: Vehicle
+)
+
+data class DataContract(
+    val personal: Personal,
+    @SerializedName("contrato")
     val contracts: Contracts
+)
+
+data class DataCreditor(
+    val personal: Personal,
+    @SerializedName("credor")
+    val creditor: Creditor
 )
 
 data class Personal(
@@ -40,7 +46,7 @@ data class Personal(
 data class Vehicle(
     @SerializedName("remarcado")
     val redial: String,
-    val renavam: String,
+    val renavam: BigInteger,
     @SerializedName("uf_placa")
     val ufPlate: String,
     @SerializedName("chassi")

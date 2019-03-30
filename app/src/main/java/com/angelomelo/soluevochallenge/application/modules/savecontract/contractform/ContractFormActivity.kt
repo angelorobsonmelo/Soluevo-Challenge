@@ -18,7 +18,6 @@ import com.angelomelo.soluevochallenge.domain.form.CreditorForm
 import com.angelomelo.soluevochallenge.domain.form.PersonalForm
 import com.angelomelo.soluevochallenge.domain.form.VehicleForm
 import com.kofigyan.stateprogressbar.StateProgressBar
-import kotlinx.android.synthetic.main.contract_form_activity.*
 
 class ContractFormActivity : StateProgressBarBaseActivity() {
 

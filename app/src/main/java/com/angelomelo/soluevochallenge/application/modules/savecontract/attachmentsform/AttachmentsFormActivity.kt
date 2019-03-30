@@ -80,14 +80,14 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity() {
     }
 
     private fun getContractRequest(): ContractRequest {
-        val data = getData()
+        val data = getDataCreditor()
         val dataToJson = Gson().toJson(data)
 
         val uuid= SoluevoChallengeApplication.mSessionUseCase!!.getAuthSession()?.user?.uuid!!
         return ContractRequest(dataToJson, uuid, getContractsRequest().code.toBigInteger())
     }
 
-    private fun getData(): Data {
+  /*  private fun getData(): Data {
         val personalRequest = getPersonalRequest()
         val vehicleRequest = getVehicleRequest()
         val creditorRequest = getCreditorRequest()
@@ -98,6 +98,34 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity() {
             vehicleRequest,
             creditorRequest,
             contractsRequest
+        )
+    }*/
+
+    private fun getDataVehicle(): DataVehicle {
+        val vehicleRequest = getVehicleRequest()
+
+        return DataVehicle(
+            vehicleRequest
+        )
+    }
+
+    private fun getDataContract(): DataContract {
+        val personalRequest = getPersonalRequest()
+        val contract = getContractsRequest()
+
+        return DataContract(
+            personalRequest,
+            contract
+        )
+    }
+
+    private fun getDataCreditor(): DataCreditor {
+        val personalRequest = getPersonalRequest()
+        val creditor = getCreditorRequest()
+
+        return DataCreditor(
+            personalRequest,
+            creditor
         )
     }
 
@@ -115,7 +143,7 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity() {
 
         return Vehicle(
             vehicleForm.redial,
-            vehicleForm.renavam,
+            vehicleForm.renavam.toBigInteger(),
             vehicleForm.ufPlate,
             vehicleForm.chassis
         )
