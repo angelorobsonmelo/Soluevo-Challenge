@@ -4,6 +4,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <variable name="image" type="com.angelomelo.soluevochallenge.domain.Attachment" />
+        <variable name="handler" type="com.angelomelo.soluevochallenge.application.modules.savecontract.attachmentsform.AttachmentsHandler" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -41,6 +42,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="8dp"
                 app:layout_constraintTop_toTopOf="parent"
+                android:onClick="@{() -> handler.onPressRemoveImage(image)}"
         />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

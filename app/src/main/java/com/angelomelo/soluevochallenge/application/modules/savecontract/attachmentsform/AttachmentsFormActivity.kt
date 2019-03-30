@@ -93,7 +93,7 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
     }
 
     private fun initAdapter() {
-        adapter = AttachmentsAdapter(attachments)
+        adapter = AttachmentsAdapter(attachments, this)
     }
 
     private fun setupRecyclerView() {
@@ -311,14 +311,21 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
     }
 
     private fun setupAdapter() {
-        adapter = AttachmentsAdapter(attachments)
+        adapter = AttachmentsAdapter(attachments, this)
         binding.attachmentsRecyclerView.adapter = ScaleInAnimationAdapter(adapter).apply {
             setFirstOnly(false)
             setDuration(500)
             setInterpolator(OvershootInterpolator(.5f))
         }
 
+
         adapter.notifyDataSetChanged()
+    }
+
+    override fun onPressRemoveImage(attachment: Attachment) {
+        val index = attachments.indexOf(attachment)
+        attachments.removeAt(index)
+        adapter.notifyItemRemoved(index)
     }
 
 }
