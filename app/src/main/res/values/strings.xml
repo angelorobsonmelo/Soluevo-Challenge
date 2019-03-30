@@ -57,5 +57,10 @@
     <string name="logout">Logout</string>
     <string name="contracts">Contracts</string>
     <string name="Account">Account</string>
+    <string name="contract_date">Contract Date</string>
+    <string name="penalty_indication">Penalty indication</string>
+    <string name="contract_code">Contract Number</string>
+    <string name="iof_value">Valor IOF</string>
+    <string name="fine_rate">Fine Rate</string>
 
 </resources>

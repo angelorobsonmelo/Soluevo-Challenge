@@ -53,10 +53,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.google.android.material.textfield.TextInputEditText
+                <com.santalu.maskedittext.MaskEditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="@={vehicle.chassis}"
+                        app:met_mask="#################"
+                        app:validateMinLength="@{17}"
+                        app:validateMaxLength="@{17}"
                         android:inputType="textCapCharacters"
                         app:validateEmpty="@{true}"
                         app:validateTypeAutoDismiss="@{true}"

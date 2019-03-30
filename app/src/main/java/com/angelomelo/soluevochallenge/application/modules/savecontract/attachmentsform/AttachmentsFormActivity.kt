@@ -84,11 +84,10 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity() {
         val dataToJson = Gson().toJson(data)
 
         val uuid= SoluevoChallengeApplication.mSessionUseCase!!.getAuthSession()?.user?.uuid!!
-        return ContractRequest(dataToJson, uuid)
+        return ContractRequest(dataToJson, uuid, getContractsRequest().code.toBigInteger())
     }
 
-    private fun getData(
-    ): Data {
+    private fun getData(): Data {
         val personalRequest = getPersonalRequest()
         val vehicleRequest = getVehicleRequest()
         val creditorRequest = getCreditorRequest()
@@ -143,18 +142,23 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity() {
         val contractForm = getContractFromBundle()
 
         return Contracts(
-            contractForm.amountMonths.toInt(),
-            contractForm.commission.toBigDecimal(),
-            contractForm.rateMora.toBigDecimal(),
-            contractForm.valueMoraRate.extractNumbers().toBigDecimal(),
-            contractForm.valueContractRate.extractNumbers().toBigDecimal(),
-            contractForm.valueYearInterest.extractNumbers().toBigDecimal(),
-            contractForm.commissionStatement,
-            contractForm.feeFineRate.extractNumbers().toBigDecimal(),
+            contractForm.contractDate.extractNumbers(),
+            contractForm.code,
             contractForm.tagNumber.toInt(),
+            contractForm.amountMonths.toInt(),
             contractForm.typeRestriction,
-            contractForm.valueInterestMonth.extractNumbers().toBigDecimal(),
-            contractForm.indexes
+            contractForm.rateMora.toBigDecimal(),
+            contractForm.valueMoraRate.toBigDecimal(),
+            contractForm.feeFineRate.toBigDecimal(),
+            contractForm.valueFeeFineRate.toBigDecimal(),
+            contractForm.valueContractRate.toBigDecimal(),
+            contractForm.valueInterestMonth.toBigDecimal(),
+            contractForm.iofValue.toBigDecimal(),
+            contractForm.valueYearInterest.toBigDecimal(),
+            contractForm.indexes,
+            contractForm.commissionStatement,
+            contractForm.commission.toBigDecimal(),
+            contractForm.penaltyIndication
         )
     }
 

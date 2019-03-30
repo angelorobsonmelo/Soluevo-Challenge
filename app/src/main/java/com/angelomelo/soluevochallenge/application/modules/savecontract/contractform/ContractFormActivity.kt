@@ -18,6 +18,7 @@ import com.angelomelo.soluevochallenge.domain.form.CreditorForm
 import com.angelomelo.soluevochallenge.domain.form.PersonalForm
 import com.angelomelo.soluevochallenge.domain.form.VehicleForm
 import com.kofigyan.stateprogressbar.StateProgressBar
+import kotlinx.android.synthetic.main.contract_form_activity.*
 
 class ContractFormActivity : StateProgressBarBaseActivity() {
 
@@ -86,7 +87,19 @@ class ContractFormActivity : StateProgressBarBaseActivity() {
     }
 
     private fun putContractInExtra(intent: Intent) {
-        val contract = binding.contract
+        val contract   = binding.contract
+        contract?.rateMora           = binding.moraRateEditText.value.toString()
+        contract?.valueMoraRate      = binding.valueMoraRateEditText.value.toString()
+        contract?.feeFineRate        = binding.fineRateEditText.value.toString()
+        contract?.valueFeeFineRate   = binding.valueFineRateEditText.value.toString()
+        contract?.valueContractRate  = binding.valueContractRateEditText.value.toString()
+        contract?.valueInterestMonth = binding.interestAtTheMonthEditText.value.toString()
+        contract?.iofValue           = binding.valueIofEditText.value.toString()
+        contract?.valueYearInterest  = binding.interestRatePerYearEditText.value.toString()
+        contract?.commission         = binding.commisionEditText.value.toString()
+        contract?.penaltyIndication   = binding.penaltyIndicationEditText.value.toString()
+        contract?.commissionStatement = binding.indicationCommissionEditText.value.toString()
+
         intent.putExtra(CONTRACT_IDENTIFIER, contract)
     }
 

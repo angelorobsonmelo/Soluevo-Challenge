@@ -45,5 +45,10 @@
     <string name="logout">Sair</string>
     <string name="contracts">Contratos</string>
     <string name="Account">Conta</string>
+    <string name="contract_date">Data do Contrato</string>
+    <string name="penalty_indication">Indicação Penalidade</string>
+    <string name="contract_code">Número do Contato</string>
+    <string name="iof_value">IOF Value</string>
+    <string name="fine_rate">Taxa Multa</string>
 
 </resources>

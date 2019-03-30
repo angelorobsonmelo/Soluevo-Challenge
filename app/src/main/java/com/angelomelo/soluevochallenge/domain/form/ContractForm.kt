@@ -33,6 +33,8 @@ import kotlinx.android.parcel.Parcelize
 
     @Parcelize
     data class ContractsForm(
+        var code: String = "",
+        var contractDate: String = "",
         var amountMonths: String = "",
         var commission: String = "",
         var rateMora: String = "",
@@ -41,9 +43,12 @@ import kotlinx.android.parcel.Parcelize
         var valueYearInterest: String = "",
         var commissionStatement: String = "",
         var feeFineRate: String = "",
+        var valueFeeFineRate: String = "",
         var tagNumber: String = "",
         var typeRestriction: String = "",
         var valueInterestMonth: String = "",
-        var indexes: String = ""
+        var indexes: String = "",
+        var penaltyIndication: String = "",
+        var iofValue: String = ""
 
     ): Parcelable
