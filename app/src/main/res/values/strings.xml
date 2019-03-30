@@ -27,7 +27,7 @@
     <string name="back">Back</string>
     <string name="personal">Personal</string>
     <string name="creditor">Creditor</string>
-    <string name="contract">Contract</string>
+    <string name="contractResponse">ContractResponse</string>
     <string name="attachments">Attachments</string>
     <string name="vehicle">Vehicle</string>
     <string name="agent_name">Agent Name</string>
@@ -46,7 +46,7 @@
     <string name="mora_rate">Mora Rate</string>
     <string name="value_mora_rate">Value Mora Rate</string>
     <string name="value_fine_rate">Value Fine Rate</string>
-    <string name="contract_rate">Contract Rate</string>
+    <string name="contract_rate">ContractResponse Rate</string>
     <string name="interest_at_the_month">Interest at the Month</string>
     <string name="interest_rate_per_year">Interest Rate per Year</string>
     <string name="indexes">Indexes</string>
@@ -55,12 +55,14 @@
     <string name="conclude">Conclude</string>
     <string name="welcome">Welcome!</string>
     <string name="logout">Logout</string>
-    <string name="contracts">Contracts</string>
+    <string name="contractResponses">Contracts</string>
     <string name="Account">Account</string>
-    <string name="contract_date">Contract Date</string>
+    <string name="contract_date">ContractResponse Date</string>
     <string name="penalty_indication">Penalty indication</string>
-    <string name="contract_code">Contract Number</string>
+    <string name="contract_code">ContractResponse Number</string>
     <string name="iof_value">Valor IOF</string>
     <string name="fine_rate">Fine Rate</string>
+    <string name="contract">Contract</string>
+    <string name="contracts">Contracts</string>
 
 </resources>

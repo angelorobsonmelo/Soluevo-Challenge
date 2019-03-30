@@ -16,11 +16,18 @@ import com.angelomelo.soluevochallenge.application.modules.savecontract.personal
 import com.angelomelo.soluevochallenge.application.modules.savecontract.vehicleform.VehicleActivity
 import com.angelomelo.soluevochallenge.application.utils.extensions.extractNumbers
 import com.angelomelo.soluevochallenge.databinding.AttachmentsFormActivityBinding
+import com.angelomelo.soluevochallenge.domain.Contract
+import com.angelomelo.soluevochallenge.domain.Creditor
+import com.angelomelo.soluevochallenge.domain.Personal
+import com.angelomelo.soluevochallenge.domain.Vehicle
 import com.angelomelo.soluevochallenge.domain.form.ContractsForm
 import com.angelomelo.soluevochallenge.domain.form.CreditorForm
 import com.angelomelo.soluevochallenge.domain.form.PersonalForm
 import com.angelomelo.soluevochallenge.domain.form.VehicleForm
-import com.angelomelo.soluevochallenge.domain.request.*
+import com.angelomelo.soluevochallenge.domain.request.ContractRequest
+import com.angelomelo.soluevochallenge.domain.request.DataContract
+import com.angelomelo.soluevochallenge.domain.request.DataCreditor
+import com.angelomelo.soluevochallenge.domain.request.DataVehicle
 import com.google.gson.Gson
 import com.kofigyan.stateprogressbar.StateProgressBar
 import kotlinx.android.synthetic.main.state_progress_bar_footer_button_layout.*
@@ -87,19 +94,6 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity() {
         return ContractRequest(dataToJson, uuid, getContractsRequest().code.toBigInteger())
     }
 
-  /*  private fun getData(): Data {
-        val personalRequest = getPersonalRequest()
-        val vehicleRequest = getVehicleRequest()
-        val creditorRequest = getCreditorRequest()
-        val contractsRequest = getContractsRequest()
-
-        return Data(
-            personalRequest,
-            vehicleRequest,
-            creditorRequest,
-            contractsRequest
-        )
-    }*/
 
     private fun getDataVehicle(): DataVehicle {
         val vehicleRequest = getVehicleRequest()
@@ -166,10 +160,10 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity() {
         )
     }
 
-    private fun getContractsRequest(): Contracts {
+    private fun getContractsRequest(): Contract {
         val contractForm = getContractFromBundle()
 
-        return Contracts(
+        return Contract(
             contractForm.contractDate.extractNumbers(),
             contractForm.code,
             contractForm.tagNumber.toInt(),

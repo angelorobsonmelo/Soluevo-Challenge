@@ -18,7 +18,7 @@
     <string name="back">Voltar</string>
     <string name="personal">Pessoal</string>
     <string name="creditor">Credor</string>
-    <string name="contract">Contrato</string>
+    <string name="contractResponse">Contrato</string>
     <string name="attachments">Anexos</string>
     <string name="vehicle">Veicúlo</string>
     <string name="agent_name">Nome do Agente</string>
@@ -43,12 +43,14 @@
     <string name="conclude">Concluir</string>
     <string name="welcome">Seja bem vindo</string>
     <string name="logout">Sair</string>
-    <string name="contracts">Contratos</string>
+    <string name="contractResponses">Contratos</string>
     <string name="Account">Conta</string>
     <string name="contract_date">Data do Contrato</string>
     <string name="penalty_indication">Indicação Penalidade</string>
     <string name="contract_code">Número do Contato</string>
     <string name="iof_value">IOF Value</string>
     <string name="fine_rate">Taxa Multa</string>
+    <string name="contract">Contract</string>
+    <string name="contracts">Contracts</string>
 
 </resources>

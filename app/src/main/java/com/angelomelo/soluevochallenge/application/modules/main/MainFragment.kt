@@ -20,7 +20,7 @@ import com.angelomelo.soluevochallenge.application.modules.main.adapter.Contract
 import com.angelomelo.soluevochallenge.application.modules.savecontract.personalform.PersonalFormActivity
 import com.angelomelo.soluevochallenge.application.utils.FragmentBase
 import com.angelomelo.soluevochallenge.databinding.MainFragmentBinding
-import com.angelomelo.soluevochallenge.domain.Contract
+import com.angelomelo.soluevochallenge.domain.response.ContractResponse
 import com.google.android.material.snackbar.Snackbar
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import kotlinx.android.synthetic.main.main_activity.*
@@ -81,7 +81,7 @@ class MainFragment : FragmentBase(), MainHandler {
 
         appCompatActivity?.setSupportActionBar(toolbar)
         appCompatActivity?.supportActionBar?.setDisplayShowTitleEnabled(true)
-        appCompatActivity?.supportActionBar?.title = getString(R.string.contracts)
+        appCompatActivity?.supportActionBar?.title = getString(R.string.contract)
     }
 
     private fun setupRecyclerView() {
@@ -97,8 +97,8 @@ class MainFragment : FragmentBase(), MainHandler {
         })
     }
 
-    private fun setupAdapter(contracts: List<Contract>) {
-        adapter = ContractAdapter(contracts as MutableList<Contract>)
+    private fun setupAdapter(contractResponses: List<ContractResponse>) {
+        adapter = ContractAdapter(contractResponses as MutableList<ContractResponse>)
         binding.contractsRecyclerView.adapter = ScaleInAnimationAdapter(adapter).apply {
             setFirstOnly(false)
             setDuration(500)

@@ -5,8 +5,8 @@
 
     <data>
     <variable
-            name="contract"
-            type="com.angelomelo.soluevochallenge.domain.Contract" />
+            name="contractResponse"
+            type="com.angelomelo.soluevochallenge.domain.response.ContractResponse" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -34,7 +34,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"/>
             <TextView
-                    android:text="@{Integer.toString(contract.code)}"
+                    android:text="@{Integer.toString(contractResponse.code)}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView3"
@@ -70,7 +70,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/status_detran"
                     tools:src="@drawable/ic_check"
-                    app:status="@{contract.status}"
+                    app:status="@{contractResponse.status}"
                     android:id="@+id/imageView"
                     app:layout_constraintTop_toBottomOf="@+id/textView5" app:layout_constraintStart_toStartOf="parent"
                     android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
@@ -81,7 +81,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     tools:srcCompat="@drawable/ic_error"
-                    app:status="@{contract.status}"
+                    app:status="@{contractResponse.status}"
                     android:id="@+id/imageView2"
                     app:layout_constraintTop_toBottomOf="@+id/textView6"
                     app:layout_constraintStart_toStartOf="@+id/textView6"

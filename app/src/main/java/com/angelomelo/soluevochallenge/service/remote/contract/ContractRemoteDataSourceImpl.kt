@@ -1,7 +1,7 @@
 package com.angelomelo.soluevochallenge.service.remote.contract
 
 import androidx.annotation.NonNull
-import com.angelomelo.soluevochallenge.domain.Contract
+import com.angelomelo.soluevochallenge.domain.response.ContractResponse
 import com.angelomelo.soluevochallenge.domain.request.ContractRequest
 import com.angelomelo.soluevochallenge.service.BaseRemoteDataSource
 import rx.android.schedulers.AndroidSchedulers
@@ -22,7 +22,7 @@ class ContractRemoteDataSourceImpl(private val contractApiDataSource: ContractAp
             }
     }
 
-    override fun getContracts(callback: BaseRemoteDataSource.RemoteDataSourceCallback<List<Contract>>) {
+    override fun getContracts(callback: BaseRemoteDataSource.RemoteDataSourceCallback<List<ContractResponse>>) {
         contractApiDataSource.getContracts()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -38,7 +38,7 @@ class ContractRemoteDataSourceImpl(private val contractApiDataSource: ContractAp
             )
     }
 
-    override fun saveContract(contractRequest: ContractRequest, callback: BaseRemoteDataSource.RemoteDataSourceCallback<Contract>) {
+    override fun saveContract(contractRequest: ContractRequest, callback: BaseRemoteDataSource.RemoteDataSourceCallback<ContractResponse>) {
         contractApiDataSource.saveContract(contractRequest)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

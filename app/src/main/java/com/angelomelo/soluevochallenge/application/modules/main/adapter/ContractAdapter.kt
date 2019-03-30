@@ -7,13 +7,13 @@ import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.angelomelo.soluevochallenge.R
 import com.angelomelo.soluevochallenge.application.modules.main.viewHolder.ContractViewHolder
-import com.angelomelo.soluevochallenge.domain.Contract
+import com.angelomelo.soluevochallenge.domain.response.ContractResponse
 
 
-class ContractAdapter(private val contracts: MutableList<Contract>) : RecyclerView.Adapter<RecyclerView.ViewHolder>(),
+class ContractAdapter(private val contractResponses: MutableList<ContractResponse>) : RecyclerView.Adapter<RecyclerView.ViewHolder>(),
     Filterable {
 
-    private var contractListFull: List<Contract> = ArrayList(contracts)
+    private var contractResponseListFull: List<ContractResponse> = ArrayList(contractResponses)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ContractViewHolder(
@@ -24,11 +24,11 @@ class ContractAdapter(private val contracts: MutableList<Contract>) : RecyclerVi
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val binding       = (holder as ContractViewHolder).binding
-        binding?.contract = contracts[position]
+        binding?.contractResponse = contractResponses[position]
         binding?.executePendingBindings()
     }
 
-    override fun getItemCount() = contracts.size
+    override fun getItemCount() = contractResponses.size
 
     override fun getFilter(): Filter {
         return exampleFilter
@@ -36,14 +36,14 @@ class ContractAdapter(private val contracts: MutableList<Contract>) : RecyclerVi
 
     private val exampleFilter = object : Filter() {
         override fun performFiltering(constraint: CharSequence?): Filter.FilterResults {
-            val filteredList = ArrayList<Contract>()
+            val filteredList = ArrayList<ContractResponse>()
 
             if (constraint == null || constraint.isEmpty()) {
-                filteredList.addAll(contractListFull)
+                filteredList.addAll(contractResponseListFull)
             } else {
                 val filterPattern = constraint.toString().toLowerCase().trim { it <= ' ' }
 
-                for (item in contractListFull) {
+                for (item in contractResponseListFull) {
                     if (item.code.toString().toLowerCase().contains(filterPattern)) {
                         filteredList.add(item)
                     }
@@ -57,8 +57,8 @@ class ContractAdapter(private val contracts: MutableList<Contract>) : RecyclerVi
         }
 
         override fun publishResults(constraint: CharSequence, results: Filter.FilterResults) {
-            contracts.clear()
-            contracts.addAll(results.values as List<Contract>)
+            contractResponses.clear()
+            contractResponses.addAll(results.values as List<ContractResponse>)
             notifyDataSetChanged()
         }
     }
