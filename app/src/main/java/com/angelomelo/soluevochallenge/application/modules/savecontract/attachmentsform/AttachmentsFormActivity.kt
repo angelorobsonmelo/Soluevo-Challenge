@@ -252,13 +252,13 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
     }
 
     private fun initAttachmentObserveOnSuccess() {
-        contractViewModel.successObserver.observe(this, Observer {
+        attachmentViewModel.successObserver.observe(this, Observer {
             print("message")
         })
     }
 
     private fun initAttachmentObserveOnError() {
-        contractViewModel.errorObserver.observe(this, Observer {
+        attachmentViewModel.errorObserver.observe(this, Observer {
             print("message")
         })
     }
@@ -317,7 +317,6 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
             setDuration(500)
             setInterpolator(OvershootInterpolator(.5f))
         }
-
 
         adapter.notifyDataSetChanged()
     }

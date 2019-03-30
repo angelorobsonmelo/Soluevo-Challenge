@@ -5,6 +5,6 @@ import com.angelomelo.soluevochallenge.service.BaseRemoteDataSource
 
 interface AttachmentRemoteDataSource {
 
-    fun save(attachment: Attachment, callback: BaseRemoteDataSource.VoidRemoteDataSourceCallback)
+    fun save(attachment: Attachment, callback: BaseRemoteDataSource.RemoteDataSourceCallback<Attachment>)
 
 }

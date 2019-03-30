@@ -7,15 +7,10 @@ import com.angelomelo.soluevochallenge.service.remote.attachment.AttachmentRemot
 
 class SaveAttachmentUseCase(private val attachmentRemoteDataSource: AttachmentRemoteDataSource) {
 
-    fun save(attachment: Attachment, callback: UseCase.VoidUseCaseCallback) {
-        attachmentRemoteDataSource.save(attachment, object : BaseRemoteDataSource.VoidRemoteDataSourceCallback {
-
-            override fun onSuccess() {
-                callback.onSuccess()
-            }
-
-            override fun onEmpty() {
-                callback.onEmptyData()
+    fun save(attachment: Attachment, callback: UseCase.UseCaseCallback<Attachment>) {
+        attachmentRemoteDataSource.save(attachment, object : BaseRemoteDataSource.RemoteDataSourceCallback<Attachment> {
+            override fun onSuccess(response: Attachment) {
+                callback.onSuccess(attachment)
             }
 
             override fun onError(errorMessage: String) {
@@ -25,6 +20,7 @@ class SaveAttachmentUseCase(private val attachmentRemoteDataSource: AttachmentRe
             override fun isLoading(isLoading: Boolean) {
                 callback.isLoading(isLoading)
             }
+
 
         })
     }

@@ -23,7 +23,7 @@ class AttachmentRemoteDataSourceImpl(private val mAttachmentApiDataSource: Attac
     }
 
     @SuppressLint("CheckResult")
-    override fun save(attachment: Attachment, callback: BaseRemoteDataSource.VoidRemoteDataSourceCallback) {
+    override fun save(attachment: Attachment, callback: BaseRemoteDataSource.RemoteDataSourceCallback<Attachment>) {
         mAttachmentApiDataSource.save(attachment)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -31,7 +31,7 @@ class AttachmentRemoteDataSourceImpl(private val mAttachmentApiDataSource: Attac
             .doAfterTerminate { callback.isLoading(false) }
             .subscribe(
                 {
-                    callback.onSuccess()
+                    callback.onSuccess(attachment)
                 },
                 { throwable ->
                     callback.onError(throwable.localizedMessage)

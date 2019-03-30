@@ -5,14 +5,14 @@ import com.angelomelo.soluevochallenge.application.usecases.UseCase
 import com.angelomelo.soluevochallenge.application.utils.BaseViewModel
 import com.angelomelo.soluevochallenge.domain.Attachment
 
-class AttachmentsViewModel : BaseViewModel<Void>() {
+class AttachmentsViewModel : BaseViewModel<Attachment>() {
 
     private val saveAttachment = InjectionUseCase.provideSaveAttachmentUseCase()
 
     fun save(attachment: Attachment) {
-        saveAttachment.save(attachment, object : UseCase.VoidUseCaseCallback {
-            override fun onSuccess() {
-                successObserver.value = null
+        saveAttachment.save(attachment, object : UseCase.UseCaseCallback<Attachment> {
+            override fun onSuccess(response: Attachment) {
+                successObserver.value = response
             }
 
             override fun onEmptyData() {
