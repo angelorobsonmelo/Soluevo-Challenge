@@ -1,12 +1,13 @@
 package com.angelomelo.soluevochallenge.service.remote.contract
 
+import android.annotation.SuppressLint
 import androidx.annotation.NonNull
 import com.angelomelo.soluevochallenge.domain.response.ContractResponse
 import com.angelomelo.soluevochallenge.domain.request.RequestObjectsForm
 import com.angelomelo.soluevochallenge.service.BaseRemoteDataSource
-import rx.Observable
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 class ContractRemoteDataSourceImpl(private val contractApiDataSource: ContractApiDataSource): ContractRemoteDataSource {
 
@@ -23,6 +24,7 @@ class ContractRemoteDataSourceImpl(private val contractApiDataSource: ContractAp
             }
     }
 
+    @SuppressLint("CheckResult")
     override fun getContracts(callback: BaseRemoteDataSource.RemoteDataSourceCallback<List<ContractResponse>>) {
         contractApiDataSource.getContracts()
             .subscribeOn(Schedulers.io())
@@ -39,6 +41,7 @@ class ContractRemoteDataSourceImpl(private val contractApiDataSource: ContractAp
             )
     }
 
+    @SuppressLint("CheckResult")
     override fun save(requestObjectsForm: RequestObjectsForm, callback: BaseRemoteDataSource.VoidRemoteDataSourceCallback) {
         val contractObservable = contractApiDataSource.save(requestObjectsForm.contractRequest)
         val vehicleObservalble = contractApiDataSource.save(requestObjectsForm.vehicleRequest)
@@ -50,7 +53,7 @@ class ContractRemoteDataSourceImpl(private val contractApiDataSource: ContractAp
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { callback.isLoading(true) }
             .doAfterTerminate { callback.isLoading(false) }
-            .doOnCompleted {
+            .doOnComplete {
                 callback.onSuccess()
             }
             .subscribe(

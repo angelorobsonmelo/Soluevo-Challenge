@@ -1,11 +1,12 @@
 package com.angelomelo.soluevochallenge.service.remote.auth
 
+import android.annotation.SuppressLint
 import androidx.annotation.NonNull
 import com.angelomelo.soluevochallenge.service.BaseRemoteDataSource
 import com.angelomelo.soluevochallenge.domain.User
 import com.angelomelo.soluevochallenge.service.ServiceUtils
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 class AuthRemoteDataSourceImpl(private val mAuthApiDataSource: AuthApiDataSource) : AuthRemoteDataSource {
 
@@ -22,6 +23,7 @@ class AuthRemoteDataSourceImpl(private val mAuthApiDataSource: AuthApiDataSource
             }
     }
 
+    @SuppressLint("CheckResult")
     override fun auth(user: User, callback: BaseRemoteDataSource.VoidRemoteDataSourceCallback) {
         mAuthApiDataSource.auth(user)
             .subscribeOn(Schedulers.io())

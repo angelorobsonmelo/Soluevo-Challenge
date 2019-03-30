@@ -235,6 +235,7 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
             .scale(600, 600)
             .allowMultipleImages(true)
             .enableDebuggingMode(true)
+
             .build()
     }
 
