@@ -24,10 +24,7 @@ import com.angelomelo.soluevochallenge.domain.form.ContractsForm
 import com.angelomelo.soluevochallenge.domain.form.CreditorForm
 import com.angelomelo.soluevochallenge.domain.form.PersonalForm
 import com.angelomelo.soluevochallenge.domain.form.VehicleForm
-import com.angelomelo.soluevochallenge.domain.request.ContractRequest
-import com.angelomelo.soluevochallenge.domain.request.DataContract
-import com.angelomelo.soluevochallenge.domain.request.DataCreditor
-import com.angelomelo.soluevochallenge.domain.request.DataVehicle
+import com.angelomelo.soluevochallenge.domain.request.*
 import com.google.gson.Gson
 import com.kofigyan.stateprogressbar.StateProgressBar
 import kotlinx.android.synthetic.main.state_progress_bar_footer_button_layout.*
@@ -79,19 +76,27 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity() {
     override fun onClick(v: View) {
         when (v.id) {
             R.id.btnNext -> {
-                viewModel.saveContract(getContractRequest())
+                viewModel.saveContract(getRequestObjectsForm())
             }
 
             R.id.btnBack -> finish()
         }
     }
 
-    private fun getContractRequest(): ContractRequest {
-        val data = getDataCreditor()
-        val dataToJson = Gson().toJson(data)
-
+    private fun getRequestObjectsForm(): RequestObjectsForm {
+        val gson = Gson()
         val uuid= SoluevoChallengeApplication.mSessionUseCase!!.getAuthSession()?.user?.uuid!!
-        return ContractRequest(dataToJson, uuid, getContractsRequest().code.toBigInteger())
+
+        val vehicleRequest = RequestFormBase(gson.toJson(getDataVehicle()), uuid, getContractsRequest().code.toBigInteger())
+        val contractRequest = RequestFormBase(gson.toJson(getDataContract()), uuid, getContractsRequest().code.toBigInteger())
+        val creditorRequest = RequestFormBase(gson.toJson(getDataCreditor()), uuid, getContractsRequest().code.toBigInteger())
+
+
+        return RequestObjectsForm(
+            vehicleRequest,
+            contractRequest,
+            creditorRequest
+        )
     }
 
 

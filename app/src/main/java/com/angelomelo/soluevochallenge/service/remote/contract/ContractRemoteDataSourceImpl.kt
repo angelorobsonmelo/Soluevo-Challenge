@@ -2,8 +2,9 @@ package com.angelomelo.soluevochallenge.service.remote.contract
 
 import androidx.annotation.NonNull
 import com.angelomelo.soluevochallenge.domain.response.ContractResponse
-import com.angelomelo.soluevochallenge.domain.request.ContractRequest
+import com.angelomelo.soluevochallenge.domain.request.RequestObjectsForm
 import com.angelomelo.soluevochallenge.service.BaseRemoteDataSource
+import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
@@ -38,8 +39,12 @@ class ContractRemoteDataSourceImpl(private val contractApiDataSource: ContractAp
             )
     }
 
-    override fun saveContract(contractRequest: ContractRequest, callback: BaseRemoteDataSource.RemoteDataSourceCallback<ContractResponse>) {
-        contractApiDataSource.saveContract(contractRequest)
+    override fun save(requestObjectsForm: RequestObjectsForm, callback: BaseRemoteDataSource.RemoteDataSourceCallback<ContractResponse>) {
+        val contractObservable = contractApiDataSource.save(requestObjectsForm.contractRequest)
+        val vehicleObservalble = contractApiDataSource.save(requestObjectsForm.vehicleRequest)
+        val creditorObservable = contractApiDataSource.save(requestObjectsForm.creditorRequest)
+
+        Observable.merge(contractObservable, creditorObservable, vehicleObservalble).subscribeOn(Schedulers.io())
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { callback.isLoading(true) }
