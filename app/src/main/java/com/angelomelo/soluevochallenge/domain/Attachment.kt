@@ -1,6 +1,5 @@
 package com.angelomelo.soluevochallenge.domain
 
-import android.graphics.Bitmap
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import java.math.BigInteger
@@ -10,8 +9,10 @@ data class Attachment(
     val contractCode: BigInteger,
     @SerializedName("fileext")
     val fileExtension: String,
+    @SerializedName("filename")
     val fileName: String,
-    val fileContent: Bitmap,
+    @SerializedName("filecontent")
+    val fileContent: String,
     @Expose
     val path: String
 )

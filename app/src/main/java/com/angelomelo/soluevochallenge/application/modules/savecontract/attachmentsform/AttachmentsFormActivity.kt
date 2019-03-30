@@ -9,10 +9,8 @@ import android.view.animation.OvershootInterpolator
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.ilhasoft.support.validation.Validator
-import com.angelomelo.soluevochallenge.R
 import com.angelomelo.soluevochallenge.application.SoluevoChallengeApplication
 import com.angelomelo.soluevochallenge.application.modules.savecontract.SaveContractViewModel
 import com.angelomelo.soluevochallenge.application.modules.savecontract.StateProgressBarBaseActivity
@@ -35,6 +33,10 @@ import com.kofigyan.stateprogressbar.StateProgressBar
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import kotlinx.android.synthetic.main.state_progress_bar_footer_button_layout.*
 import net.alhazmy13.mediapicker.Image.ImagePicker
+import android.graphics.Bitmap
+import android.util.Base64
+import com.angelomelo.soluevochallenge.R
+import java.io.ByteArrayOutputStream
 
 
 class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandler {
@@ -45,7 +47,8 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
 
     private lateinit var binding: AttachmentsFormActivityBinding
     private lateinit var validator: Validator
-    private lateinit var viewModel: SaveContractViewModel
+    private lateinit var contractViewModel: SaveContractViewModel
+    private lateinit var attachmentViewModel: AttachmentsViewModel
     private lateinit var adapter: AttachmentsAdapter
     private var attachments = mutableListOf<Attachment>()
 
@@ -54,18 +57,21 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
         super.onCreate(savedInstanceState)
         setContentView(R.layout.attachments_form_activity)
         binding = DataBindingUtil.setContentView(this, R.layout.attachments_form_activity)
-        viewModel = ViewModelProviders.of(this).get(SaveContractViewModel::class.java)
+        contractViewModel = ViewModelProviders.of(this).get(SaveContractViewModel::class.java)
+        attachmentViewModel = ViewModelProviders.of(this).get(AttachmentsViewModel::class.java)
 
         changeTextButtonNextToConclude()
         setupElements()
-        injectCommonViews()
-        injectBackView()
-        initObserveOnSuccess()
-        initObserveOnError()
         stateprogressbar.setCurrentStateNumber(StateProgressBar.StateNumber.FIVE)
     }
 
     private fun setupElements() {
+        injectCommonViews()
+        injectBackView()
+        initSaveContractObserveOnSuccess()
+        initSaveContractObserveOnError()
+        initAttachmentObserveOnSuccess()
+        initAttachmentObserveOnError()
         setupBinding()
         setupValidator()
         initAdapter()
@@ -100,7 +106,8 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
     override fun onClick(v: View) {
         when (v.id) {
             R.id.btnNext -> {
-                viewModel.saveContract(getRequestObjectsForm())
+//                contractViewModel.saveContract(getRequestObjectsForm())
+                  attachmentViewModel.save(attachments.first())
             }
 
             R.id.btnBack -> finish()
@@ -232,14 +239,26 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
         return bundle?.getParcelable(ContractFormActivity.CONTRACT_IDENTIFIER) as ContractsForm
     }
 
-    private fun initObserveOnSuccess() {
-        viewModel.successObserver.observe(this, Observer {
+    private fun initSaveContractObserveOnSuccess() {
+        contractViewModel.successObserver.observe(this, Observer {
             print("message")
         })
     }
 
-    private fun initObserveOnError() {
-        viewModel.errorObserver.observe(this, Observer {
+    private fun initSaveContractObserveOnError() {
+        contractViewModel.errorObserver.observe(this, Observer {
+            print("message")
+        })
+    }
+
+    private fun initAttachmentObserveOnSuccess() {
+        contractViewModel.successObserver.observe(this, Observer {
+            print("message")
+        })
+    }
+
+    private fun initAttachmentObserveOnError() {
+        contractViewModel.errorObserver.observe(this, Observer {
             print("message")
         })
     }
@@ -269,10 +288,10 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
 
                val attachment = Attachment(
 //                    getContractsRequest().code.toBigInteger(),
-                    2344.toBigInteger(),
+                    1.toBigInteger(),
                     fileExtension,
                     filename,
-                    fileContent,
+                    encodeTobase64(fileContent),
                     it
                 )
 
@@ -282,6 +301,13 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
             setupAdapter()
         }
 
+    }
+
+    fun encodeTobase64(image: Bitmap): String {
+        val baos = ByteArrayOutputStream()
+        image.compress(Bitmap.CompressFormat.PNG, 90, baos)
+        val b = baos.toByteArray()
+        return Base64.encodeToString(b, Base64.DEFAULT)
     }
 
     private fun setupAdapter() {

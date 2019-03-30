@@ -2,6 +2,8 @@ package com.angelomelo.soluevochallenge.application.injections
 
 import com.angelomelo.soluevochallenge.application.injections.InjectionApiDataSource.provideAuthApiDataSource
 import com.angelomelo.soluevochallenge.application.injections.InjectionApiDataSource.provideContractApiDataSource
+import com.angelomelo.soluevochallenge.service.remote.attachment.AttachmentRemoteDataSource
+import com.angelomelo.soluevochallenge.service.remote.attachment.AttachmentRemoteDataSourceImpl
 import com.angelomelo.soluevochallenge.service.remote.auth.AuthRemoteDataSource
 import com.angelomelo.soluevochallenge.service.remote.auth.AuthRemoteDataSourceImpl.Companion.getInstance
 import com.angelomelo.soluevochallenge.service.remote.contract.ContractRemoteDataSource
@@ -17,6 +19,11 @@ object InjectionRemoteDataSource {
     @JvmStatic
     fun provideContractRemoteDataSource(): ContractRemoteDataSource {
         return getInstance(provideContractApiDataSource())
+    }
+
+    @JvmStatic
+    fun provideAttachmentRemoteDataSource(): AttachmentRemoteDataSource {
+        return AttachmentRemoteDataSourceImpl.getInstance(InjectionApiDataSource.provideAttachmentApiDataSource())
     }
 
 }
