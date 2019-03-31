@@ -52,6 +52,7 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
     private lateinit var attachmentViewModel: AttachmentsViewModel
     private lateinit var adapter: AttachmentsAdapter
     private var attachments = mutableListOf<Attachment>()
+    private var isButtonSaveClicked = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -108,17 +109,17 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
     override fun onClick(v: View) {
         when (v.id) {
             R.id.btnNext -> {
+                if (isButtonSaveClicked) {
+                    saveAttachments()
+                    return
+                }
+
+                isButtonSaveClicked = true
                 contractViewModel.saveContract(getRequestObjectsForm())
                 disableNextAndBackButton()
             }
 
             R.id.btnBack -> finish()
-        }
-    }
-
-    private fun saveAttachments() {
-        attachments.forEach {
-            attachmentViewModel.save(it)
         }
     }
 
@@ -250,13 +251,21 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
     private fun initSaveContractObserveOnSuccess() {
         contractViewModel.successObserver.observe(this, Observer {
             if(haveAttachmentsSelected()) {
+                disableBackButton()
                 disableRemoveImageClick()
                 notifyAdapterThatSaveButtonWasClicked()
                 saveAttachments()
+                isButtonSaveClicked = true
             }
 
             showAlert(getString(R.string.contract_saved_successfully))
         })
+    }
+
+    private fun saveAttachments() {
+        attachments.forEach {
+            attachmentViewModel.save(it)
+        }
     }
 
     private fun haveAttachmentsSelected() = attachments.isNotEmpty()
@@ -275,8 +284,13 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
         nextBtn.isEnabled = false
     }
 
+    private fun disableBackButton() {
+        backBtn.isEnabled = false
+    }
+
     private fun initSaveContractObserveOnError() {
         contractViewModel.errorObserver.observe(this, Observer {
+            isButtonSaveClicked = false
             enableNextAndBackButton()
             showAlertReEnterContractCode()
         })
@@ -294,9 +308,13 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
 
                 newObjecRequestWithAnotherContractCode.contractRequest.code = contractCodeEditText.rawText?.toBigInteger()!!
                 contractViewModel.saveContract(newObjecRequestWithAnotherContractCode)
-
+                isButtonSaveClicked = true
             }
-            .setNegativeButton(getString(R.string.media_picker_cancel)) { dialog, whichButton -> }
+            .setNegativeButton(getString(R.string.media_picker_cancel)) { dialog, _ ->
+                dialog.cancel()
+                dialog.dismiss()
+                isButtonSaveClicked = true
+            }
             .show()
     }
 
@@ -336,7 +354,7 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
             enableNextAndBackButton()
             enableImagePickerButton()
             setThatSavedButtonWasNotClickedSoThatTheUserCanClickItAgain()
-            showAlert(it)
+//            showAlertError(it)
         })
     }
 
