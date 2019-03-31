@@ -363,11 +363,14 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == ImagePicker.IMAGE_PICKER_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            val mPaths = data!!.getStringArrayListExtra(ImagePicker.EXTRA_IMAGE_PATH)
+            val mPaths = getAttachmentPaths(data)
             extractingFilesByPathAndPopulateObjectToShowOnAdapter(mPaths)
             setupAdapter()
         }
     }
+
+    private fun getAttachmentPaths(data: Intent?) =
+        data!!.getStringArrayListExtra(ImagePicker.EXTRA_IMAGE_PATH)
 
     private fun extractingFilesByPathAndPopulateObjectToShowOnAdapter(mPaths: ArrayList<String>) {
         mPaths.forEach {
