@@ -1,11 +1,13 @@
 package com.angelomelo.soluevochallenge.application.modules.savecontract.attachmentsform
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.View
 import android.view.animation.OvershootInterpolator
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -36,6 +38,7 @@ import com.angelomelo.soluevochallenge.domain.request.*
 import com.google.gson.Gson
 import com.kofigyan.stateprogressbar.StateProgressBar
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
+import kotlinx.android.synthetic.main.contract_code.*
 import kotlinx.android.synthetic.main.state_progress_bar_footer_button_layout.*
 import net.alhazmy13.mediapicker.Image.ImagePicker
 import java.util.*
@@ -275,8 +278,26 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
     private fun initSaveContractObserveOnError() {
         contractViewModel.errorObserver.observe(this, Observer {
             enableNextAndBackButton()
-            showAlert(it)
+            showAlertReEnterContractCode()
         })
+    }
+
+    private fun showAlertReEnterContractCode() {
+        AlertDialog.Builder(themedContext)
+            .setTitle(getString(R.string.re_enter_contract_number))
+            .setMessage(getString(R.string.re_enter_contract_number_message))
+            .setView(layoutInflater.inflate(R.layout.contract_code, null))
+            .setPositiveButton(getString(R.string.media_picker_ok)) { dialog, _ ->
+                val dialogInstance = dialog as Dialog
+                val contractCodeEditText = dialogInstance.contract_code_alert_edit_text
+                val newObjecRequestWithAnotherContractCode = getRequestObjectsForm()
+
+                newObjecRequestWithAnotherContractCode.contractRequest.code = contractCodeEditText.rawText?.toBigInteger()!!
+                contractViewModel.saveContract(newObjecRequestWithAnotherContractCode)
+
+            }
+            .setNegativeButton(getString(R.string.media_picker_cancel)) { dialog, whichButton -> }
+            .show()
     }
 
     private fun enableNextAndBackButton() {

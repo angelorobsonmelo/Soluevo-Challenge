@@ -72,5 +72,9 @@
     <string name="attach_pictures">Anexar Imagens</string>
     <string name="contract_saved_successfully">Contrato salvo com sucesso!</string>
     <string name="contract_and_attachments_successfully_saved">Contrato e anexos salvos com sucesso!</string>
+    <string name="re_enter_contract_number">Redigitar Número do Contrato</string>
+    <string name="re_enter_contract_number_message">Tente digitar outro código, pois já existe um contrato com o número
+        que você havia escolhido
+    </string>
 
 </resources>

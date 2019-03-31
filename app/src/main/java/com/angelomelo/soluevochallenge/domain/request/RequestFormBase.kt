@@ -6,7 +6,7 @@ import java.math.BigInteger
 data class RequestFormBase(
     @SerializedName("endusers_document")
     val endusersDocument: String,
-    val code: BigInteger,
+    var code: BigInteger = 0.toBigInteger(),
     val data: String,
     @SerializedName("financial_users_uuid")
     val financialUsersUuid: String

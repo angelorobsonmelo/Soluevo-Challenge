@@ -78,5 +78,7 @@
     <string name="attach_pictures">Attach pictures</string>
     <string name="contract_saved_successfully">Contract saved successfully!</string>
     <string name="contract_and_attachments_successfully_saved">Contract and attachments successfully saved!</string>
+    <string name="re_enter_contract_number">Re-enter Contract Number</string>
+    <string name="re_enter_contract_number_message">Try typing another code, because there is already a contract with the number you have chosen</string>
 
 </resources>
