@@ -20,7 +20,7 @@ import com.angelomelo.soluevochallenge.application.modules.account.AccountActivi
 import com.angelomelo.soluevochallenge.application.modules.auth.AuthActivity
 import com.angelomelo.soluevochallenge.application.modules.contractdetail.ContractDetailActivity
 import com.angelomelo.soluevochallenge.application.modules.main.adapter.ContractAdapter
-import com.angelomelo.soluevochallenge.application.modules.savecontract.attachmentsform.AttachmentsFormActivity
+import com.angelomelo.soluevochallenge.application.modules.savecontract.personalform.PersonalFormActivity
 import com.angelomelo.soluevochallenge.application.utils.FragmentBase
 import com.angelomelo.soluevochallenge.application.utils.RecyclerItemClickListener
 import com.angelomelo.soluevochallenge.application.utils.extensions.getFileName
@@ -227,8 +227,7 @@ class MainFragment : FragmentBase(), MainHandler {
     }
 
     override fun goToSaveContract() {
-        startActivity(Intent(context, AttachmentsFormActivity::class.java))
-//        startActivity(Intent(context, PersonalFormActivity::class.java))
+        startActivity(Intent(context, PersonalFormActivity::class.java))
     }
 
 
