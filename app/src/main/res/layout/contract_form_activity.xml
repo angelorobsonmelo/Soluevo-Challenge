@@ -57,9 +57,9 @@
                     <com.santalu.maskedittext.MaskEditText
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            app:validateMinLength="@{8}"
-                            app:validateMaxLength="@{8}"
-                            app:met_mask="########"
+                            app:validateMinLength="@{9}"
+                            app:validateMaxLength="@{9}"
+                            app:met_mask="#########"
                             app:validateEmpty="@{true}"
                             app:validateTypeAutoDismiss="@{true}"
                             android:text="@={contract.code}"

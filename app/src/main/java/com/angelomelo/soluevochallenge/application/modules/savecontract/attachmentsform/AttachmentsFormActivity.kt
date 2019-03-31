@@ -105,15 +105,8 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
     override fun onClick(v: View) {
         when (v.id) {
             R.id.btnNext -> {
-//                contractViewModel.saveContract(getRequestObjectsForm())
-
+                contractViewModel.saveContract(getRequestObjectsForm())
                 disableNextAndBackButton()
-
-                if (attachments.isNotEmpty()) {
-                    disableRemoveImageClick()
-                    notifyAdapterThatSaveButtonWasClicked()
-                    saveAttachments()
-                  }
             }
 
             R.id.btnBack -> finish()
@@ -124,20 +117,6 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
         attachments.forEach {
             attachmentViewModel.save(it)
         }
-    }
-
-    private fun notifyAdapterThatSaveButtonWasClicked() {
-        adapter.saveButtonWasClicked = true
-        adapter.notifyDataSetChanged()
-    }
-
-    private fun disableRemoveImageClick() {
-        binding.imagePickerButton.isEnabled = false
-    }
-
-    private fun disableNextAndBackButton() {
-        backBtn.isEnabled = false
-        nextBtn.isEnabled = false
     }
 
     private fun getRequestObjectsForm(): RequestObjectsForm {
@@ -267,8 +246,30 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
 
     private fun initSaveContractObserveOnSuccess() {
         contractViewModel.successObserver.observe(this, Observer {
+            if(haveAttachmentsSelected()) {
+                disableRemoveImageClick()
+                notifyAdapterThatSaveButtonWasClicked()
+                saveAttachments()
+            }
 
+            showAlert(getString(R.string.contract_saved_successfully))
         })
+    }
+
+    private fun haveAttachmentsSelected() = attachments.isNotEmpty()
+
+    private fun notifyAdapterThatSaveButtonWasClicked() {
+        adapter.saveButtonWasClicked = true
+        adapter.notifyDataSetChanged()
+    }
+
+    private fun disableRemoveImageClick() {
+        binding.imagePickerButton.isEnabled = false
+    }
+
+    private fun disableNextAndBackButton() {
+        backBtn.isEnabled = false
+        nextBtn.isEnabled = false
     }
 
     private fun initSaveContractObserveOnError() {
@@ -293,6 +294,7 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
     private fun checkIfItLastAttachment(it: Attachment) {
         if (isLastAttachment(it)) {
             enableImagePickerButton()
+            showAlert(getString(R.string.contract_and_attachments_successfully_saved))
         }
     }
 
@@ -371,8 +373,7 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
     private fun extractingFilesByPathAndPopulateObjectToShowOnAdapter(mPaths: ArrayList<String>) {
         mPaths.forEach {
             val attachment = Attachment(
-    //                    getContractsRequest().code.toBigInteger(),
-                1.toBigInteger(),
+                getContractsRequest().code.toBigInteger(),
                 it.getFileExntesion(),
                 it.getFileName(),
                 getBitmap(it).encodeTobase64(),

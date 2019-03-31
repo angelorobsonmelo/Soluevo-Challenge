@@ -70,5 +70,7 @@
     <string name="creditor_form">Formulário de Credor</string>
     <string name="contract_form">Formulário de Contrato</string>
     <string name="attach_pictures">Anexar Imagens</string>
+    <string name="contract_saved_successfully">Contrato salvo com sucesso!</string>
+    <string name="contract_and_attachments_successfully_saved">Contrato e anexos salvos com sucesso!</string>
 
 </resources>

@@ -59,7 +59,7 @@
     <string name="Account">Account</string>
     <string name="contract_date">ContractResponse Date</string>
     <string name="penalty_indication">Penalty indication</string>
-    <string name="contract_code">ContractResponse Number</string>
+    <string name="contract_code">Contract Number</string>
     <string name="iof_value">Valor IOF</string>
     <string name="fine_rate">Fine Rate</string>
     <string name="contract">Contract</string>
@@ -76,5 +76,7 @@
     <string name="creditor_form">Creditor Form</string>
     <string name="contract_form">Contract Form</string>
     <string name="attach_pictures">Attach pictures</string>
+    <string name="contract_saved_successfully">Contract saved successfully!</string>
+    <string name="contract_and_attachments_successfully_saved">Contract and attachments successfully saved!</string>
 
 </resources>
