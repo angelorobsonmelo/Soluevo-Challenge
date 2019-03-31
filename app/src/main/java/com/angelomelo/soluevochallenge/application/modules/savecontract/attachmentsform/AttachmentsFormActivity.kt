@@ -11,7 +11,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.ilhasoft.support.validation.Validator
+import com.angelomelo.soluevochallenge.R
 import com.angelomelo.soluevochallenge.application.SoluevoChallengeApplication
+import com.angelomelo.soluevochallenge.application.modules.main.MainActivity
 import com.angelomelo.soluevochallenge.application.modules.savecontract.SaveContractViewModel
 import com.angelomelo.soluevochallenge.application.modules.savecontract.StateProgressBarBaseActivity
 import com.angelomelo.soluevochallenge.application.modules.savecontract.attachmentsform.adapter.AttachmentsAdapter
@@ -20,7 +22,10 @@ import com.angelomelo.soluevochallenge.application.modules.savecontract.creditor
 import com.angelomelo.soluevochallenge.application.modules.savecontract.personalform.PersonalFormActivity
 import com.angelomelo.soluevochallenge.application.modules.savecontract.vehicleform.VehicleActivity
 import com.angelomelo.soluevochallenge.application.utils.RandomUtil
+import com.angelomelo.soluevochallenge.application.utils.extensions.encodeTobase64
 import com.angelomelo.soluevochallenge.application.utils.extensions.extractNumbers
+import com.angelomelo.soluevochallenge.application.utils.extensions.getFileExntesion
+import com.angelomelo.soluevochallenge.application.utils.extensions.getFileName
 import com.angelomelo.soluevochallenge.databinding.AttachmentsFormActivityBinding
 import com.angelomelo.soluevochallenge.domain.*
 import com.angelomelo.soluevochallenge.domain.form.ContractsForm
@@ -33,11 +38,7 @@ import com.kofigyan.stateprogressbar.StateProgressBar
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import kotlinx.android.synthetic.main.state_progress_bar_footer_button_layout.*
 import net.alhazmy13.mediapicker.Image.ImagePicker
-import android.graphics.Bitmap
-import android.util.Base64
-import com.angelomelo.soluevochallenge.R
-import com.angelomelo.soluevochallenge.application.modules.main.MainActivity
-import java.io.ByteArrayOutputStream
+import java.util.*
 
 
 class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandler {
@@ -105,24 +106,37 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
             R.id.btnNext -> {
 //                contractViewModel.saveContract(getRequestObjectsForm())
 
-                  backBtn.isEnabled = false
-                  nextBtn.isEnabled = false
+                disableNextAndBackButton()
 
-                  if (attachments.isNotEmpty()) {
-                      binding.imagePickerButton.isEnabled = false
-                      adapter.saveButtonWasClicked = true
-
-                      adapter.notifyDataSetChanged()
-
-                      attachments.forEach {
-                          attachmentViewModel.save(it)
-                      }
-
+                if (attachments.isNotEmpty()) {
+                    disableRemoveImageClick()
+                    notifyAdapterThatSaveButtonWasClicked()
+                    saveAttachments()
                   }
             }
 
             R.id.btnBack -> finish()
         }
+    }
+
+    private fun saveAttachments() {
+        attachments.forEach {
+            attachmentViewModel.save(it)
+        }
+    }
+
+    private fun notifyAdapterThatSaveButtonWasClicked() {
+        adapter.saveButtonWasClicked = true
+        adapter.notifyDataSetChanged()
+    }
+
+    private fun disableRemoveImageClick() {
+        binding.imagePickerButton.isEnabled = false
+    }
+
+    private fun disableNextAndBackButton() {
+        backBtn.isEnabled = false
+        nextBtn.isEnabled = false
     }
 
     private fun getRequestObjectsForm(): RequestObjectsForm {
@@ -258,48 +272,66 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
 
     private fun initSaveContractObserveOnError() {
         contractViewModel.errorObserver.observe(this, Observer {
-            backBtn.isEnabled = true
-            nextBtn.isEnabled = true
+            enableNextAndBackButton()
             showAlert(it)
         })
+    }
+
+    private fun enableNextAndBackButton() {
+        backBtn.isEnabled = true
+        nextBtn.isEnabled = true
     }
 
     private fun initAttachmentObserveOnSuccess() {
         attachmentViewModel.successObserver.observe(this, Observer {
-            val index = attachments.indexOf(it)
-            attachments[index].wasSent = true
-            adapter.notifyItemChanged(index)
-
-            if (attachments.last().path == it.path) {
-                binding.imagePickerButton.isEnabled = true
-                binding.backContractListButton.visibility = View.VISIBLE
-
-            }
-
+            setSuccessfullyUploadedImageIndicator(it)
+            checkIfItLastAttachment(it)
         })
+    }
+
+    private fun checkIfItLastAttachment(it: Attachment) {
+        if (isLastAttachment(it)) {
+            enableImagePickerButton()
+            showButtonToGoContractsScreen()
+        }
+    }
+
+    private fun showButtonToGoContractsScreen() {
+        binding.backContractListButton.visibility = View.VISIBLE
+    }
+
+    private fun enableImagePickerButton() {
+        binding.imagePickerButton.isEnabled = true
+    }
+
+    private fun isLastAttachment(it: Attachment) = attachments.last().path == it.path
+
+    private fun setSuccessfullyUploadedImageIndicator(it: Attachment) {
+        val index = attachments.indexOf(it)
+        attachments[index].wasSent = true
+        adapter.notifyItemChanged(index)
     }
 
     private fun initAttachmentObserveOnError() {
         attachmentViewModel.errorObserver.observe(this, Observer {
-            backBtn.isEnabled = true
-            nextBtn.isEnabled = true
-
-            binding.imagePickerButton.isEnabled = true
-            adapter.saveButtonWasClicked = false
-
-            adapter.notifyDataSetChanged()
-
+            enableNextAndBackButton()
+            enableImagePickerButton()
+            setThatSavedButtonWasNotClickedSoThatTheUserCanClickItAgain()
             showAlert(it)
         })
     }
 
-    override fun onPressOpenImagePicker() {
-        if (adapter.saveButtonWasClicked) {
-            nextBtn.isEnabled = true
-            attachments.clear()
-            adapter.notifyDataSetChanged()
-        }
+    private fun setThatSavedButtonWasNotClickedSoThatTheUserCanClickItAgain() {
+        adapter.saveButtonWasClicked = false
+        adapter.notifyDataSetChanged()
+    }
 
+    override fun onPressOpenImagePicker() {
+        checkIfSaveButtonHasAlreadyBeenClickedWhenUserClicksToChooseAttachments()
+        showImagePickerOptions()
+    }
+
+    private fun showImagePickerOptions() {
         ImagePicker.Builder(this@AttachmentsFormActivity)
             .mode(ImagePicker.Mode.CAMERA_AND_GALLERY)
             .compressLevel(ImagePicker.ComperesLevel.MEDIUM)
@@ -312,40 +344,47 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
             .build()
     }
 
+    private fun checkIfSaveButtonHasAlreadyBeenClickedWhenUserClicksToChooseAttachments() {
+        if (adapter.saveButtonWasClicked) {
+            enableNextButton()
+            removeAllAttachmentsAndUpdateAdapter()
+        }
+    }
+
+    private fun removeAllAttachmentsAndUpdateAdapter() {
+        attachments.clear()
+        adapter.notifyDataSetChanged()
+    }
+
+    private fun enableNextButton() {
+        nextBtn.isEnabled = true
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
         if (requestCode == ImagePicker.IMAGE_PICKER_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             val mPaths = data!!.getStringArrayListExtra(ImagePicker.EXTRA_IMAGE_PATH)
-
-            mPaths.forEach {
-                val filename = it.substring(it.lastIndexOf("/") + 1)
-                val fileExtension = it.substring(it.lastIndexOf(".") + 1)
-                val fileContent = BitmapFactory.decodeFile(it)
-
-               val attachment = Attachment(
-//                    getContractsRequest().code.toBigInteger(),
-                    1.toBigInteger(),
-                    fileExtension,
-                    filename,
-                    encodeTobase64(fileContent),
-                    it
-                )
-
-                attachments.add(attachment)
-            }
-
+            extractingFilesByPathAndPopulateObjectToShowOnAdapter(mPaths)
             setupAdapter()
         }
-
     }
 
-    fun encodeTobase64(image: Bitmap): String {
-        val baos = ByteArrayOutputStream()
-        image.compress(Bitmap.CompressFormat.PNG, 90, baos)
-        val b = baos.toByteArray()
-        return Base64.encodeToString(b, Base64.DEFAULT)
+    private fun extractingFilesByPathAndPopulateObjectToShowOnAdapter(mPaths: ArrayList<String>) {
+        mPaths.forEach {
+            val attachment = Attachment(
+    //                    getContractsRequest().code.toBigInteger(),
+                1.toBigInteger(),
+                it.getFileExntesion(),
+                it.getFileName(),
+                getBitmap(it).encodeTobase64(),
+                it
+            )
+
+            attachments.add(attachment)
+        }
     }
+
+    private fun getBitmap(it: String) = BitmapFactory.decodeFile(it)
 
     private fun setupAdapter() {
         adapter = AttachmentsAdapter(attachments, this)

@@ -10,3 +10,7 @@ fun String.getFileName(): String {
    return  this.substring(this.lastIndexOf(".") + 1)
 }
 
+fun String.getFileExntesion(): String {
+   return  this.substring(this.lastIndexOf(".") + 1)
+}
+
