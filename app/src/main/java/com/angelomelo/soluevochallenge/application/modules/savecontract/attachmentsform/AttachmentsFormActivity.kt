@@ -112,7 +112,10 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
                   nextBtn.isEnabled = false
 
                   if (attachments.isNotEmpty()) {
-                      attachmentViewModel.save(attachments.first())
+                      attachments.forEach {
+                          attachmentViewModel.save(it)
+                      }
+
                   }
             }
 
