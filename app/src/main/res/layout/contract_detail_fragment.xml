@@ -2,6 +2,7 @@
 <layout>
     <data>
         <variable name="attachment" type="com.angelomelo.soluevochallenge.domain.response.AttachmentResponse" />
+        <variable name="contractResponse" type="com.angelomelo.soluevochallenge.domain.response.ContractResponse" />
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout

@@ -1,6 +1,5 @@
 package com.angelomelo.soluevochallenge.application.modules.contractdetail
 
-import android.app.Activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.angelomelo.soluevochallenge.R
@@ -12,8 +11,10 @@ class ContractDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.contract_detail_activity)
         if (savedInstanceState == null) {
+            val fragment = ContractDetailFragment.newInstance()
+            fragment.arguments = intent.extras
             supportFragmentManager.beginTransaction()
-                .replace(R.id.container, ContractDetailFragment.newInstance())
+                .replace(R.id.container, fragment)
                 .commitNow()
         }
     }

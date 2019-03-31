@@ -9,8 +9,10 @@ import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil.inflate
 import androidx.lifecycle.ViewModelProviders
 import com.angelomelo.soluevochallenge.R
+import com.angelomelo.soluevochallenge.application.modules.main.MainFragment
 import com.angelomelo.soluevochallenge.application.utils.FragmentBase
 import com.angelomelo.soluevochallenge.databinding.ContractDetailFragmentBinding
+import com.angelomelo.soluevochallenge.domain.response.ContractResponse
 import kotlinx.android.synthetic.main.contract_detail_activity.*
 
 class ContractDetailFragment : FragmentBase() {
@@ -34,6 +36,8 @@ class ContractDetailFragment : FragmentBase() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(ContractDetailViewModel::class.java)
+        val contractResponse = arguments?.get(MainFragment.CONTRACT_RESPONSE_IDENTIFIER) as ContractResponse
+        viewModel.getAttachments(contractResponse.code.toBigInteger())
         setSupportActionBar()
     }
 

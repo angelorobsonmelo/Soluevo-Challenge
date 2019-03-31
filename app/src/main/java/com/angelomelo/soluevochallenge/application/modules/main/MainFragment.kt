@@ -6,6 +6,7 @@ import android.text.InputType
 import android.view.*
 import android.view.animation.OvershootInterpolator
 import android.view.inputmethod.EditorInfo
+import android.widget.AdapterView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
@@ -17,9 +18,11 @@ import com.angelomelo.soluevochallenge.R
 import com.angelomelo.soluevochallenge.application.SoluevoChallengeApplication
 import com.angelomelo.soluevochallenge.application.modules.account.AccountActivity
 import com.angelomelo.soluevochallenge.application.modules.auth.AuthActivity
+import com.angelomelo.soluevochallenge.application.modules.contractdetail.ContractDetailActivity
 import com.angelomelo.soluevochallenge.application.modules.main.adapter.ContractAdapter
 import com.angelomelo.soluevochallenge.application.modules.savecontract.attachmentsform.AttachmentsFormActivity
 import com.angelomelo.soluevochallenge.application.utils.FragmentBase
+import com.angelomelo.soluevochallenge.application.utils.RecyclerItemClickListener
 import com.angelomelo.soluevochallenge.databinding.MainFragmentBinding
 import com.angelomelo.soluevochallenge.domain.response.ContractResponse
 import com.google.android.material.snackbar.Snackbar
@@ -28,13 +31,16 @@ import kotlinx.android.synthetic.main.main_activity.*
 
 class MainFragment : FragmentBase(), MainHandler {
 
+    companion object {
+        fun newInstance() = MainFragment()
+        const val CONTRACT_RESPONSE_IDENTIFIER = "CONTRACT_RESPONSE_IDENTIFIER"
+    }
+
+
     private lateinit var binding: MainFragmentBinding
     private lateinit var viewModel: MainViewModel
     private lateinit var adapter: ContractAdapter
-
-    companion object {
-        fun newInstance() = MainFragment()
-    }
+    private var contracs = mutableListOf<ContractResponse>()
 
     override fun onResume() {
         super.onResume()
@@ -76,6 +82,7 @@ class MainFragment : FragmentBase(), MainHandler {
         setupRecyclerView()
         initObserverOnSuccess()
         initObserverOnError()
+        initRecyclerItemClickListener()
     }
 
     private fun setupBinding() {
@@ -95,6 +102,8 @@ class MainFragment : FragmentBase(), MainHandler {
     }
 
     private fun setupRecyclerView() {
+        adapter = ContractAdapter(contracs)
+
         val gridLayout = GridLayoutManager(context, 2)
         val recyclerView = binding.contractsRecyclerView
 
@@ -103,7 +112,8 @@ class MainFragment : FragmentBase(), MainHandler {
 
     private fun initObserverOnSuccess() {
         viewModel.successObserver.observe(this, Observer {
-            setupAdapter(it)
+            contracs.addAll(it)
+            setupAdapter()
         })
     }
 
@@ -113,8 +123,8 @@ class MainFragment : FragmentBase(), MainHandler {
         })
     }
 
-    private fun setupAdapter(contractResponses: List<ContractResponse>) {
-        adapter = ContractAdapter(contractResponses as MutableList<ContractResponse>)
+    private fun setupAdapter() {
+        adapter = ContractAdapter(contracs)
         binding.contractsRecyclerView.adapter = ScaleInAnimationAdapter(adapter).apply {
             setFirstOnly(false)
             setDuration(500)
@@ -187,6 +197,38 @@ class MainFragment : FragmentBase(), MainHandler {
     override fun goToSaveContract() {
         startActivity(Intent(context, AttachmentsFormActivity::class.java))
 //        startActivity(Intent(context, PersonalFormActivity::class.java))
+    }
+
+
+    private fun initRecyclerItemClickListener() {
+        binding.contractsRecyclerView.addOnItemTouchListener(
+            RecyclerItemClickListener(
+                context!!,
+                binding.contractsRecyclerView,
+                object : RecyclerItemClickListener.OnItemClickListener {
+                    override fun onItemClick(view: View, position: Int) {
+                          goToContractDetail(position)
+                    }
+
+                    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
+                    }
+
+                    override fun onLongItemClick(view: View?, position: Int) {
+
+                    }
+
+                }
+            )
+        )
+    }
+
+    fun goToContractDetail(position: Int) {
+        val intent = Intent(context, ContractDetailActivity::class.java)
+        val contractResponse = contracs[position]
+
+        intent.putExtra(CONTRACT_RESPONSE_IDENTIFIER, contractResponse)
+        startActivity(intent)
     }
 
 }
