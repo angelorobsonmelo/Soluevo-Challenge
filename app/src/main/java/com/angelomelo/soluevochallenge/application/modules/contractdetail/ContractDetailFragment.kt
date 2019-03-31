@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil.inflate
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.angelomelo.soluevochallenge.R
 import com.angelomelo.soluevochallenge.application.modules.main.MainFragment
@@ -23,6 +24,7 @@ class ContractDetailFragment : FragmentBase() {
 
     private lateinit var viewModel: ContractDetailViewModel
     private lateinit var binding: ContractDetailFragmentBinding
+    private lateinit var contractResponse: ContractResponse
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,10 +38,21 @@ class ContractDetailFragment : FragmentBase() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(ContractDetailViewModel::class.java)
-        val contractResponse = arguments?.get(MainFragment.CONTRACT_RESPONSE_IDENTIFIER) as ContractResponse
-        viewModel.getAttachments(contractResponse.code.toBigInteger())
+        contractResponse = getContractResponse()
+        binding.contractResponse = contractResponse
+
+        getAttachments()
         setSupportActionBar()
+        initObserverOnSuccess()
+        initObserverOnError()
+        initObserverOnEmpty()
     }
+
+    private fun getAttachments() {
+        viewModel.getAttachments(contractResponse.code.toBigInteger())
+    }
+
+    private fun getContractResponse() = arguments?.get(MainFragment.CONTRACT_RESPONSE_IDENTIFIER) as ContractResponse
 
     private fun setSupportActionBar() {
         setHasOptionsMenu(true)
@@ -48,6 +61,26 @@ class ContractDetailFragment : FragmentBase() {
 
         appCompatActivity?.setSupportActionBar(toolbar)
         appCompatActivity?.supportActionBar?.setDisplayShowTitleEnabled(true)
+        appCompatActivity?.supportActionBar?.setDisplayHomeAsUpEnabled(true)
         appCompatActivity?.supportActionBar?.title = getString(R.string.contract_details)
     }
+
+    private fun initObserverOnSuccess() {
+        viewModel.successObserver.observe(this, Observer {
+
+        })
+    }
+
+    private fun initObserverOnError() {
+        viewModel.errorObserver.observe(this, Observer {
+
+        })
+    }
+
+    private fun initObserverOnEmpty() {
+        viewModel.emptyObserver.observe(this, Observer {
+
+        })
+    }
+
 }
