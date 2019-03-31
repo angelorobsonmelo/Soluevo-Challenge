@@ -36,6 +36,7 @@ import net.alhazmy13.mediapicker.Image.ImagePicker
 import android.graphics.Bitmap
 import android.util.Base64
 import com.angelomelo.soluevochallenge.R
+import com.angelomelo.soluevochallenge.application.modules.main.MainActivity
 import java.io.ByteArrayOutputStream
 
 
@@ -113,7 +114,7 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
                   nextBtn.isEnabled = false
 
                   if (attachments.isNotEmpty()) {
-                      binding.imageButton.isEnabled = false
+                      binding.imagePickerButton.isEnabled = false
                       adapter.saveButtonWasClicked = true
 
                       adapter.notifyDataSetChanged()
@@ -256,8 +257,7 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
 
     private fun initSaveContractObserveOnSuccess() {
         contractViewModel.successObserver.observe(this, Observer {
-
-            print("message")
+            binding.backContractListButton.visibility = View.VISIBLE
         })
     }
 
@@ -276,7 +276,9 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
             adapter.notifyItemChanged(index)
 
             if (attachments.last().path == it.path) {
-                binding.imageButton.isEnabled = true
+                binding.imagePickerButton.isEnabled = true
+                binding.backContractListButton.visibility = View.VISIBLE
+
             }
 
         })
@@ -287,7 +289,7 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
             backBtn.isEnabled = true
             nextBtn.isEnabled = true
 
-            binding.imageButton.isEnabled = true
+            binding.imagePickerButton.isEnabled = true
             adapter.saveButtonWasClicked = false
 
             adapter.notifyDataSetChanged()
@@ -364,6 +366,10 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
         val index = attachments.indexOf(attachment)
         attachments.removeAt(index)
         adapter.notifyItemRemoved(index)
+    }
+
+    override fun onPressBackToContractListScreen() {
+        startActivity(Intent(this, MainActivity::class.java))
     }
 
 }

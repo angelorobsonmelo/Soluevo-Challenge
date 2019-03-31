@@ -6,4 +6,5 @@ interface AttachmentsHandler {
 
     fun onPressOpenImagePicker()
     fun onPressRemoveImage(attachment: Attachment)
+    fun onPressBackToContractListScreen()
 }

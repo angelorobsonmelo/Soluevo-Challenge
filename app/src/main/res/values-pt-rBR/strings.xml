@@ -59,5 +59,6 @@
     <string name="media_picker_cancel" tools:ignore="ExtraTranslation">Cancelar</string>
     <string name="media_picker_some_permission_is_denied" tools:ignore="ExtraTranslation">Algum permissão está negada</string>
     <string name="media_picker_you_need_to_grant_access_to" tools:ignore="ExtraTranslation">você precisa permitir o acesso</string>
+    <string name="back_to_contracts_list">Voltar para a lista de contratos</string>
 
 </resources>

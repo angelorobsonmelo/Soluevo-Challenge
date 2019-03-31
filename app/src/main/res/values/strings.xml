@@ -64,5 +64,6 @@
     <string name="fine_rate">Fine Rate</string>
     <string name="contract">Contract</string>
     <string name="contracts">Contracts</string>
+    <string name="back_to_contracts_list">Back to Contracts List</string>
 
 </resources>
