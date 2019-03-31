@@ -62,6 +62,7 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
     }
 
     private fun setupElements() {
+        setupToolbar(getString(R.string.attach_pictures))
         changeTextButtonNextToConclude()
         injectCommonViews()
         injectBackView()

@@ -31,11 +31,16 @@ class ContractFormActivity : StateProgressBarBaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.contract_form_activity)
+        setupElements()
+        stateprogressbar.setCurrentStateNumber(StateProgressBar.StateNumber.FOUR)
+    }
+
+    private fun setupElements() {
+        setupToolbar(getString(R.string.contract_form))
         setupBinding()
         setupValidator()
         injectCommonViews()
         injectBackView()
-        stateprogressbar.setCurrentStateNumber(StateProgressBar.StateNumber.FOUR)
     }
 
     private fun setupBinding() {

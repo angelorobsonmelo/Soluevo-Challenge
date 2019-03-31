@@ -68,5 +68,7 @@
     <string name="personal_form">Formulário Pessoal</string>
     <string name="vehicle_form">Formulário de Veículo</string>
     <string name="creditor_form">Formulário de Credor</string>
+    <string name="contract_form">Formulário de Contrato</string>
+    <string name="attach_pictures">Anexar Imagens</string>
 
 </resources>

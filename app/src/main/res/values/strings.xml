@@ -74,5 +74,7 @@
     <string name="personal_form">Personal Form</string>
     <string name="vehicle_form">Vehicle Form</string>
     <string name="creditor_form">Creditor Form</string>
+    <string name="contract_form">Contract Form</string>
+    <string name="attach_pictures">Attach pictures</string>
 
 </resources>
