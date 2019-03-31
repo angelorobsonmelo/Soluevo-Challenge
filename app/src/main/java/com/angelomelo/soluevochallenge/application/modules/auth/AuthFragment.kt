@@ -69,9 +69,13 @@ class AuthFragment : FragmentBase(), AuthHandler {
 
     override fun auth(user: User) {
         if (validator.validate()) {
+            val index = user.ufDetranPosition
+            user.ufDetran = getDetranStantes()[index]
             viewModel.auth(user)
         }
     }
+
+    private fun getDetranStantes() = resources.getStringArray(R.array.detran_states)
 
     private fun initObserveOnSuccess() {
         viewModel.successObserver.observe(this, Observer {

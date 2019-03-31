@@ -53,7 +53,7 @@
     <string name="indication_commission">Indication Commission</string>
     <string name="commission">Commission</string>
     <string name="conclude">Conclude</string>
-    <string name="welcome">Welcome!</string>
+    <string name="welcome">Welcome, %1$s! You are logged in Detran-%2$s</string>
     <string name="logout">Logout</string>
     <string name="contractResponses">Contracts</string>
     <string name="Account">Account</string>

@@ -41,7 +41,7 @@
     <string name="indication_commission">Indicação Comissão</string>
     <string name="commission">Comissão</string>
     <string name="conclude">Concluir</string>
-    <string name="welcome">Seja bem vindo</string>
+    <string name="welcome">Seja bem-vindo, %1$s! Você está logado no Detran-%2$s</string>
     <string name="logout">Sair</string>
     <string name="contractResponses">Contratos</string>
     <string name="Account">Conta</string>

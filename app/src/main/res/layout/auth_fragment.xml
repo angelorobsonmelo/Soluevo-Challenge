@@ -97,6 +97,7 @@
             android:id="@+id/spinner"
             style="@style/Base.Widget.AppCompat.Spinner.Underlined"
             android:entries="@array/detran_states"
+            android:selectedItemPosition="@={user.ufDetranPosition}"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"

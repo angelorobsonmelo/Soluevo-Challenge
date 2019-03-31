@@ -34,6 +34,8 @@ class AuthRemoteDataSourceImpl(private val mAuthApiDataSource: AuthApiDataSource
                 {
                     it.user.password = user.password
                     it.user.username = user.username
+                    it.user.ufDetran = user.ufDetran
+
                     ServiceUtils.saveUserAndTokenInSession(it)
                     callback.onSuccess()
                 },

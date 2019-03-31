@@ -62,9 +62,12 @@ class MainFragment : FragmentBase(), MainHandler {
     }
 
     private fun showWelcomeMessage() {
-        Snackbar.make(view?.rootView!!, getString(R.string.welcome), Snackbar.LENGTH_LONG)
+      val user = getUserInSession()
+        Snackbar.make(view?.rootView!!, getString(R.string.welcome, user?.name,  user?.ufDetran), 8000)
             .show()
     }
+
+    private fun getUserInSession() = SoluevoChallengeApplication.mSessionUseCase?.getAuthSession()?.user
 
     private fun setupElements() {
         setupBinding()
