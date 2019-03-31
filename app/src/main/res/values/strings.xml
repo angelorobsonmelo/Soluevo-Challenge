@@ -65,5 +65,6 @@
     <string name="contract">Contract</string>
     <string name="contracts">Contracts</string>
     <string name="back_to_contracts_list">Back to Contracts List</string>
+    <string name="detran" translatable="false">Detran-%1$s</string>
 
 </resources>

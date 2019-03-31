@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import com.angelomelo.soluevochallenge.R
 import com.angelomelo.soluevochallenge.application.SoluevoChallengeApplication
+import com.angelomelo.soluevochallenge.application.modules.account.AccountActivity
 import com.angelomelo.soluevochallenge.application.modules.auth.AuthActivity
 import com.angelomelo.soluevochallenge.application.modules.main.adapter.ContractAdapter
 import com.angelomelo.soluevochallenge.application.modules.savecontract.attachmentsform.AttachmentsFormActivity
@@ -129,7 +130,6 @@ class MainFragment : FragmentBase(), MainHandler {
     }
 
 
-
     private fun setupSearchView(menu: Menu): SearchView {
         val searchItem = menu.findItem(R.id.action_search)
         val searchView = searchItem.actionView as SearchView
@@ -155,10 +155,14 @@ class MainFragment : FragmentBase(), MainHandler {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val itemMenuId            = item.itemId
         val actionLogout = R.id.action_logout
+        val account = R.id.action_account
 
         when (itemMenuId) {
             actionLogout -> {
                 destroySessionAndGotoAuthScreen()
+            }
+            account -> {
+                goToAccountScreen()
             }
         }
 
@@ -170,6 +174,10 @@ class MainFragment : FragmentBase(), MainHandler {
         if (sessionIsDestroyed!!) {
             goToAuthScreen()
         }
+    }
+
+    private fun goToAccountScreen() {
+        startActivity(Intent(context, AccountActivity::class.java))
     }
 
     private fun goToAuthScreen() {
