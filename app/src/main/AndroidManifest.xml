@@ -20,6 +20,8 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".application.modules.contractdetail.ContractDetailActivity">
+        </activity>
         <activity android:name=".application.modules.account.AccountActivity">
         </activity>
         <activity

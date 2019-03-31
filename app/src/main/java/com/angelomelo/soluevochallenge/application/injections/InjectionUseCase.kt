@@ -2,6 +2,7 @@ package com.angelomelo.soluevochallenge.application.injections
 
 import android.content.Context
 import com.angelomelo.soluevochallenge.application.usecases.local.SessionUseCase
+import com.angelomelo.soluevochallenge.application.usecases.remote.attachment.GetAttachmentsUseCase
 import com.angelomelo.soluevochallenge.application.usecases.remote.attachment.SaveAttachmentUseCase
 import com.angelomelo.soluevochallenge.application.usecases.remote.auth.AuthUseCase
 import com.angelomelo.soluevochallenge.application.usecases.remote.contract.GetContractUseCase
@@ -37,6 +38,11 @@ object InjectionUseCase {
     @JvmStatic
     fun provideSaveAttachmentUseCase(): SaveAttachmentUseCase {
         return SaveAttachmentUseCase(attachmentRemoteDataSource)
+    }
+
+    @JvmStatic
+    fun provideGetAttachmentUseCase(): GetAttachmentsUseCase {
+        return GetAttachmentsUseCase(attachmentRemoteDataSource)
     }
 
 }
