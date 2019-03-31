@@ -108,13 +108,16 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
         when (v.id) {
             R.id.btnNext -> {
 //                contractViewModel.saveContract(getRequestObjectsForm())
-                adapter.saveButtonWasClicked = true
-                adapter.notifyDataSetChanged()
 
                   backBtn.isEnabled = false
                   nextBtn.isEnabled = false
 
                   if (attachments.isNotEmpty()) {
+                      binding.imageButton.isEnabled = false
+                      adapter.saveButtonWasClicked = true
+
+                      adapter.notifyDataSetChanged()
+
                       attachments.forEach {
                           attachmentViewModel.save(it)
                       }
@@ -260,9 +263,9 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
 
     private fun initSaveContractObserveOnError() {
         contractViewModel.errorObserver.observe(this, Observer {
-            backBtn.isEnabled = false
-            nextBtn.isEnabled = false
-            print("message")
+            backBtn.isEnabled = true
+            nextBtn.isEnabled = true
+            showAlert(it)
         })
     }
 
@@ -272,19 +275,33 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
             attachments[index].wasSent = true
             adapter.notifyItemChanged(index)
 
+            if (attachments.last().path == it.path) {
+                binding.imageButton.isEnabled = true
+            }
+
         })
     }
 
     private fun initAttachmentObserveOnError() {
         attachmentViewModel.errorObserver.observe(this, Observer {
-            backBtn.isEnabled = false
-            nextBtn.isEnabled = false
-            print("message")
+            backBtn.isEnabled = true
+            nextBtn.isEnabled = true
+
+            binding.imageButton.isEnabled = true
+            adapter.saveButtonWasClicked = false
+
+            adapter.notifyDataSetChanged()
+
+            showAlert(it)
         })
     }
 
     override fun onPressOpenImagePicker() {
-        binding.attachementProgressBar.visibility = View.VISIBLE
+        if (adapter.saveButtonWasClicked) {
+            nextBtn.isEnabled = true
+            attachments.clear()
+            adapter.notifyDataSetChanged()
+        }
 
         ImagePicker.Builder(this@AttachmentsFormActivity)
             .mode(ImagePicker.Mode.CAMERA_AND_GALLERY)
@@ -294,6 +311,7 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
             .scale(600, 600)
             .allowMultipleImages(true)
             .enableDebuggingMode(true)
+            .allowOnlineImages(true)
             .build()
     }
 
@@ -340,9 +358,6 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
             setInterpolator(OvershootInterpolator(.5f))
         }
 
-//        adapter.notifyDataSetChanged()
-
-        binding.attachementProgressBar.visibility = View.GONE
     }
 
     override fun onPressRemoveImage(attachment: Attachment) {

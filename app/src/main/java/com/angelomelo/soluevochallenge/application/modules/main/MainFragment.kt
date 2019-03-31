@@ -18,7 +18,6 @@ import com.angelomelo.soluevochallenge.application.SoluevoChallengeApplication
 import com.angelomelo.soluevochallenge.application.modules.auth.AuthActivity
 import com.angelomelo.soluevochallenge.application.modules.main.adapter.ContractAdapter
 import com.angelomelo.soluevochallenge.application.modules.savecontract.attachmentsform.AttachmentsFormActivity
-import com.angelomelo.soluevochallenge.application.modules.savecontract.personalform.PersonalFormActivity
 import com.angelomelo.soluevochallenge.application.utils.FragmentBase
 import com.angelomelo.soluevochallenge.databinding.MainFragmentBinding
 import com.angelomelo.soluevochallenge.domain.response.ContractResponse
@@ -71,7 +70,8 @@ class MainFragment : FragmentBase(), MainHandler {
         setupBinding()
         setSupportActionBar()
         setupRecyclerView()
-        setupObserverOnSuccess()
+        initObserverOnSuccess()
+        initObserverOnError()
     }
 
     private fun setupBinding() {
@@ -97,9 +97,15 @@ class MainFragment : FragmentBase(), MainHandler {
         recyclerView.layoutManager = gridLayout
     }
 
-    private fun setupObserverOnSuccess() {
+    private fun initObserverOnSuccess() {
         viewModel.successObserver.observe(this, Observer {
             setupAdapter(it)
+        })
+    }
+
+    private fun initObserverOnError() {
+        viewModel.errorObserver.observe(this, Observer {
+            showAlert(it)
         })
     }
 
