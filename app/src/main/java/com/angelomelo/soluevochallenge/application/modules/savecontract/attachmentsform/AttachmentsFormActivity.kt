@@ -108,6 +108,9 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
         when (v.id) {
             R.id.btnNext -> {
 //                contractViewModel.saveContract(getRequestObjectsForm())
+                adapter.saveButtonWasClicked = true
+                adapter.notifyDataSetChanged()
+
                   backBtn.isEnabled = false
                   nextBtn.isEnabled = false
 

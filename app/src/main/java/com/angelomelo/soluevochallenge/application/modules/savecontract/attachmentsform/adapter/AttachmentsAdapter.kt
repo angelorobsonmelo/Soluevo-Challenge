@@ -13,6 +13,8 @@ class AttachmentsAdapter(
     private val attachmentsHandler: AttachmentsHandler)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    var saveButtonWasClicked = false
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return AttachmentsViewHolder(
             LayoutInflater
@@ -24,6 +26,7 @@ class AttachmentsAdapter(
         val binding       = (holder as AttachmentsViewHolder).binding
         binding?.image = attachments[position]
         binding?.handler = attachmentsHandler
+        binding?.adapter = this
         binding?.executePendingBindings()
     }
 

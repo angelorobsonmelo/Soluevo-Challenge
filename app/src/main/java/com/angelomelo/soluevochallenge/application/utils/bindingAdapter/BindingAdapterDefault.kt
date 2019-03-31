@@ -7,9 +7,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
+import com.angelomelo.soluevochallenge.R
 import com.angelomelo.soluevochallenge.application.utils.extensions.convertDateToString
 import com.angelomelo.soluevochallenge.application.utils.extensions.convertDateToStringDDMMM
-import com.angelomelo.soluevochallenge.R
 import com.squareup.picasso.Picasso
 import java.util.*
 
@@ -60,6 +60,17 @@ fun wasSent(imageView: ImageView, status: Boolean) {
         imageView.isEnabled = false
     } else {
         imageView.setImageDrawable(ContextCompat.getDrawable(imageView.context, R.drawable.ic_close))
+    }
+}
+
+@BindingAdapter( "saveButtonWasClicked")
+fun saveButtonWasClicked(imageView: ImageView, status: Boolean) {
+    if (status) {
+        imageView.isClickable = false
+        imageView.isEnabled = false
+    } else {
+        imageView.isClickable = true
+        imageView.isEnabled = true
     }
 }
 

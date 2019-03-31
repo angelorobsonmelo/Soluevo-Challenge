@@ -5,6 +5,7 @@
     <data>
         <variable name="image" type="com.angelomelo.soluevochallenge.domain.Attachment" />
         <variable name="handler" type="com.angelomelo.soluevochallenge.application.modules.savecontract.attachmentsform.AttachmentsHandler" />
+        <variable name="adapter" type="com.angelomelo.soluevochallenge.application.modules.savecontract.attachmentsform.adapter.AttachmentsAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -33,6 +34,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 app:wasSent="@{image.wasSent}"
+                app:saveButtonWasClicked="@{adapter.saveButtonWasClicked}"
                 android:id="@+id/button2"
                 app:srcCompat="@drawable/ic_close"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView4"
