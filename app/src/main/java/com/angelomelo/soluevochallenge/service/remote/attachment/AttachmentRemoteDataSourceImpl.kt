@@ -3,6 +3,7 @@ package com.angelomelo.soluevochallenge.service.remote.attachment
 import android.annotation.SuppressLint
 import androidx.annotation.NonNull
 import com.angelomelo.soluevochallenge.domain.Attachment
+import com.angelomelo.soluevochallenge.domain.response.AttachmentResponse
 import com.angelomelo.soluevochallenge.service.BaseRemoteDataSource
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -44,7 +45,7 @@ class AttachmentRemoteDataSourceImpl(private val mAttachmentApiDataSource: Attac
     @SuppressLint("CheckResult")
     override fun getAttachments(
         contractCode: BigInteger,
-        callback: BaseRemoteDataSource.RemoteDataSourceCallback<List<Attachment>>
+        callback: BaseRemoteDataSource.RemoteDataSourceCallback<List<AttachmentResponse>>
     ) {
         mAttachmentApiDataSource.getAttachments(contractCode)
             .subscribeOn(Schedulers.io())

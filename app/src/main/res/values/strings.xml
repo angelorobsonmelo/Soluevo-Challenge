@@ -67,5 +67,6 @@
     <string name="back_to_contracts_list">Back to Contracts List</string>
     <string name="detran" translatable="false">Detran-%1$s</string>
     <string name="account">Account</string>
+    <string name="contract_details">Contract Details</string>
 
 </resources>

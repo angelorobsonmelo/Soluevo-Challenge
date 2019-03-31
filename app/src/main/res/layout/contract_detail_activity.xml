@@ -1,4 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+
+    <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <include
+                android:id="@+id/tollbarContractDetail"
+                layout="@layout/toolbar"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
 <FrameLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -6,3 +24,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ContractDetailActivity"/>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

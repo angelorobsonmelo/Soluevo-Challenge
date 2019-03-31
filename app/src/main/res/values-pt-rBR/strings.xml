@@ -61,5 +61,6 @@
     <string name="media_picker_you_need_to_grant_access_to" tools:ignore="ExtraTranslation">você precisa permitir o acesso</string>
     <string name="back_to_contracts_list">Voltar para a lista de contratos</string>
     <string name="account">Conta</string>
+    <string name="contract_details">Detalhes do Contrato</string>
 
 </resources>
