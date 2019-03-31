@@ -1,7 +1,7 @@
 package com.angelomelo.soluevochallenge.application.usecases.remote.attachment
 
+import com.angelomelo.soluevochallenge.application.modules.main.MainFragment
 import com.angelomelo.soluevochallenge.application.usecases.UseCase
-import com.angelomelo.soluevochallenge.application.utils.extensions.getFileName
 import com.angelomelo.soluevochallenge.domain.response.AttachmentResponse
 import com.angelomelo.soluevochallenge.service.BaseRemoteDataSource
 import com.angelomelo.soluevochallenge.service.remote.attachment.AttachmentRemoteDataSource
@@ -14,14 +14,14 @@ class GetAttachmentsByContractCodeUseCase(private val attachmentRemoteDataSource
             contractCode,
             object : BaseRemoteDataSource.RemoteDataSourceCallback<List<AttachmentResponse>> {
                 override fun onSuccess(response: List<AttachmentResponse>) {
-                    val newAttachmentResponseFromFilter = getAttachmentResponseFromFilter(response)
+                    val imagesAttachments = MainFragment.getOnlyImageAttachments(response)
 
-                    if (response.isEmpty() || newAttachmentResponseFromFilter.isEmpty()) {
+                    if (response.isEmpty() || imagesAttachments.isEmpty()) {
                         callback.onEmptyData()
                         return
                     }
 
-                    callback.onSuccess(newAttachmentResponseFromFilter)
+                    callback.onSuccess(imagesAttachments)
                 }
 
                 override fun onError(errorMessage: String) {
@@ -32,17 +32,6 @@ class GetAttachmentsByContractCodeUseCase(private val attachmentRemoteDataSource
                     callback.isLoading(isLoading)
                 }
             })
-    }
-
-    private fun getAttachmentResponseFromFilter(response: List<AttachmentResponse>): List<AttachmentResponse> {
-        return response.filter {
-            it.fileName.getFileName().toLowerCase() == "png" ||
-                    it.fileName.getFileName().toLowerCase() == "jpg" ||
-                    it.fileName.getFileName() == "JPEG"
-        }.map {
-            it.urlPath = "http://159.65.244.68/assets/${it.fileName}"
-            it
-        }
     }
 
 }

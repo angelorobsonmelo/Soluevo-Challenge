@@ -34,10 +34,21 @@ import kotlinx.android.synthetic.main.main_activity.*
 class MainFragment : FragmentBase(), MainHandler {
 
     companion object {
-        fun newInstance() = MainFragment()
         const val CONTRACT_RESPONSE_IDENTIFIER = "CONTRACT_RESPONSE_IDENTIFIER"
-    }
+        fun newInstance() = MainFragment()
 
+        fun getOnlyImageAttachments(attachments: List<AttachmentResponse>): List<AttachmentResponse> {
+            return attachments.filter {
+                it.fileName.getFileName().toLowerCase() == "png" ||
+                        it.fileName.getFileName().toLowerCase() == "jpg" ||
+                        it.fileName.getFileName() == "JPEG"
+            }.map {
+                it.urlPath = "http://159.65.244.68/assets/${it.fileName}"
+                it
+            }
+        }
+
+    }
 
     private lateinit var binding: MainFragmentBinding
     private lateinit var viewModel: MainViewModel
@@ -117,31 +128,26 @@ class MainFragment : FragmentBase(), MainHandler {
 
     private fun initObserverAttachmentOnSuccess() {
         viewModel.attachmentsOnsuccessObserver.observe(this, Observer {
-          val attachmentsImages = getAttachmentResponseFromFilter(it)
-
-            contracs.forEachIndexed { indexContract, contractResponse ->
-                attachmentsImages.forEachIndexed { _, attachmentResponse ->
-                    if (contractResponse.code.toBigInteger() == attachmentResponse.contractCode) {
-                        contracs[indexContract].haveAttachments = true
-                    }
-                }
-            }
-
+          val imagesAttachments = getOnlyImageAttachments(it)
+            checkIfContractsHaveAttachments(imagesAttachments)
             setupAdapter()
-
         })
     }
 
-    private fun getAttachmentResponseFromFilter(response: List<AttachmentResponse>): List<AttachmentResponse> {
-        return response.filter {
-            it.fileName.getFileName().toLowerCase() == "png" ||
-                    it.fileName.getFileName().toLowerCase() == "jpg" ||
-                    it.fileName.getFileName() == "JPEG"
-        }.map {
-            it.urlPath = "http://159.65.244.68/assets/${it.fileName}"
-            it
+    private fun checkIfContractsHaveAttachments(imagesAttachments: List<AttachmentResponse>) {
+        contracs.forEachIndexed { indexContract, contractResponse ->
+            imagesAttachments.forEachIndexed { _, attachmentResponse ->
+                if (haveAttachmentInContract(contractResponse, attachmentResponse)) {
+                    contracs[indexContract].haveAttachments = true
+                }
+            }
         }
     }
+
+    private fun haveAttachmentInContract(
+        contractResponse: ContractResponse,
+        attachmentResponse: AttachmentResponse
+    ) = contractResponse.code.toBigInteger() == attachmentResponse.contractCode
 
     private fun initObserverOnError() {
         viewModel.errorObserver.observe(this, Observer {
@@ -249,9 +255,9 @@ class MainFragment : FragmentBase(), MainHandler {
         )
     }
 
-    fun goToContractDetail(position: Int) {
+    fun goToContractDetail(contractPosition: Int) {
         val intent = Intent(context, ContractDetailActivity::class.java)
-        val contractResponse = contracs[position]
+        val contractResponse = contracs[contractPosition]
 
         intent.putExtra(CONTRACT_RESPONSE_IDENTIFIER, contractResponse)
         startActivity(intent)
