@@ -89,7 +89,9 @@
                     android:layout_marginBottom="8dp"/>
             <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" app:srcCompat="@drawable/ic_attach"
+                    android:layout_height="wrap_content"
+                    app:visibleOrGone="@{contractResponse.haveAttachments}"
+                    app:srcCompat="@drawable/ic_attach"
                     android:id="@+id/imageView3"
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_marginTop="8dp" app:layout_constraintEnd_toEndOf="parent"

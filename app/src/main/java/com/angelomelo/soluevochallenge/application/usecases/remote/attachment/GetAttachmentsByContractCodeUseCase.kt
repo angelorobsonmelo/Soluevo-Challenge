@@ -2,16 +2,15 @@ package com.angelomelo.soluevochallenge.application.usecases.remote.attachment
 
 import com.angelomelo.soluevochallenge.application.usecases.UseCase
 import com.angelomelo.soluevochallenge.application.utils.extensions.getFileName
-import com.angelomelo.soluevochallenge.domain.Attachment
 import com.angelomelo.soluevochallenge.domain.response.AttachmentResponse
 import com.angelomelo.soluevochallenge.service.BaseRemoteDataSource
 import com.angelomelo.soluevochallenge.service.remote.attachment.AttachmentRemoteDataSource
 import java.math.BigInteger
 
-class GetAttachmentsUseCase(private val attachmentRemoteDataSource: AttachmentRemoteDataSource) {
+class GetAttachmentsByContractCodeUseCase(private val attachmentRemoteDataSource: AttachmentRemoteDataSource) {
 
-    fun getAttachments(contractCode: BigInteger, callback: UseCase.UseCaseCallback<List<AttachmentResponse>>) {
-        attachmentRemoteDataSource.getAttachments(
+    fun getAttachmentsBy(contractCode: BigInteger, callback: UseCase.UseCaseCallback<List<AttachmentResponse>>) {
+        attachmentRemoteDataSource.getAttachmentsBy(
             contractCode,
             object : BaseRemoteDataSource.RemoteDataSourceCallback<List<AttachmentResponse>> {
                 override fun onSuccess(response: List<AttachmentResponse>) {

@@ -8,6 +8,7 @@ import java.math.BigInteger
 interface AttachmentRemoteDataSource {
 
     fun save(attachment: Attachment, callback: BaseRemoteDataSource.RemoteDataSourceCallback<Attachment>)
-    fun getAttachments(contractCode: BigInteger, callback: BaseRemoteDataSource.RemoteDataSourceCallback<List<AttachmentResponse>>)
+    fun getAttachmentsBy(contractCode: BigInteger, callback: BaseRemoteDataSource.RemoteDataSourceCallback<List<AttachmentResponse>>)
+    fun getAttachments(callback: BaseRemoteDataSource.RemoteDataSourceCallback<List<AttachmentResponse>>)
 
 }

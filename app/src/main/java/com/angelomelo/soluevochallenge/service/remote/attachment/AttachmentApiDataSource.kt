@@ -12,5 +12,8 @@ interface AttachmentApiDataSource {
     fun save(@Body attachment: Attachment): Observable<Attachment>
 
     @GET("detran/public/contract_files")
-    fun getAttachments(@Query("contract_code")  contractCode: BigInteger): Observable<List<AttachmentResponse>>
+    fun getAttachmentsBy(@Query("contract_code")  contractCode: BigInteger): Observable<List<AttachmentResponse>>
+
+    @GET("detran/public/contract_files")
+    fun getAttachments(): Observable<List<AttachmentResponse>>
 }

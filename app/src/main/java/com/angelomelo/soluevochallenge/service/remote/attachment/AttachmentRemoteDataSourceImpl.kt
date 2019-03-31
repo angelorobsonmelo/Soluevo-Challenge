@@ -43,11 +43,11 @@ class AttachmentRemoteDataSourceImpl(private val mAttachmentApiDataSource: Attac
     }
 
     @SuppressLint("CheckResult")
-    override fun getAttachments(
+    override fun getAttachmentsBy(
         contractCode: BigInteger,
         callback: BaseRemoteDataSource.RemoteDataSourceCallback<List<AttachmentResponse>>
     ) {
-        mAttachmentApiDataSource.getAttachments(contractCode)
+        mAttachmentApiDataSource.getAttachmentsBy(contractCode)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { callback.isLoading(true) }
@@ -61,6 +61,23 @@ class AttachmentRemoteDataSourceImpl(private val mAttachmentApiDataSource: Attac
                 }
             )
 
+    }
+
+    @SuppressLint("CheckResult")
+    override fun getAttachments(callback: BaseRemoteDataSource.RemoteDataSourceCallback<List<AttachmentResponse>>) {
+        mAttachmentApiDataSource.getAttachments()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { callback.isLoading(true) }
+            .doAfterTerminate { callback.isLoading(false) }
+            .subscribe(
+                {
+                    callback.onSuccess(it)
+                },
+                { throwable ->
+                    callback.onError(throwable.localizedMessage)
+                }
+            )
     }
 
 }

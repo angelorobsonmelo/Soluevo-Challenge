@@ -13,7 +13,6 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.angelomelo.soluevochallenge.R
 import com.angelomelo.soluevochallenge.application.modules.main.MainFragment
-import com.angelomelo.soluevochallenge.application.modules.savecontract.attachmentsform.adapter.AttachmentsAdapter
 import com.angelomelo.soluevochallenge.application.modules.savecontract.attachmentsform.adapter.ContractAttaschmentsAdapter
 import com.angelomelo.soluevochallenge.application.utils.FragmentBase
 import com.angelomelo.soluevochallenge.databinding.ContractDetailFragmentBinding
@@ -80,7 +79,7 @@ class ContractDetailFragment : FragmentBase() {
     }
 
     private fun getAttachments() {
-        viewModel.getAttachments(contractResponse.code.toBigInteger())
+        viewModel.getAttachmentsBy(contractResponse.code.toBigInteger())
     }
 
     private fun getContractResponse() = arguments?.get(MainFragment.CONTRACT_RESPONSE_IDENTIFIER) as ContractResponse

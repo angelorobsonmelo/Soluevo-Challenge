@@ -23,7 +23,9 @@ import com.angelomelo.soluevochallenge.application.modules.main.adapter.Contract
 import com.angelomelo.soluevochallenge.application.modules.savecontract.attachmentsform.AttachmentsFormActivity
 import com.angelomelo.soluevochallenge.application.utils.FragmentBase
 import com.angelomelo.soluevochallenge.application.utils.RecyclerItemClickListener
+import com.angelomelo.soluevochallenge.application.utils.extensions.getFileName
 import com.angelomelo.soluevochallenge.databinding.MainFragmentBinding
+import com.angelomelo.soluevochallenge.domain.response.AttachmentResponse
 import com.angelomelo.soluevochallenge.domain.response.ContractResponse
 import com.google.android.material.snackbar.Snackbar
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
@@ -41,11 +43,6 @@ class MainFragment : FragmentBase(), MainHandler {
     private lateinit var viewModel: MainViewModel
     private lateinit var adapter: ContractAdapter
     private var contracs = mutableListOf<ContractResponse>()
-
-    override fun onResume() {
-        super.onResume()
-        viewModel.getContracts()
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -81,6 +78,7 @@ class MainFragment : FragmentBase(), MainHandler {
         setSupportActionBar()
         setupRecyclerView()
         initObserverOnSuccess()
+        initObserverAttachmentOnSuccess()
         initObserverOnError()
         initRecyclerItemClickListener()
     }
@@ -113,8 +111,36 @@ class MainFragment : FragmentBase(), MainHandler {
     private fun initObserverOnSuccess() {
         viewModel.successObserver.observe(this, Observer {
             contracs.addAll(it)
-            setupAdapter()
+            viewModel.getAttachments()
         })
+    }
+
+    private fun initObserverAttachmentOnSuccess() {
+        viewModel.attachmentsOnsuccessObserver.observe(this, Observer {
+          val attachmentsImages = getAttachmentResponseFromFilter(it)
+
+            contracs.forEachIndexed { indexContract, contractResponse ->
+                attachmentsImages.forEachIndexed { _, attachmentResponse ->
+                    if (contractResponse.code.toBigInteger() == attachmentResponse.contractCode) {
+                        contracs[indexContract].haveAttachments = true
+                    }
+                }
+            }
+
+            setupAdapter()
+
+        })
+    }
+
+    private fun getAttachmentResponseFromFilter(response: List<AttachmentResponse>): List<AttachmentResponse> {
+        return response.filter {
+            it.fileName.getFileName().toLowerCase() == "png" ||
+                    it.fileName.getFileName().toLowerCase() == "jpg" ||
+                    it.fileName.getFileName() == "JPEG"
+        }.map {
+            it.urlPath = "http://159.65.244.68/assets/${it.fileName}"
+            it
+        }
     }
 
     private fun initObserverOnError() {
