@@ -254,7 +254,10 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
 
     private fun initAttachmentObserveOnSuccess() {
         attachmentViewModel.successObserver.observe(this, Observer {
-            print("message")
+            val index = attachments.indexOf(it)
+            attachments[index].wasSent = true
+            adapter.notifyItemChanged(index)
+
         })
     }
 

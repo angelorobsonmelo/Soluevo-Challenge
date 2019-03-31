@@ -1,6 +1,5 @@
 package com.angelomelo.soluevochallenge.domain
 
-import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import java.math.BigInteger
 
@@ -13,6 +12,8 @@ data class Attachment(
     val fileName: String,
     @SerializedName("filecontent")
     val fileContent: String,
-    @Expose
-    val path: String
+    @Transient
+    val path: String,
+    @Transient
+    var  wasSent: Boolean = false
 )

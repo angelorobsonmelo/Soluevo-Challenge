@@ -52,6 +52,17 @@ fun status(imageView: ImageView, status: Boolean) {
     }
 }
 
+@BindingAdapter( "wasSent")
+fun wasSent(imageView: ImageView, status: Boolean) {
+    if (status) {
+        imageView.setImageDrawable(ContextCompat.getDrawable(imageView.context, R.drawable.ic_check_black_24dp))
+        imageView.isClickable = false
+        imageView.isEnabled = false
+    } else {
+        imageView.setImageDrawable(ContextCompat.getDrawable(imageView.context, R.drawable.ic_close))
+    }
+}
+
 @BindingAdapter("visibleOrGone")
 fun View.setVisibleOrGone(show: Boolean) {
     visibility = if (show) VISIBLE else GONE
