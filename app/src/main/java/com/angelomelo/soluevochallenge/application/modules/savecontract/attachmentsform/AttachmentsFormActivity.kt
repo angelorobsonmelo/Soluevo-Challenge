@@ -108,7 +108,12 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
         when (v.id) {
             R.id.btnNext -> {
 //                contractViewModel.saveContract(getRequestObjectsForm())
-                  attachmentViewModel.save(attachments.first())
+                  backBtn.isEnabled = false
+                  nextBtn.isEnabled = false
+
+                  if (attachments.isNotEmpty()) {
+                      attachmentViewModel.save(attachments.first())
+                  }
             }
 
             R.id.btnBack -> finish()
@@ -242,12 +247,15 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
 
     private fun initSaveContractObserveOnSuccess() {
         contractViewModel.successObserver.observe(this, Observer {
+
             print("message")
         })
     }
 
     private fun initSaveContractObserveOnError() {
         contractViewModel.errorObserver.observe(this, Observer {
+            backBtn.isEnabled = false
+            nextBtn.isEnabled = false
             print("message")
         })
     }
@@ -263,11 +271,15 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
 
     private fun initAttachmentObserveOnError() {
         attachmentViewModel.errorObserver.observe(this, Observer {
+            backBtn.isEnabled = false
+            nextBtn.isEnabled = false
             print("message")
         })
     }
 
     override fun onPressOpenImagePicker() {
+        binding.attachementProgressBar.visibility = View.VISIBLE
+
         ImagePicker.Builder(this@AttachmentsFormActivity)
             .mode(ImagePicker.Mode.CAMERA_AND_GALLERY)
             .compressLevel(ImagePicker.ComperesLevel.MEDIUM)
@@ -322,7 +334,9 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
             setInterpolator(OvershootInterpolator(.5f))
         }
 
-        adapter.notifyDataSetChanged()
+//        adapter.notifyDataSetChanged()
+
+        binding.attachementProgressBar.visibility = View.GONE
     }
 
     override fun onPressRemoveImage(attachment: Attachment) {
