@@ -20,7 +20,7 @@ class AccountActivity : AppCompatActivity() {
 
         toolbar = binding.toolbar as Toolbar
         setSupportActionBar(toolbar)
-        supportActionBar?.title = "Account"
+        supportActionBar?.title = getString(R.string.account)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 

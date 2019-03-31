@@ -91,7 +91,7 @@ class MainFragment : FragmentBase(), MainHandler {
 
         appCompatActivity?.setSupportActionBar(toolbar)
         appCompatActivity?.supportActionBar?.setDisplayShowTitleEnabled(true)
-        appCompatActivity?.supportActionBar?.title = getString(R.string.contract)
+        appCompatActivity?.supportActionBar?.title = getString(R.string.contracts)
     }
 
     private fun setupRecyclerView() {
