@@ -9,10 +9,13 @@ import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil.inflate
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.angelomelo.soluevochallenge.R
 import com.angelomelo.soluevochallenge.application.modules.main.MainFragment
+import com.angelomelo.soluevochallenge.application.modules.savecontract.attachmentsform.adapter.ContractAttaschmentsAdapter
 import com.angelomelo.soluevochallenge.application.utils.FragmentBase
 import com.angelomelo.soluevochallenge.databinding.ContractDetailFragmentBinding
+import com.angelomelo.soluevochallenge.domain.response.AttachmentResponse
 import com.angelomelo.soluevochallenge.domain.response.ContractResponse
 import kotlinx.android.synthetic.main.contract_detail_activity.*
 
@@ -25,6 +28,9 @@ class ContractDetailFragment : FragmentBase() {
     private lateinit var viewModel: ContractDetailViewModel
     private lateinit var binding: ContractDetailFragmentBinding
     private lateinit var contractResponse: ContractResponse
+    private lateinit var adapter: ContractAttaschmentsAdapter
+    private var attachmentsResponse = mutableListOf<AttachmentResponse>()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,12 +46,24 @@ class ContractDetailFragment : FragmentBase() {
         viewModel = ViewModelProviders.of(this).get(ContractDetailViewModel::class.java)
         contractResponse = getContractResponse()
         binding.contractResponse = contractResponse
-
+        initAdapter()
+        setupRecyclerView()
         getAttachments()
         setSupportActionBar()
         initObserverOnSuccess()
         initObserverOnError()
         initObserverOnEmpty()
+    }
+
+    private fun initAdapter() {
+        adapter = ContractAttaschmentsAdapter(attachmentsResponse)
+    }
+
+    private fun setupRecyclerView() {
+        val linearLayoutHorizontal = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        val recyclerView = binding.contractAttachmentsRecycler
+
+        recyclerView.layoutManager = linearLayoutHorizontal
     }
 
     private fun getAttachments() {
@@ -67,7 +85,8 @@ class ContractDetailFragment : FragmentBase() {
 
     private fun initObserverOnSuccess() {
         viewModel.successObserver.observe(this, Observer {
-
+            attachmentsResponse.addAll(it)
+            adapter.notifyDataSetChanged()
         })
     }
 
