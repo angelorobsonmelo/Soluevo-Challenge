@@ -267,7 +267,7 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
 
     private fun initSaveContractObserveOnSuccess() {
         contractViewModel.successObserver.observe(this, Observer {
-            binding.backContractListButton.visibility = View.VISIBLE
+
         })
     }
 
@@ -293,12 +293,7 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
     private fun checkIfItLastAttachment(it: Attachment) {
         if (isLastAttachment(it)) {
             enableImagePickerButton()
-            showButtonToGoContractsScreen()
         }
-    }
-
-    private fun showButtonToGoContractsScreen() {
-        binding.backContractListButton.visibility = View.VISIBLE
     }
 
     private fun enableImagePickerButton() {
