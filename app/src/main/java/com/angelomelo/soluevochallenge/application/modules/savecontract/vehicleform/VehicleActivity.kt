@@ -26,11 +26,16 @@ class VehicleActivity : StateProgressBarBaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.vehicle_form_activity)
+        setupElements()
+        stateprogressbar.setCurrentStateNumber(StateProgressBar.StateNumber.TWO)
+    }
+
+    private fun setupElements() {
+        setupToolbar(getString(R.string.vehicle_form))
         setupBinding()
         setupValidator()
         injectCommonViews()
         injectBackView()
-        stateprogressbar.setCurrentStateNumber(StateProgressBar.StateNumber.TWO)
     }
 
     private fun setupBinding() {

@@ -72,5 +72,7 @@
     <string name="created_at">Created at:</string>
     <string name="update_at">Updated at:</string>
     <string name="personal_form">Personal Form</string>
+    <string name="vehicle_form">Vehicle Form</string>
+    <string name="creditor_form">Creditor Form</string>
 
 </resources>

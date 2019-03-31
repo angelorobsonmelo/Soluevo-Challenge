@@ -28,11 +28,16 @@ class CreditorFormActivity : StateProgressBarBaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.creditor_form_activity)
+        setupElements()
+        stateprogressbar.setCurrentStateNumber(StateProgressBar.StateNumber.THREE)
+    }
+
+    private fun setupElements() {
+        setupToolbar(getString(R.string.creditor_form))
         setupBinding()
         setupValidator()
         injectCommonViews()
         injectBackView()
-        stateprogressbar.setCurrentStateNumber(StateProgressBar.StateNumber.THREE)
     }
 
     private fun setupBinding() {

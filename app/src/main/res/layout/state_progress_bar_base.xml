@@ -5,12 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_alignParentTop="true"
-    android:layout_marginBottom="30dp">
+    android:orientation="vertical">
+
+    <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar"
+    />
 
     <com.kofigyan.stateprogressbar.StateProgressBar
         android:id="@+id/usage_stateprogressbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
         app:spb_animateToCurrentProgressState="true"
         app:spb_checkStateCompleted="true"
         app:spb_currentStateDescriptionColor="@color/colorAccent"

@@ -8,6 +8,7 @@ import androidx.appcompat.widget.Toolbar
 import com.angelomelo.soluevochallenge.R
 import com.angelomelo.soluevochallenge.application.SoluevoChallengeApplication
 import com.kofigyan.stateprogressbar.StateProgressBar
+import kotlinx.android.synthetic.main.state_progress_bar_base.*
 
 abstract class StateProgressBarBaseActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -24,8 +25,8 @@ abstract class StateProgressBarBaseActivity : AppCompatActivity(), View.OnClickL
      lateinit var stateprogressbar: StateProgressBar
 
 
-    protected fun setupToolbar(toolbar: Toolbar, title: String) {
-        setSupportActionBar(toolbar)
+    protected fun setupToolbar(title: String) {
+        setSupportActionBar(toolbar as Toolbar)
         supportActionBar?.title = title
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }

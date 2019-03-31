@@ -30,7 +30,7 @@ class PersonalFormActivity: StateProgressBarBaseActivity() {
     }
 
     private fun setupElements() {
-        setupToolbar(binding.toolbar as Toolbar, getString(R.string.personal_form))
+        setupToolbar(getString(R.string.personal_form))
         setupBinding()
         setupValidator()
         injectCommonViews()

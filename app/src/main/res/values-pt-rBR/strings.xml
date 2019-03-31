@@ -66,5 +66,7 @@
     <string name="created_at">Criado em:</string>
     <string name="update_at">Atualizado em:</string>
     <string name="personal_form">Formulário Pessoal</string>
+    <string name="vehicle_form">Formulário de Veículo</string>
+    <string name="creditor_form">Formulário de Credor</string>
 
 </resources>
