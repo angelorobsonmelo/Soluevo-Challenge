@@ -10,6 +10,8 @@ import androidx.databinding.BindingAdapter
 import com.angelomelo.soluevochallenge.R
 import com.angelomelo.soluevochallenge.application.utils.extensions.convertDateToString
 import com.angelomelo.soluevochallenge.application.utils.extensions.convertDateToStringDDMMM
+import com.angelomelo.soluevochallenge.application.utils.extensions.formatToViewDateTimeDefaults
+import com.angelomelo.soluevochallenge.application.utils.extensions.formatToViewTimeDefaults
 import com.squareup.picasso.Picasso
 import java.util.*
 
@@ -21,8 +23,12 @@ fun convertDateToString(textView: TextView, date: Date) {
 
 @BindingAdapter("initialDate")
 fun convertInitialToString(textView: TextView, initialDate: Date) {
-
     textView.text = initialDate.convertDateToStringDDMMM()
+}
+
+@BindingAdapter("convertFormatToViewDateTimeDefaults")
+fun convertFormatToViewDateTimeDefaults(textView: TextView, date: Date) {
+    textView.text = date.formatToViewDateTimeDefaults()
 }
 
 @BindingAdapter("finalDate")

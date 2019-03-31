@@ -69,5 +69,7 @@
     <string name="account">Account</string>
     <string name="contract_details">Contract Details</string>
     <string name="no_attachment">There is no attachment attached to this contract</string>
+    <string name="created_at">Created at:</string>
+    <string name="update_at">Updated at:</string>
 
 </resources>

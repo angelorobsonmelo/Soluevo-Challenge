@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.OvershootInterpolator
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil.inflate
@@ -12,11 +13,13 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.angelomelo.soluevochallenge.R
 import com.angelomelo.soluevochallenge.application.modules.main.MainFragment
+import com.angelomelo.soluevochallenge.application.modules.savecontract.attachmentsform.adapter.AttachmentsAdapter
 import com.angelomelo.soluevochallenge.application.modules.savecontract.attachmentsform.adapter.ContractAttaschmentsAdapter
 import com.angelomelo.soluevochallenge.application.utils.FragmentBase
 import com.angelomelo.soluevochallenge.databinding.ContractDetailFragmentBinding
 import com.angelomelo.soluevochallenge.domain.response.AttachmentResponse
 import com.angelomelo.soluevochallenge.domain.response.ContractResponse
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import kotlinx.android.synthetic.main.contract_detail_activity.*
 
 class ContractDetailFragment : FragmentBase() {
@@ -66,6 +69,16 @@ class ContractDetailFragment : FragmentBase() {
         recyclerView.layoutManager = linearLayoutHorizontal
     }
 
+    private fun setupAdapter() {
+        adapter = ContractAttaschmentsAdapter(attachmentsResponse)
+        binding.contractAttachmentsRecycler.adapter = ScaleInAnimationAdapter(adapter).apply {
+            setFirstOnly(false)
+            setDuration(500)
+            setInterpolator(OvershootInterpolator(.5f))
+        }
+
+    }
+
     private fun getAttachments() {
         viewModel.getAttachments(contractResponse.code.toBigInteger())
     }
@@ -86,19 +99,19 @@ class ContractDetailFragment : FragmentBase() {
     private fun initObserverOnSuccess() {
         viewModel.successObserver.observe(this, Observer {
             attachmentsResponse.addAll(it)
-            adapter.notifyDataSetChanged()
+            setupAdapter()
         })
     }
 
     private fun initObserverOnError() {
         viewModel.errorObserver.observe(this, Observer {
-
+          showAlert(it)
         })
     }
 
     private fun initObserverOnEmpty() {
         viewModel.emptyObserver.observe(this, Observer {
-
+            binding.noAttachmentTextView.visibility = View.VISIBLE
         })
     }
 

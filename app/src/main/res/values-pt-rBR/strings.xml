@@ -63,5 +63,7 @@
     <string name="account">Conta</string>
     <string name="contract_details">Detalhes do Contrato</string>
     <string name="no_attachment">Não há anexo vínculado a este contrato</string>
+    <string name="created_at">Criado em:</string>
+    <string name="update_at">Atualizado em:</string>
 
 </resources>
