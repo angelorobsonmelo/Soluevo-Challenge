@@ -42,17 +42,12 @@ import java.io.ByteArrayOutputStream
 
 class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandler {
 
-    companion object {
-        const val ATTACHMENTS_IDENTIFIER = "ATTACHMENTS_IDENTIFIER"
-    }
-
     private lateinit var binding: AttachmentsFormActivityBinding
     private lateinit var validator: Validator
     private lateinit var contractViewModel: SaveContractViewModel
     private lateinit var attachmentViewModel: AttachmentsViewModel
     private lateinit var adapter: AttachmentsAdapter
     private var attachments = mutableListOf<Attachment>()
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,12 +56,12 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
         contractViewModel = ViewModelProviders.of(this).get(SaveContractViewModel::class.java)
         attachmentViewModel = ViewModelProviders.of(this).get(AttachmentsViewModel::class.java)
 
-        changeTextButtonNextToConclude()
         setupElements()
         stateprogressbar.setCurrentStateNumber(StateProgressBar.StateNumber.FIVE)
     }
 
     private fun setupElements() {
+        changeTextButtonNextToConclude()
         injectCommonViews()
         injectBackView()
         initSaveContractObserveOnSuccess()

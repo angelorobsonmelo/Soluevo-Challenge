@@ -67,7 +67,6 @@ class MainFragment : FragmentBase(), MainHandler {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-        initAdapter()
         setupElements()
         showWelcomeMessage()
     }
@@ -85,6 +84,7 @@ class MainFragment : FragmentBase(), MainHandler {
     private fun getUserInSession() = SoluevoChallengeApplication.mSessionUseCase?.getAuthSession()?.user
 
     private fun setupElements() {
+        initAdapter()
         setupBinding()
         setSupportActionBar()
         setupRecyclerView()
