@@ -4,6 +4,7 @@ import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.angelomelo.soluevochallenge.R
 import com.angelomelo.soluevochallenge.application.SoluevoChallengeApplication
 import com.kofigyan.stateprogressbar.StateProgressBar
@@ -21,6 +22,18 @@ abstract class StateProgressBarBaseActivity : AppCompatActivity(), View.OnClickL
      lateinit var nextBtn: Button
      lateinit var backBtn: Button
      lateinit var stateprogressbar: StateProgressBar
+
+
+    protected fun setupToolbar(toolbar: Toolbar, title: String) {
+        setSupportActionBar(toolbar)
+        supportActionBar?.title = title
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
 
     protected fun injectCommonViews() {
         nextBtn = findViewById(R.id.btnNext)

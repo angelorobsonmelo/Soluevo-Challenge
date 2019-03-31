@@ -65,5 +65,6 @@
     <string name="no_attachment">Não há anexo vínculado a este contrato</string>
     <string name="created_at">Criado em:</string>
     <string name="update_at">Atualizado em:</string>
+    <string name="personal_form">Formulário Pessoal</string>
 
 </resources>

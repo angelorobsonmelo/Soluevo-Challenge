@@ -3,6 +3,7 @@ package com.angelomelo.soluevochallenge.application.modules.savecontract.persona
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import br.com.ilhasoft.support.validation.Validator
 import com.angelomelo.soluevochallenge.R
@@ -24,10 +25,15 @@ class PersonalFormActivity: StateProgressBarBaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.personal_form_activity)
+        setupElements()
+        stateprogressbar.setCurrentStateNumber(StateProgressBar.StateNumber.ONE)
+    }
+
+    private fun setupElements() {
+        setupToolbar(binding.toolbar as Toolbar, getString(R.string.personal_form))
         setupBinding()
         setupValidator()
         injectCommonViews()
-        stateprogressbar.setCurrentStateNumber(StateProgressBar.StateNumber.ONE)
     }
 
     private fun setupBinding() {

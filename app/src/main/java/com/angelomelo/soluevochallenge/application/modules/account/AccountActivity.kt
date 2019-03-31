@@ -17,7 +17,10 @@ class AccountActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_account)
         binding.user = SoluevoChallengeApplication.mSessionUseCase?.getAuthSession()?.user
+        setupToolbar()
+    }
 
+    private fun setupToolbar() {
         toolbar = binding.toolbar as Toolbar
         setSupportActionBar(toolbar)
         supportActionBar?.title = getString(R.string.account)
