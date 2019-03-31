@@ -5,3 +5,8 @@ import java.math.BigInteger
 fun String.extractNumbers(): BigInteger {
    return  this.replace(Regex("[^0-9]"), "").toBigInteger()
 }
+
+fun String.getFileName(): String {
+   return  this.substring(this.lastIndexOf(".") + 1)
+}
+

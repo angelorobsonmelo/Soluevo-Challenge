@@ -13,5 +13,7 @@ data class AttachmentResponse (
       @SerializedName("created_at")
       val createdAt: Date,
       @SerializedName("last_update")
-      val lastUpdate: Date
+      val lastUpdate: Date,
+      var urlPath: String = ""
+
 )

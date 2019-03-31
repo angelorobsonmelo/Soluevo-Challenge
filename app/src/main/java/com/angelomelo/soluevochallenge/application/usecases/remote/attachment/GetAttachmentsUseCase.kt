@@ -1,6 +1,7 @@
 package com.angelomelo.soluevochallenge.application.usecases.remote.attachment
 
 import com.angelomelo.soluevochallenge.application.usecases.UseCase
+import com.angelomelo.soluevochallenge.application.utils.extensions.getFileName
 import com.angelomelo.soluevochallenge.domain.Attachment
 import com.angelomelo.soluevochallenge.domain.response.AttachmentResponse
 import com.angelomelo.soluevochallenge.service.BaseRemoteDataSource
@@ -10,21 +11,39 @@ import java.math.BigInteger
 class GetAttachmentsUseCase(private val attachmentRemoteDataSource: AttachmentRemoteDataSource) {
 
     fun getAttachments(contractCode: BigInteger, callback: UseCase.UseCaseCallback<List<AttachmentResponse>>) {
-        attachmentRemoteDataSource.getAttachments(contractCode, object : BaseRemoteDataSource.RemoteDataSourceCallback<List<AttachmentResponse>> {
-            override fun onSuccess(response: List<AttachmentResponse>) {
-                callback.onSuccess(response)
-            }
+        attachmentRemoteDataSource.getAttachments(
+            contractCode,
+            object : BaseRemoteDataSource.RemoteDataSourceCallback<List<AttachmentResponse>> {
+                override fun onSuccess(response: List<AttachmentResponse>) {
+                    val newAttachmentResponseFromFilter = getAttachmentResponseFromFilter(response)
 
-            override fun onError(errorMessage: String) {
-                callback.onError(errorMessage)
-            }
+                    if (response.isEmpty() || newAttachmentResponseFromFilter.isEmpty()) {
+                        callback.onEmptyData()
+                        return
+                    }
 
-            override fun isLoading(isLoading: Boolean) {
-                callback.isLoading(isLoading)
-            }
+                    callback.onSuccess(newAttachmentResponseFromFilter)
+                }
 
+                override fun onError(errorMessage: String) {
+                    callback.onError(errorMessage)
+                }
 
-        })
+                override fun isLoading(isLoading: Boolean) {
+                    callback.isLoading(isLoading)
+                }
+            })
+    }
+
+    private fun getAttachmentResponseFromFilter(response: List<AttachmentResponse>): List<AttachmentResponse> {
+        return response.filter {
+            it.fileName.getFileName().toLowerCase() == "png" ||
+                    it.fileName.getFileName().toLowerCase() == "jpg" ||
+                    it.fileName.getFileName() == "JPEG"
+        }.map {
+            it.urlPath = "http://159.65.244.68/assets/${it.fileName}"
+            it
+        }
     }
 
 }
