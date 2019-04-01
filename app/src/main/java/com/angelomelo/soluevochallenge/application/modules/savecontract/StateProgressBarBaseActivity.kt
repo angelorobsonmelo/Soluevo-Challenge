@@ -79,6 +79,18 @@ abstract class StateProgressBarBaseActivity : AppCompatActivity(), View.OnClickL
         alert.show()
     }
 
+    fun showAlertSentImages() {
+        val builder = AlertDialog.Builder(this)
+
+        builder
+            .setMessage(getString(R.string.all_selected_images_already_sent))
+            .setCancelable(false)
+            .setPositiveButton("OK") { _, _ ->  }
+
+        val alert = builder.create()
+        alert.show()
+    }
+
     fun showAlertSuccessAttachments(code: BigInteger) {
         val builder = AlertDialog.Builder(this)
 
@@ -91,11 +103,23 @@ abstract class StateProgressBarBaseActivity : AppCompatActivity(), View.OnClickL
         alert.show()
     }
 
-    fun showAlertError() {
+    fun showAlertErrorSubmittingImages() {
         val builder = AlertDialog.Builder(this)
 
         builder
-            .setMessage(R.string.contract_saved_successfully)
+            .setMessage(R.string.error_submiting_images)
+            .setCancelable(false)
+            .setPositiveButton("OK") { _, _ ->  }
+
+        val alert = builder.create()
+        alert.show()
+    }
+
+    fun showAlertContractCodeNotEmpty() {
+        val builder = AlertDialog.Builder(this)
+
+        builder
+            .setMessage(getString(R.string.fill_contract_code_field))
             .setCancelable(false)
             .setPositiveButton("OK") { _, _ ->  }
 

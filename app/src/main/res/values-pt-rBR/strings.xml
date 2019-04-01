@@ -78,5 +78,8 @@
     </string>
     <string name="contract_saved_code">Contrato de número: %1$s salvo com sucesso!</string>
     <string name="attachments_save_successfully">Anexos do contrato de número: %1$s salvos com sucesso!</string>
+    <string name="all_selected_images_already_sent">Todas as imagens selecionadas já foram enviadas com sucesso. Por favor, selecione outras. :D</string>
+    <string name="error_submiting_images">Houve um erro ao enviar as imagens. Tente novamente! Caso o erro persista, remova todas, as selecione novamente e tente enviar.</string>
+    <string name="fill_contract_code_field">Preencha o código do contrato. Não é possível salvar um contrato sem informar o número.</string>
 
 </resources>

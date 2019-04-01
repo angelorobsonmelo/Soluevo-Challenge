@@ -9,7 +9,7 @@ data class Creditor(
     val cep: BigInteger,
     val uf: String,
     @SerializedName("endereco_numero")
-    val addressNumber: Int,
+    val addressNumber: BigInteger,
     @SerializedName("municipio")
     val county: String,
     @SerializedName("endereco_numero_complemento")

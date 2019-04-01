@@ -20,38 +20,48 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".application.modules.contractdetail.ContractDetailActivity">
+        <activity
+                android:name=".application.modules.contractdetail.ContractDetailActivity"
+                android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".application.modules.account.AccountActivity">
+        <activity android:name=".application.modules.account.AccountActivity"
+                  android:screenOrientation="portrait">
         </activity>
         <activity
                 android:name=".application.modules.savecontract.attachmentsform.AttachmentsFormActivity"
-                android:label="@string/title_activity_attachments">
+                android:label="@string/title_activity_attachments"
+                android:screenOrientation="portrait">
         </activity>
         <activity
                 android:name=".application.modules.savecontract.contractform.ContractFormActivity"
-                android:label="@string/title_activity_contract_form">
+                android:label="@string/title_activity_contract_form"
+                android:screenOrientation="portrait">
         </activity>
         <activity
                 android:name=".application.modules.savecontract.creditorform.CreditorFormActivity"
-                android:label="@string/title_activity_credor">
+                android:label="@string/title_activity_credor"
+                android:screenOrientation="portrait">
         </activity>
         <activity
                 android:name=".application.modules.savecontract.vehicleform.VehicleActivity"
-                android:label="@string/title_activity_vehicle">
+                android:label="@string/title_activity_vehicle"
+                android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".application.modules.savecontract.personalform.PersonalFormActivity">
+        <activity android:name=".application.modules.savecontract.personalform.PersonalFormActivity"
+                  android:screenOrientation="portrait">
         </activity>
         <activity
                 android:name=".application.modules.auth.AuthActivity"
-                android:windowSoftInputMode="stateAlwaysHidden">
+                android:windowSoftInputMode="stateAlwaysHidden"
+                android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".application.modules.main.MainActivity"/>
+        <activity android:name=".application.modules.main.MainActivity"
+                  android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

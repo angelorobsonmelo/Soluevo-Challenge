@@ -111,13 +111,22 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
     override fun onClick(v: View) {
         when (v.id) {
             R.id.btnNext -> {
-                if (isButtonSaveClicked && attachments.isNotEmpty()) {
-                    saveAttachments()
-                    return
+                when {
+                    isButtonSaveClicked && attachments.isNotEmpty() -> {
+                        if (haveAllAttachmentsBeenSubmitted()) {
+                            showAlertSentImages()
+                            return
+                        }
+
+                        saveAttachments()
+                        return
+                    }
+                    else -> {
+                        isButtonSaveClicked = true
+                        contractViewModel.saveContract(getRequestObjectsForm())
+                    }
                 }
 
-                isButtonSaveClicked = true
-                contractViewModel.saveContract(getRequestObjectsForm())
             }
 
             R.id.btnBack -> finish()
@@ -197,7 +206,7 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
             creditorForm.address,
             creditorForm.cep.extractNumbers(),
             creditorForm.uf,
-            creditorForm.addressNumber.toInt(),
+            creditorForm.addressNumber.toBigInteger(),
             creditorForm.county,
             creditorForm.addressComplementNumber,
             creditorForm.nameFinancialAgentFinancialInstitution,
@@ -282,7 +291,6 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
         binding.imagePickerButton.isEnabled = false
     }
 
-
     private fun initSaveContractObserveOnError() {
         contractViewModel.errorObserver.observe(this, Observer {
             isButtonSaveClicked = false
@@ -303,12 +311,19 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
                 val dialogInstance = dialog as Dialog
                 val contractCodeEditText = dialogInstance.contract_code_alert_edit_text
                 val newObjecRequestWithAnotherContractCode = getRequestObjectsForm()
-                contractCode = contractCodeEditText.rawText?.toBigInteger()
-                newObjecRequestWithAnotherContractCode.contractRequest.code = contractCode!!
-                contractViewModel.saveContract(newObjecRequestWithAnotherContractCode)
-                isButtonSaveClicked = true
-                dialog.cancel()
-                dialog.dismiss()
+
+                if (contractCodeEditText.text?.isNotEmpty()!!) {
+                    contractCode = contractCodeEditText.rawText?.toBigInteger()
+                    newObjecRequestWithAnotherContractCode.contractRequest.code = contractCode!!
+                    contractViewModel.saveContract(newObjecRequestWithAnotherContractCode)
+
+                    isButtonSaveClicked = true
+                    dialog.cancel()
+                    dialog.dismiss()
+                    return@setPositiveButton
+                }
+
+                showAlertContractCodeNotEmpty()
             }
             .setNegativeButton(getString(R.string.media_picker_cancel)) { dialog, _ ->
                 dialog.cancel()
@@ -347,9 +362,9 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
 
     private fun initAttachmentObserveOnError() {
         attachmentViewModel.errorObserver.observe(this, Observer {
+            showAlertErrorSubmittingImages()
             enableImagePickerButton()
             setThatSavedButtonWasNotClickedSoThatTheUserCanClickItAgain()
-            showAlertError()
         })
     }
 
@@ -385,6 +400,11 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
             val attachtmentSent = attachments.filter { it.wasSent }.map { it }
             attachments.removeAll(attachtmentSent)
         }
+    }
+
+    private fun haveAllAttachmentsBeenSubmitted(): Boolean {
+        val attachamentsSent = attachments.filter { it.wasSent }.map { it }
+        return attachamentsSent.size == attachments.size
     }
 
     private fun checkIfSaveButtonHasAlreadyBeenClickedWhenUserClicksToChooseAttachments() {
