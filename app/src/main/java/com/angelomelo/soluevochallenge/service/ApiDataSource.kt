@@ -1,6 +1,7 @@
 package br.com.stant.stant_android_occurrences.services
 
 import com.angelomelo.soluevochallenge.service.CustomInterceptorRequest
+import com.angelomelo.soluevochallenge.service.NullOnEmptyConverterFactory
 import com.angelomelo.soluevochallenge.service.TokenAuthenticator
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
@@ -35,6 +36,7 @@ class ApiDataSource  {
                 .baseUrl("http://159.65.244.68/")
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
+                .addConverterFactory(NullOnEmptyConverterFactory())
                 .client(httpClient.build())
                 .build()
 

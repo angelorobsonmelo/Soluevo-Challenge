@@ -41,6 +41,7 @@ import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import kotlinx.android.synthetic.main.contract_code.*
 import kotlinx.android.synthetic.main.state_progress_bar_footer_button_layout.*
 import net.alhazmy13.mediapicker.Image.ImagePicker
+import java.math.BigInteger
 import java.util.*
 
 
@@ -53,6 +54,7 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
     private lateinit var adapter: AttachmentsAdapter
     private var attachments = mutableListOf<Attachment>()
     private var isButtonSaveClicked = false
+    private var contractCode: BigInteger? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -209,8 +211,8 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
         return Contract(
             contractForm.contractDate.extractNumbers(),
             contractForm.code,
-            contractForm.tagNumber.toInt(),
-            contractForm.amountMonths.toInt(),
+            contractForm.tagNumber.toBigInteger(),
+            contractForm.amountMonths.toBigInteger(),
             contractForm.typeRestriction,
             contractForm.rateMora.toBigDecimal(),
             contractForm.valueMoraRate.toBigDecimal(),
@@ -250,15 +252,17 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
 
     private fun initSaveContractObserveOnSuccess() {
         contractViewModel.successObserver.observe(this, Observer {
+            disableBackButton()
             if(haveAttachmentsSelected()) {
-                disableBackButton()
+                enableConcludeButton()
                 disableRemoveImageClick()
                 notifyAdapterThatSaveButtonWasClicked()
                 saveAttachments()
                 isButtonSaveClicked = true
             }
 
-            showAlert(getString(R.string.contract_saved_successfully))
+            enableConcludeButton()
+            showAlertSuccess()
         })
     }
 
@@ -288,6 +292,10 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
         backBtn.isEnabled = false
     }
 
+    private fun enableConcludeButton() {
+        nextBtn.isEnabled = true
+    }
+
     private fun initSaveContractObserveOnError() {
         contractViewModel.errorObserver.observe(this, Observer {
             isButtonSaveClicked = false
@@ -305,8 +313,8 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
                 val dialogInstance = dialog as Dialog
                 val contractCodeEditText = dialogInstance.contract_code_alert_edit_text
                 val newObjecRequestWithAnotherContractCode = getRequestObjectsForm()
-
-                newObjecRequestWithAnotherContractCode.contractRequest.code = contractCodeEditText.rawText?.toBigInteger()!!
+                contractCode = contractCodeEditText.rawText?.toBigInteger()
+                newObjecRequestWithAnotherContractCode.contractRequest.code = contractCode!!
                 contractViewModel.saveContract(newObjecRequestWithAnotherContractCode)
                 isButtonSaveClicked = true
             }
@@ -333,7 +341,7 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
     private fun checkIfItLastAttachment(it: Attachment) {
         if (isLastAttachment(it)) {
             enableImagePickerButton()
-            showAlert(getString(R.string.contract_and_attachments_successfully_saved))
+            showAlertSuccess()
         }
     }
 
@@ -354,7 +362,7 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
             enableNextAndBackButton()
             enableImagePickerButton()
             setThatSavedButtonWasNotClickedSoThatTheUserCanClickItAgain()
-//            showAlertError(it)
+            showAlertError()
         })
     }
 
@@ -369,6 +377,10 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
     }
 
     private fun showImagePickerOptions() {
+        if (isButtonSaveClicked) {
+            attachments.clear()
+        }
+
         ImagePicker.Builder(this@AttachmentsFormActivity)
             .mode(ImagePicker.Mode.CAMERA_AND_GALLERY)
             .compressLevel(ImagePicker.ComperesLevel.MEDIUM)
@@ -410,9 +422,15 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
         data!!.getStringArrayListExtra(ImagePicker.EXTRA_IMAGE_PATH)
 
     private fun extractingFilesByPathAndPopulateObjectToShowOnAdapter(mPaths: ArrayList<String>) {
+        val contractCode: BigInteger? = if (isButtonSaveClicked) {
+            this.contractCode
+        } else {
+            getContractsRequest().code.toBigInteger()
+        }
+
         mPaths.forEach {
             val attachment = Attachment(
-                getContractsRequest().code.toBigInteger(),
+                contractCode!!,
                 it.getFileExntesion(),
                 it.getFileName(),
                 getBitmap(it).encodeTobase64(),

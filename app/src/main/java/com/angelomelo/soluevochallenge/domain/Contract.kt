@@ -10,9 +10,9 @@ data class Contract(
     @SerializedName("numero_do_contrato")
     val code: String,
     @SerializedName("numero_gravame")
-    val tagNumber: Int,
+    val tagNumber: BigInteger,
     @SerializedName("quantidade_meses")
-    val amountMonths: Int,
+    val amountMonths: BigInteger,
     @SerializedName("tipo_restricao")
     val typeRestriction: String,
     @SerializedName("taxa_mora")

@@ -66,11 +66,23 @@ abstract class StateProgressBarBaseActivity : AppCompatActivity(), View.OnClickL
         backBtn.setOnClickListener(this)
     }
 
-    fun showAlert(message: String) {
+    fun showAlertSuccess() {
         val builder = AlertDialog.Builder(this)
 
         builder
-            .setMessage(message.toInt())
+            .setMessage(R.string.contract_saved_successfully)
+            .setCancelable(false)
+            .setPositiveButton("OK") { _, _ ->  }
+
+        val alert = builder.create()
+        alert.show()
+    }
+
+    fun showAlertError() {
+        val builder = AlertDialog.Builder(this)
+
+        builder
+            .setMessage(R.string.contract_saved_successfully)
             .setCancelable(false)
             .setPositiveButton("OK") { _, _ ->  }
 

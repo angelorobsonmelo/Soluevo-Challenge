@@ -17,7 +17,7 @@
                 android:id="@+id/contract_code_alert_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:met_mask="#########"
+                app:met_mask="##"
                 android:inputType="number"
                 android:maxLines="1"
                 android:singleLine="true"
