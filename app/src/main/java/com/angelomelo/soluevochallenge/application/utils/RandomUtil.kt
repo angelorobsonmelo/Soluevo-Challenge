@@ -9,9 +9,9 @@ object RandomUtil {
     @JvmStatic
     fun getRandomNumber(): Int {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            ThreadLocalRandom.current().nextInt(100000000, 900000000)
+            ThreadLocalRandom.current().nextInt(1000, 9000)
         } else {
-            Random().nextInt(900000001) + 100000001
+            Random().nextInt(9000) + 1000
         }
     }
 }

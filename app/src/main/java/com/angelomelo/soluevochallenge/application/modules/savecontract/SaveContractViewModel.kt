@@ -13,7 +13,7 @@ class SaveContractViewModel : BaseViewModel<BigInteger>() {
     fun saveContract(requestObjectsForm: RequestObjectsForm) {
         getContractsUseCase.saveContract(requestObjectsForm, object : UseCase.UseCaseCallback<BigInteger> {
             override fun onSuccess(response: BigInteger) {
-                successObserver.value = null
+                successObserver.value = response
             }
 
             override fun onEmptyData() {
