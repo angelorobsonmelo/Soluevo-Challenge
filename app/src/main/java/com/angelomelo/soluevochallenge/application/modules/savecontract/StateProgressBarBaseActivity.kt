@@ -13,6 +13,7 @@ import com.angelomelo.soluevochallenge.application.SoluevoChallengeApplication
 import com.angelomelo.soluevochallenge.application.modules.main.MainActivity
 import com.kofigyan.stateprogressbar.StateProgressBar
 import kotlinx.android.synthetic.main.state_progress_bar_base.*
+import java.math.BigInteger
 
 abstract class StateProgressBarBaseActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -66,11 +67,11 @@ abstract class StateProgressBarBaseActivity : AppCompatActivity(), View.OnClickL
         backBtn.setOnClickListener(this)
     }
 
-    fun showAlertSuccess() {
+    fun showAlertSuccess(code: BigInteger) {
         val builder = AlertDialog.Builder(this)
 
         builder
-            .setMessage(R.string.contract_saved_successfully)
+            .setMessage(getString(R.string.contract_saved_code, code))
             .setCancelable(false)
             .setPositiveButton("OK") { _, _ ->  }
 

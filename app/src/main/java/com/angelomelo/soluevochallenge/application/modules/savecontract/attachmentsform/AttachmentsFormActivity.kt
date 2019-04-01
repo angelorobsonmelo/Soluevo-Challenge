@@ -38,7 +38,7 @@ import com.angelomelo.soluevochallenge.domain.request.*
 import com.google.gson.Gson
 import com.kofigyan.stateprogressbar.StateProgressBar
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
-import kotlinx.android.synthetic.main.contract_code.*
+import kotlinx.android.synthetic.main.contract_code_dialog.*
 import kotlinx.android.synthetic.main.state_progress_bar_footer_button_layout.*
 import net.alhazmy13.mediapicker.Image.ImagePicker
 import java.math.BigInteger
@@ -111,14 +111,13 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
     override fun onClick(v: View) {
         when (v.id) {
             R.id.btnNext -> {
-                if (isButtonSaveClicked) {
+                if (isButtonSaveClicked && attachments.isNotEmpty()) {
                     saveAttachments()
                     return
                 }
 
                 isButtonSaveClicked = true
                 contractViewModel.saveContract(getRequestObjectsForm())
-                disableNextAndBackButton()
             }
 
             R.id.btnBack -> finish()
@@ -127,11 +126,14 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
 
     private fun getRequestObjectsForm(): RequestObjectsForm {
         val gson = Gson()
-        val uuid= SoluevoChallengeApplication.mSessionUseCase!!.getAuthSession()?.user?.uuid!!
+        val uuid = SoluevoChallengeApplication.mSessionUseCase!!.getAuthSession()?.user?.uuid!!
 
-        val vehicleRequest = RequestFormBase(gson.toJson(getDataVehicle()), uuid, RandomUtil.getRandomNumber().toBigInteger())
-        val contractRequest = RequestFormBase(gson.toJson(getDataContract()), uuid, getContractsRequest().code.toBigInteger())
-        val creditorRequest = RequestFormBase(gson.toJson(getDataCreditor()), uuid, RandomUtil.getRandomNumber().toBigInteger())
+        val vehicleRequest =
+            RequestFormBase(gson.toJson(getDataVehicle()), uuid, RandomUtil.getRandomNumber().toBigInteger())
+        val contractRequest =
+            RequestFormBase(gson.toJson(getDataContract()), uuid, getContractsRequest().code.toBigInteger())
+        val creditorRequest =
+            RequestFormBase(gson.toJson(getDataCreditor()), uuid, RandomUtil.getRandomNumber().toBigInteger())
 
         return RequestObjectsForm(
             vehicleRequest,
@@ -252,17 +254,14 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
 
     private fun initSaveContractObserveOnSuccess() {
         contractViewModel.successObserver.observe(this, Observer {
+            showAlertSuccess(it)
             disableBackButton()
-            if(haveAttachmentsSelected()) {
-                enableConcludeButton()
+            if (haveAttachmentsSelected()) {
                 disableRemoveImageClick()
                 notifyAdapterThatSaveButtonWasClicked()
                 saveAttachments()
                 isButtonSaveClicked = true
             }
-
-            enableConcludeButton()
-            showAlertSuccess()
         })
     }
 
@@ -283,32 +282,23 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
         binding.imagePickerButton.isEnabled = false
     }
 
-    private fun disableNextAndBackButton() {
-        backBtn.isEnabled = false
-        nextBtn.isEnabled = false
+
+    private fun initSaveContractObserveOnError() {
+        contractViewModel.errorObserver.observe(this, Observer {
+            isButtonSaveClicked = false
+            showAlertReEnterContractCode()
+        })
     }
 
     private fun disableBackButton() {
         backBtn.isEnabled = false
     }
 
-    private fun enableConcludeButton() {
-        nextBtn.isEnabled = true
-    }
-
-    private fun initSaveContractObserveOnError() {
-        contractViewModel.errorObserver.observe(this, Observer {
-            isButtonSaveClicked = false
-            enableNextAndBackButton()
-            showAlertReEnterContractCode()
-        })
-    }
-
     private fun showAlertReEnterContractCode() {
         AlertDialog.Builder(themedContext)
             .setTitle(getString(R.string.re_enter_contract_number))
             .setMessage(getString(R.string.re_enter_contract_number_message))
-            .setView(layoutInflater.inflate(R.layout.contract_code, null))
+            .setView(layoutInflater.inflate(R.layout.contract_code_dialog, null))
             .setPositiveButton(getString(R.string.media_picker_ok)) { dialog, _ ->
                 val dialogInstance = dialog as Dialog
                 val contractCodeEditText = dialogInstance.contract_code_alert_edit_text
@@ -317,6 +307,8 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
                 newObjecRequestWithAnotherContractCode.contractRequest.code = contractCode!!
                 contractViewModel.saveContract(newObjecRequestWithAnotherContractCode)
                 isButtonSaveClicked = true
+                dialog.cancel()
+                dialog.dismiss()
             }
             .setNegativeButton(getString(R.string.media_picker_cancel)) { dialog, _ ->
                 dialog.cancel()
@@ -326,13 +318,9 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
             .show()
     }
 
-    private fun enableNextAndBackButton() {
-        backBtn.isEnabled = true
-        nextBtn.isEnabled = true
-    }
-
     private fun initAttachmentObserveOnSuccess() {
         attachmentViewModel.successObserver.observe(this, Observer {
+            disableBackButton()
             setSuccessfullyUploadedImageIndicator(it)
             checkIfItLastAttachment(it)
         })
@@ -341,7 +329,7 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
     private fun checkIfItLastAttachment(it: Attachment) {
         if (isLastAttachment(it)) {
             enableImagePickerButton()
-            showAlertSuccess()
+            showAlertSuccess(it.contractCode)
         }
     }
 
@@ -359,7 +347,6 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
 
     private fun initAttachmentObserveOnError() {
         attachmentViewModel.errorObserver.observe(this, Observer {
-            enableNextAndBackButton()
             enableImagePickerButton()
             setThatSavedButtonWasNotClickedSoThatTheUserCanClickItAgain()
             showAlertError()
@@ -378,7 +365,7 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
 
     private fun showImagePickerOptions() {
         if (isButtonSaveClicked) {
-            attachments.clear()
+            removeSentAttachments()
         }
 
         ImagePicker.Builder(this@AttachmentsFormActivity)
@@ -393,9 +380,15 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
             .build()
     }
 
+    private fun removeSentAttachments() {
+        if (attachments.isNotEmpty()) {
+            val attachtmentSent = attachments.filter { it.wasSent }.map { it }
+            attachments.removeAll(attachtmentSent)
+        }
+    }
+
     private fun checkIfSaveButtonHasAlreadyBeenClickedWhenUserClicksToChooseAttachments() {
         if (adapter.saveButtonWasClicked) {
-            enableNextButton()
             removeAllAttachmentsAndUpdateAdapter()
         }
     }
@@ -403,10 +396,6 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
     private fun removeAllAttachmentsAndUpdateAdapter() {
         attachments.clear()
         adapter.notifyDataSetChanged()
-    }
-
-    private fun enableNextButton() {
-        nextBtn.isEnabled = true
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

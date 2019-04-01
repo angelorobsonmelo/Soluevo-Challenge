@@ -76,5 +76,6 @@
     <string name="re_enter_contract_number_message">Tente digitar outro código, pois já existe um contrato com o número
         que você havia escolhido
     </string>
+    <string name="contract_saved_code">Contrato de número: %1$s salvo com sucesso!</string>
 
 </resources>

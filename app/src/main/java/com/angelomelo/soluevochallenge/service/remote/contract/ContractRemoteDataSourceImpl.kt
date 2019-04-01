@@ -8,6 +8,7 @@ import com.angelomelo.soluevochallenge.service.BaseRemoteDataSource
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import java.math.BigInteger
 
 class ContractRemoteDataSourceImpl(private val contractApiDataSource: ContractApiDataSource): ContractRemoteDataSource {
 
@@ -42,11 +43,10 @@ class ContractRemoteDataSourceImpl(private val contractApiDataSource: ContractAp
     }
 
     @SuppressLint("CheckResult")
-    override fun save(requestObjectsForm: RequestObjectsForm, callback: BaseRemoteDataSource.VoidRemoteDataSourceCallback) {
+    override fun save(requestObjectsForm: RequestObjectsForm, callback: BaseRemoteDataSource.RemoteDataSourceCallback<BigInteger>) {
         val contractObservable = contractApiDataSource.save(requestObjectsForm.contractRequest)
         val vehicleObservalble = contractApiDataSource.save(requestObjectsForm.vehicleRequest)
         val creditorObservable = contractApiDataSource.save(requestObjectsForm.creditorRequest)
-
 
         Observable.merge(vehicleObservalble, contractObservable, creditorObservable).subscribeOn(Schedulers.io())
             .subscribeOn(Schedulers.io())
@@ -54,7 +54,7 @@ class ContractRemoteDataSourceImpl(private val contractApiDataSource: ContractAp
             .doOnSubscribe { callback.isLoading(true) }
             .doAfterTerminate { callback.isLoading(false) }
             .doOnComplete {
-                callback.onSuccess()
+                callback.onSuccess(requestObjectsForm.contractRequest.code)
             }
             .subscribe(
                 {
