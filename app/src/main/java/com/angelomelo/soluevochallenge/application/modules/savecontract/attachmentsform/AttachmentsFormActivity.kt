@@ -431,13 +431,10 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
         data!!.getStringArrayListExtra(ImagePicker.EXTRA_IMAGE_PATH)
 
     private fun extractingFilesByPathAndPopulateObjectToShowOnAdapter(mPaths: ArrayList<String>) {
-        val contractCode: BigInteger? = if (isButtonSaveClicked) {
-            this.contractCode
-        } else {
-            getContractsRequest().code.toBigInteger()
-        }
+        val contractCode: BigInteger? = getContractCode()
+        val pathsNotNull = mPaths.mapNotNull { it }
 
-        mPaths.forEach {
+        pathsNotNull.forEach {
             val attachment = Attachment(
                 contractCode!!,
                 it.getFileExntesion(),
@@ -447,6 +444,14 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
             )
 
             attachments.add(attachment)
+        }
+    }
+
+    private fun getContractCode(): BigInteger? {
+        return if (isButtonSaveClicked) {
+            this.contractCode
+        } else {
+            getContractsRequest().code.toBigInteger()
         }
     }
 
