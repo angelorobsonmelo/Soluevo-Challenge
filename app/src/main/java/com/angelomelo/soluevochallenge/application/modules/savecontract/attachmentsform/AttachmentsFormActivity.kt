@@ -422,13 +422,13 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == ImagePicker.IMAGE_PICKER_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             val mPaths = getAttachmentPaths(data)
-            extractingFilesByPathAndPopulateObjectToShowOnAdapter(mPaths)
+            extractingFilesByPathAndPopulateObjectToShowOnAdapter(mPaths ?: arrayListOf(""))
             setupAdapter()
         }
     }
 
     private fun getAttachmentPaths(data: Intent?) =
-        data!!.getStringArrayListExtra(ImagePicker.EXTRA_IMAGE_PATH)
+        data?.getStringArrayListExtra(ImagePicker.EXTRA_IMAGE_PATH)
 
     private fun extractingFilesByPathAndPopulateObjectToShowOnAdapter(mPaths: ArrayList<String>) {
         val contractCode: BigInteger? = getContractCode()
@@ -437,9 +437,9 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
         pathsNotNull.forEach {
             val attachment = Attachment(
                 contractCode!!,
-                it.getFileExntesion(),
-                it.getFileName(),
-                getBitmap(it).encodeTobase64(),
+                it.getFileExntesion() ?: "",
+                it.getFileName() ?: "",
+                getBitmap(it).encodeTobase64() ?: "",
                 it
             )
 

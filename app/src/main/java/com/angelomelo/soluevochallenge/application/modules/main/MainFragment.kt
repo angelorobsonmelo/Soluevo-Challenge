@@ -39,8 +39,8 @@ class MainFragment : FragmentBase(), MainHandler {
 
         fun getOnlyImageAttachments(attachments: List<AttachmentResponse>): List<AttachmentResponse> {
             return attachments.filter {
-                it.fileName.getFileName().toLowerCase() == "png" ||
-                        it.fileName.getFileName().toLowerCase() == "jpg" ||
+                it.fileName.getFileName()?.toLowerCase() == "png" ||
+                        it.fileName.getFileName()?.toLowerCase() == "jpg" ||
                         it.fileName.getFileName() == "JPEG"
             }.map {
                 it.urlPath = "http://159.65.244.68/assets/${it.fileName}"
