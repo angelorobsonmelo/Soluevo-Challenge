@@ -79,6 +79,18 @@ abstract class StateProgressBarBaseActivity : AppCompatActivity(), View.OnClickL
         alert.show()
     }
 
+    fun showAlertSuccessAttachments(code: BigInteger) {
+        val builder = AlertDialog.Builder(this)
+
+        builder
+            .setMessage(getString(R.string.attachments_save_successfully, code))
+            .setCancelable(false)
+            .setPositiveButton("OK") { _, _ ->  }
+
+        val alert = builder.create()
+        alert.show()
+    }
+
     fun showAlertError() {
         val builder = AlertDialog.Builder(this)
 

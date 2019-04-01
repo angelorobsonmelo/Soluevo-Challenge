@@ -329,7 +329,7 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
     private fun checkIfItLastAttachment(it: Attachment) {
         if (isLastAttachment(it)) {
             enableImagePickerButton()
-            showAlertSuccess(it.contractCode)
+            showAlertSuccessAttachments(it.contractCode)
         }
     }
 

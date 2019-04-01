@@ -77,5 +77,6 @@
         que você havia escolhido
     </string>
     <string name="contract_saved_code">Contrato de número: %1$s salvo com sucesso!</string>
+    <string name="attachments_save_successfully">Anexos do contrato de número: %1$s salvos com sucesso!</string>
 
 </resources>
