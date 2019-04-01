@@ -448,7 +448,7 @@ class AttachmentsFormActivity : StateProgressBarBaseActivity(), AttachmentsHandl
     }
 
     private fun getContractCode(): BigInteger? {
-        return if (isButtonSaveClicked) {
+        return if (isButtonSaveClicked && contractCode != null) {
             this.contractCode
         } else {
             getContractsRequest().code.toBigInteger()
