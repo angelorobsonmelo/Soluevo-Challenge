@@ -7,14 +7,9 @@
         <variable name="contractResponse" type="com.angelomelo.soluevochallenge.domain.response.ContractResponse"/>
     </data>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="30dp"
-    >
 
         <ScrollView android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:fillViewport="true">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -104,7 +99,8 @@
                         android:layout_marginStart="8dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         android:layout_marginEnd="8dp"
-                        android:layout_marginRight="8dp"/>
+                        android:layout_marginRight="8dp" app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginBottom="16dp"/>
                 <TextView
                         android:id="@+id/no_attachment_text_view"
                         android:text="@string/no_attachment"
@@ -126,6 +122,5 @@
 
         </ScrollView>
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </layout>
