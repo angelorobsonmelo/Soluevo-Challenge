@@ -7,6 +7,7 @@ import com.angelomelo.soluevochallenge.service.remote.contract.ContractApiDataSo
 
 object InjectionApiDataSource {
 
+
     @JvmStatic
     fun provideAuthApiDataSource(): AuthApiDataSource {
         return createService(AuthApiDataSource::class.java)
