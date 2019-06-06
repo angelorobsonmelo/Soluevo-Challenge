@@ -1,18 +1,15 @@
-package br.com.stant.stant_android_occurrences.services
+package com.angelomelo.soluevochallenge.service
 
-import com.angelomelo.soluevochallenge.service.CustomInterceptorRequest
-import com.angelomelo.soluevochallenge.service.NullOnEmptyConverterFactory
-import com.angelomelo.soluevochallenge.service.TokenAuthenticator
+import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import java.lang.reflect.Modifier
 import java.util.concurrent.TimeUnit
 
-class ApiDataSource  {
+class ApiDataSource {
 
     companion object {
 
@@ -29,6 +26,7 @@ class ApiDataSource  {
             httpClient.addInterceptor(loggingInterceptor)
 
             val gson = GsonBuilder()
+                .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ss")
                 .create()
 
